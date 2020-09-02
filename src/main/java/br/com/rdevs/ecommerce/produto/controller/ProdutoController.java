@@ -54,6 +54,10 @@ public class ProdutoController {
         return ResponseEntity.ok().body(service.buscaPorCategoriaESubCategoria(idCategoriaProduto,idSubCategoria));
     }
 
+    @GetMapping("/fabricantes/{idSubCategoria}")
+    public ResponseEntity nomesFabrincates(@PathVariable("idSubCategoria") Long idSubCategoria){
+        return ResponseEntity.ok().body(service.fabricantesPorSubCategoria(idSubCategoria));
+    }
 
 
 

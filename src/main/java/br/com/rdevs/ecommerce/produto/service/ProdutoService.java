@@ -276,10 +276,14 @@ public class ProdutoService {
     public List<ProdutoDTO> buscarPorSubCategoria(Long idSubCategoriaProduto){
         List<ProdutoDTO> listaDTO = new ArrayList<>();
         List<TbProduto> listaEntity = produtoRepository.findBySubCategoriaProdutoIdSubCategoria(idSubCategoriaProduto);
+
         for (TbProduto prod : listaEntity) {
             if(prod.getDsProduto()!=null) {
-                if(prod.getDsProduto()!=null) {
+
                     ProdutoDTO dto = produtoBo.parseToDTO(prod);
+
+
+
                     CategoriaProdutoDTO catdto = new CategoriaProdutoDTO();
                     SubCategoriaProdutoDTO subCategoriaProduto = new SubCategoriaProdutoDTO();
 
@@ -312,7 +316,7 @@ public class ProdutoService {
                     dto.setEstoques(estoquesProdutosDTO);
 
                     listaDTO.add(dto);
-                }
+
             }
         }
 
@@ -368,8 +372,21 @@ public class ProdutoService {
 
     }
 
+    public List<ListaFabricantes> fabricantesPorSubCategoria(Long idSubcategoria){
+        List<ListaFabricantes> listaFabricantes = new ArrayList<>();
+        List<TbProduto> produtos = produtoRepository.findBySubCategoriaProdutoIdSubCategoria(idSubcategoria);
+        for (TbProduto produto: produtos){
+            ListaFabricantes fabricante = new ListaFabricantes();
+            if(!listaFabricantes.contains(produto.getNomeFabricante())){
+                fabricante.setNomeFabricante(produto.getNomeFabricante());
+                listaFabricantes.add(fabricante);
+            }
 
+        }
 
+        return listaFabricantes;
+    }
 
+//    public List<ProdutoDTO> buscarPorSubCategoriaPreço(Long idSubCategoriaProduto)
 
 }

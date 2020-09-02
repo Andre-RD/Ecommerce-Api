@@ -46,6 +46,7 @@ public class TbPedidoService {
         for(TbPedido tbPedido : pedidos){
             PedidoDTO pedidoDTO = pedidoBO.parseToDTO(tbPedido);
             pedidoDTO.setIdCliente(idCliente);
+            pedidoDTO.setDsStatusPedido(tbPedido.getStatusPedido().getDsStatusPedido());
 
             List<PedidoItemDTO> pedidoItensDto = new ArrayList<>();
 

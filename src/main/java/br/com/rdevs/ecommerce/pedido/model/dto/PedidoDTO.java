@@ -18,6 +18,6 @@ public class PedidoDTO {
     private BigDecimal vlTotalPedido;
     private Integer qtItensPedido;
     private Long idCliente;
-    private Long cdStatusPedido;
+    private String dsStatusPedido;
     private List<PedidoItemDTO> items;
 }
