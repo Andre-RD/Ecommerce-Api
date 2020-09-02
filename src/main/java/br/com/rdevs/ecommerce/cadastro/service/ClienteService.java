@@ -180,28 +180,24 @@ public class ClienteService {
         return cadastroRepository.save(clienteEntity);
     }
 
-    public List<TbEnderecoCliente> listarEnderecoCliente(){
-        return enderecoClienteRepository.findAll();
-    }
-
     public TbEndereco atualizaEndereco(EnderecoDTO enderecoDTO){
         TbEndereco enderecoNovo = enderecoBO.parseToEntity(enderecoDTO, null);
         return  enderecoRepository.save(enderecoNovo);
     }
 
-    //TODO falta implementar o deletarEndereco
-    public EnderecoDTO deletarEndereco(Long idEndereco){
-        TbEndereco enderecoEntity = enderecoRepository.getOne(idEndereco);
-        EnderecoDTO enderecoDTO = enderecoBO.parseToDTO(enderecoEntity);
-        List <TbEnderecoCliente> enderecoClienteList = enderecoClienteRepository.findByIdEndereco(idEndereco);
+    public boolean deletarEndereco(Long idCliente, Long idEndereco){
 
-        for (TbEnderecoCliente enderecoCliente:enderecoClienteList){
-            enderecoClienteRepository.delete(enderecoCliente);
+        TbEnderecoCliente enderecoClienteId = enderecoClienteRepository.findByIdClienteAndIdEndereco(idCliente,idEndereco);
+
+        enderecoClienteRepository.delete(enderecoClienteId);
+        List<TbEnderecoCliente> enderecoCliente2 = enderecoClienteRepository.findByIdEndereco(idEndereco);
+
+        if(enderecoCliente2.size()<1){
+            TbEndereco enderecoEntity = enderecoRepository.getOne(idEndereco);
+            enderecoRepository.delete(enderecoEntity);
         }
 
-        enderecoRepository.delete(enderecoEntity);
-
-        return enderecoDTO;
+        return true;
     }
 
     public TbCliente adicionaCartaoCredito(CartaoCreditoDTO cartaoCreditoDTO, Long idCliente){

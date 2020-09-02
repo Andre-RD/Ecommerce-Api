@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
+@IdClass(TbEnderecoClientePK.class)
 @Data
 @Table(name="TB_ENDERECO_CLIENTE")
 @Entity
@@ -16,6 +17,7 @@ public class TbEnderecoCliente implements Serializable {
     @Column(name = "ID_CLIENTE")
     private Long idCliente;
 
+    @Id
     @JsonIgnore
     @Column(name = "ID_ENDERECO")
     private Long idEndereco;

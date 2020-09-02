@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface EstoqueRepository extends JpaRepository<TbProdutoFilialEstoque, Long> {
   List<TbProdutoFilialEstoque> findByProdutoFilialCdProduto(Long cdProduto);
-
+  TbProdutoFilialEstoque findByProdutoFilialCdProdutoAndCdFilial(Long cdProduto,Long cdFilial);
 
 }

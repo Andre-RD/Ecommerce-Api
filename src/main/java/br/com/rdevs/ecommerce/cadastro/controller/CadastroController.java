@@ -94,13 +94,6 @@ public class CadastroController {
 
     }
 
-    @GetMapping("/listaEnderecoCliente")
-    @RolesAllowed(value = "ADMIN")
-    public ResponseEntity buscarEnderecos(){
-        return ResponseEntity.ok().body(service.listarEnderecoCliente());
-    }
-
-
 
     @RequestMapping(value = "/novoEndereco/{idCliente}", method = RequestMethod.POST)
     public ResponseEntity<Object> novoEndereco(@RequestBody EnderecoDTO enderecoDTO, @PathVariable("idCliente") Long idCliente){
@@ -112,10 +105,10 @@ public class CadastroController {
         return ResponseEntity.ok().body(service.atualizaEndereco(enderecoDTO));
     }
 
-//    @DeleteMapping(value = "/deletarEndereco/{idEndereco}")
-//    public ResponseEntity<Object> deletarEndereco(@PathVariable("idEndereco") Long idEndereco){
-//        return ResponseEntity.ok().body(service.deletarEndereco(idEndereco));
-//    }
+    @RequestMapping(value = "/deletarEndereco/{idCliente}/{idEndereco}", method = RequestMethod.DELETE)
+    public ResponseEntity<Object> deletarEndereco(@PathVariable("idCliente") Long idCliente,@PathVariable("idEndereco") Long idEndereco){
+        return ResponseEntity.ok().body(service.deletarEndereco(idCliente,idEndereco));
+    }
 
     @RequestMapping(value = "/novoCartao/{idCliente}", method = RequestMethod.POST)
     public ResponseEntity<Object> novoCartaoCredito(@RequestBody CartaoCreditoDTO cartaoCreditoDTO, @PathVariable("idCliente") Long idCliente) {
