@@ -14,7 +14,7 @@ public interface ProdutoRepository extends JpaRepository<TbProduto, Long> {
     List<TbProduto> findByNomeFabricante(String nomeFabricante);
     List<TbProduto> findByCategoriaProdutoIdCategoriaProduto(Long idCategoriaProduto);
     List<TbProduto> findByCategoriaProdutoIdCategoriaProdutoAndSubCategoriaProdutoIdSubCategoria(Long idCategoriaProduto, Long idSubCategoria);
-    List<TbProduto> findBySubCategoriaProdutoIdSubCategoria(Long idSubCategoria, Pageable pageable);
+    List<TbProduto> findBySubCategoriaProdutoIdSubCategoria(Long idSubCategoria);
     TbProduto findByCdProduto(Long cdProduto);
 
 }

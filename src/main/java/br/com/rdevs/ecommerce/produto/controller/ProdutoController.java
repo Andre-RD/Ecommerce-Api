@@ -40,18 +40,34 @@ public class ProdutoController {
         return ResponseEntity.ok().body(service.buscarPorFabricante(nomeFabricante));
     }
 
+    @ApiOperation(value = "Buscar Produto Por idcategoria com paginação")
+    @GetMapping("/produtos/categoriaP/{idCategoriaProduto}")
+    public ResponseEntity buscarPorCategoriaPage(@PathVariable("idCategoriaProduto") Long idCategoriaProduto, Long page) {
+        return ResponseEntity.ok().body(service.buscarPorCategoriaPage(idCategoriaProduto, page));
+    }
+
     @ApiOperation(value = "Buscar Produto Por idcategoria")
     @GetMapping("/produtos/categoria/{idCategoriaProduto}")
-    public ResponseEntity buscarPorCategoria(@PathVariable("idCategoriaProduto") Long idCategoriaProduto, Long page) {
-        return ResponseEntity.ok().body(service.buscarPorCategoria(idCategoriaProduto, page));
+    public ResponseEntity buscarPorCategoria(@PathVariable("idCategoriaProduto") Long idCategoriaProduto) {
+        return ResponseEntity.ok().body(service.buscarPorCategoria(idCategoriaProduto));
+    }
+
+
+    @ApiOperation(value = "Buscar Produto Por Sub Categoria com paginação")
+    @RequestMapping(value = "/produtos/subcategoriaP/{idSubCategoria}",method = RequestMethod.GET)
+    public ResponseEntity buscarPorSubCategoriaPage(@PathVariable("idSubCategoria") Long idSubCategoria, Long page){
+
+        return ResponseEntity.ok().body(service.buscarPorSubCategoriaPage(idSubCategoria,page));
     }
 
     @ApiOperation(value = "Buscar Produto Por Sub Categoria")
-    @RequestMapping(value = "/produtos/subcategoria/{idSubCategoria}",method = RequestMethod.GET)
-    public ResponseEntity buscarPorSubCategoria(@PathVariable("idSubCategoria") Long idSubCategoria, Long page){
-
-        return ResponseEntity.ok().body(service.buscarPorSubCategoria(idSubCategoria,page));
+    @GetMapping("/produtos/subcategoria/{idSubCategoria}")
+    public ResponseEntity buscarPorSubCategoria(@PathVariable("idSubCategoria") Long idSubCategoria){
+        return ResponseEntity.ok().body(service.buscarPorSubCategoria(idSubCategoria));
     }
+
+
+
 
     @ApiOperation(value = "Buscar Produto Por cdProduto")
     @GetMapping("/produtos/codigo/{cdProduto}")
@@ -64,6 +80,7 @@ public class ProdutoController {
     public ResponseEntity buscarPorCdProduto(@PathVariable("idCategoriaProduto")Long idCategoriaProduto,@PathVariable("idSubCategoria") Long idSubCategoria) {
         return ResponseEntity.ok().body(service.buscaPorCategoriaESubCategoria(idCategoriaProduto,idSubCategoria));
     }
+
 
     @GetMapping(value = "/fabricantes/{idSubCategoria}")
     public ResponseEntity nomesFabrincates(@PathVariable("idSubCategoria") Long idSubCategoria){
