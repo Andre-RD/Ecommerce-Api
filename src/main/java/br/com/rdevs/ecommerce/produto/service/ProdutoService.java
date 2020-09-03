@@ -6,28 +6,39 @@ import br.com.rdevs.ecommerce.produto.model.dto.*;
 
 import br.com.rdevs.ecommerce.produto.model.entity.TbProduto;
 import br.com.rdevs.ecommerce.produto.model.entity.TbProdutoImagem;
+import br.com.rdevs.ecommerce.produto.repository.ProdutoPageRepository;
 import br.com.rdevs.ecommerce.produto.repository.ProdutoRepository;
 import br.com.rdevs.ecommerce.produto.service.bo.ProdutoBo;
 import br.com.rdevs.ecommerce.produto.service.bo.ProdutoImagemBo;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProdutoService {
     @Autowired
     private ProdutoRepository produtoRepository;
 
+    @Autowired
+    private ProdutoPageRepository pageRepository;
 
     @Autowired
     private ProdutoBo produtoBo;
 
     @Autowired
     private ProdutoImagemBo produtoImagemBo;
+
 
     @PersistenceContext
     private EntityManager em;
@@ -226,9 +237,10 @@ public class ProdutoService {
         return listaDTO;
     }
 
-    public List<ProdutoDTO> buscarPorCategoria(Long idCategoriaProduto){
+    public List<ProdutoDTO> buscarPorCategoria(Long idCategoriaProduto, Long page){
         List<ProdutoDTO> listaDTO = new ArrayList<>();
-        List<TbProduto> listaEntity = produtoRepository.findByCategoriaProdutoIdCategoriaProduto(idCategoriaProduto);
+        Pageable firstPageWithTwoElements = PageRequest.of(Math.toIntExact(page), 6);
+        Page<TbProduto> listaEntity = pageRepository.findByCategoriaProdutoIdCategoriaProduto(idCategoriaProduto,firstPageWithTwoElements);
         for (TbProduto prod : listaEntity) {
             if(prod.getDsProduto()!=null) {
                 if(prod.getDsProduto()!=null) {
@@ -273,16 +285,16 @@ public class ProdutoService {
 
     }
 
-    public List<ProdutoDTO> buscarPorSubCategoria(Long idSubCategoriaProduto){
+    public List<ProdutoDTO> buscarPorSubCategoria(Long idSubCategoriaProduto, Long page){
         List<ProdutoDTO> listaDTO = new ArrayList<>();
-        List<TbProduto> listaEntity = produtoRepository.findBySubCategoriaProdutoIdSubCategoria(idSubCategoriaProduto);
+        Pageable firstPageWithTwoElements = PageRequest.of(Math.toIntExact(page), 6);
+
+        Page<TbProduto> listaEntity = pageRepository.findBySubCategoriaProdutoIdSubCategoria(idSubCategoriaProduto,firstPageWithTwoElements);
 
         for (TbProduto prod : listaEntity) {
             if(prod.getDsProduto()!=null) {
 
                     ProdutoDTO dto = produtoBo.parseToDTO(prod);
-
-
 
                     CategoriaProdutoDTO catdto = new CategoriaProdutoDTO();
                     SubCategoriaProdutoDTO subCategoriaProduto = new SubCategoriaProdutoDTO();
@@ -374,19 +386,25 @@ public class ProdutoService {
 
     public List<ListaFabricantes> fabricantesPorSubCategoria(Long idSubcategoria){
         List<ListaFabricantes> listaFabricantes = new ArrayList<>();
-        List<TbProduto> produtos = produtoRepository.findBySubCategoriaProdutoIdSubCategoria(idSubcategoria);
+        List<TbProduto> produtos = produtoRepository.findBySubCategoriaProdutoIdSubCategoria(idSubcategoria,null);
         for (TbProduto produto: produtos){
             ListaFabricantes fabricante = new ListaFabricantes();
-            if(!listaFabricantes.contains(produto.getNomeFabricante())){
-                fabricante.setNomeFabricante(produto.getNomeFabricante());
-                listaFabricantes.add(fabricante);
-            }
+            fabricante.setNomeFabricante(produto.getNomeFabricante());
 
+            listaFabricantes.add(fabricante);
         }
-
-        return listaFabricantes;
+        List<ListaFabricantes> listaFabricantes1 = listaFabricantes.stream().distinct().collect(Collectors.toList());
+        return listaFabricantes1;
     }
 
-//    public List<ProdutoDTO> buscarPorSubCategoriaPreço(Long idSubCategoriaProduto)
+    public Page<TbProduto> buscarPaginas(Long page){
+
+        Pageable firstPageWithTwoElements = PageRequest.of(Math.toIntExact(page), 2);
+        Page<TbProduto> listaEntity = pageRepository.findAll(firstPageWithTwoElements);
+
+
+        return listaEntity;
+    }
+
 
 }

@@ -1,10 +1,20 @@
 package br.com.rdevs.ecommerce.produto.controller;
 
+import br.com.rdevs.ecommerce.produto.model.dto.ProdutoDTO;
+import br.com.rdevs.ecommerce.produto.model.entity.TbProduto;
 import br.com.rdevs.ecommerce.produto.service.ProdutoService;
 import io.swagger.annotations.ApiOperation;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+
+import java.awt.print.Pageable;
+import java.util.List;
 
 @RestController
 public class ProdutoController {
@@ -32,14 +42,15 @@ public class ProdutoController {
 
     @ApiOperation(value = "Buscar Produto Por idcategoria")
     @GetMapping("/produtos/categoria/{idCategoriaProduto}")
-    public ResponseEntity buscarPorCategoria(@PathVariable("idCategoriaProduto") Long idCategoriaProduto) {
-        return ResponseEntity.ok().body(service.buscarPorCategoria(idCategoriaProduto));
+    public ResponseEntity buscarPorCategoria(@PathVariable("idCategoriaProduto") Long idCategoriaProduto, Long page) {
+        return ResponseEntity.ok().body(service.buscarPorCategoria(idCategoriaProduto, page));
     }
 
     @ApiOperation(value = "Buscar Produto Por Sub Categoria")
-    @GetMapping("/produtos/subcategoria/{idSubCategoria}")
-    public ResponseEntity buscarPorSubCategoria(@PathVariable("idSubCategoria") Long idSubCategoria) {
-        return ResponseEntity.ok().body(service.buscarPorSubCategoria(idSubCategoria));
+    @RequestMapping(value = "/produtos/subcategoria/{idSubCategoria}",method = RequestMethod.GET)
+    public ResponseEntity buscarPorSubCategoria(@PathVariable("idSubCategoria") Long idSubCategoria, Long page){
+
+        return ResponseEntity.ok().body(service.buscarPorSubCategoria(idSubCategoria,page));
     }
 
     @ApiOperation(value = "Buscar Produto Por cdProduto")
@@ -54,9 +65,15 @@ public class ProdutoController {
         return ResponseEntity.ok().body(service.buscaPorCategoriaESubCategoria(idCategoriaProduto,idSubCategoria));
     }
 
-    @GetMapping("/fabricantes/{idSubCategoria}")
+    @GetMapping(value = "/fabricantes/{idSubCategoria}")
     public ResponseEntity nomesFabrincates(@PathVariable("idSubCategoria") Long idSubCategoria){
+
         return ResponseEntity.ok().body(service.fabricantesPorSubCategoria(idSubCategoria));
+    }
+
+    @GetMapping(value = "/produto/page/{pagina}")
+    public ResponseEntity buscarProdutoPagina(@PathVariable("pagina") Long pagina){
+        return ResponseEntity.ok().body(service.buscarPaginas(pagina));
     }
 
 
