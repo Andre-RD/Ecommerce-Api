@@ -2,15 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e1737c85-d18e-41cb-b698-a8194f8fb3b8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_mail_jakarta_mail_1_6_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_mail_2_3_2_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_support_5_2_8_RELEASE.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecommerce.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/ClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/ClienteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/controller/CadastroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/controller/CadastroController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/controller/EmailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/controller/EmailController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/EmailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/bo/CadastroBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/bo/CadastroBO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/bo/CartaoCreditoBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/bo/CartaoCreditoBO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,22 +98,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1598988356219" />
-    <state width="637" height="110" key="GridCell.Tab.0.bottom" timestamp="1599166195280">
+    <state width="1323" height="186" key="GridCell.Tab.0.bottom" timestamp="1599242166759">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="637" height="110" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1599166195280" />
-    <state width="637" height="110" key="GridCell.Tab.0.center" timestamp="1599166195280">
+    <state width="1323" height="186" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1599242166759" />
+    <state width="1323" height="186" key="GridCell.Tab.0.center" timestamp="1599242166758">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="637" height="110" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1599166195280" />
-    <state width="637" height="110" key="GridCell.Tab.0.left" timestamp="1599166195280">
+    <state width="1323" height="186" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1599242166758" />
+    <state width="1323" height="186" key="GridCell.Tab.0.left" timestamp="1599242166758">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="637" height="110" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1599166195280" />
-    <state width="637" height="110" key="GridCell.Tab.0.right" timestamp="1599166195280">
+    <state width="1323" height="186" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1599242166758" />
+    <state width="1323" height="186" key="GridCell.Tab.0.right" timestamp="1599242166758">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="637" height="110" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1599166195280" />
+    <state width="1323" height="186" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1599242166758" />
     <state width="1323" height="376" key="GridCell.Tab.1.bottom" timestamp="1599067975964">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -156,11 +154,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/ClienteService.java</url>
-          <line>125</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/service/DocumentoFiscalService.java</url>
           <line>112</line>

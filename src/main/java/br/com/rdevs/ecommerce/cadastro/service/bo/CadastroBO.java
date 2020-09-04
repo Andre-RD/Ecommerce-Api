@@ -4,6 +4,8 @@ import br.com.rdevs.ecommerce.cadastro.model.dto.ClienteDTO;
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbCliente;
 import org.springframework.stereotype.Component;
 
+import java.util.Base64;
+
 @Component
 public class CadastroBO{
 
@@ -39,7 +41,8 @@ public class CadastroBO{
         clienteEntity.setDsGenero(clienteDTO.getDsGenero());
         clienteEntity.setNrTelefone1(clienteDTO.getNrTelefone1());
         clienteEntity.setNrTelefone2(clienteDTO.getNrTelefone2());
-        clienteEntity.setPwCliente(clienteDTO.getPwCliente());
+
+        clienteEntity.setPwCliente(Base64.getEncoder().encodeToString(clienteDTO.getPwCliente().getBytes()));
         clienteEntity.setIdCategoriaCliente(1L);
 
         return clienteEntity;

@@ -29,7 +29,10 @@ public class CartaoCreditoBO {
         cartaoCreditoEntity = new TbCartaoCredito();
 
         cartaoCreditoEntity.setIdCartaoCredito(cartaoCreditoDTO.getIdCartaoCredito());
+
+
         cartaoCreditoEntity.setNrNumeroCartao(cartaoCreditoDTO.getNrNumeroCartao());
+
         cartaoCreditoEntity.setNmNomeTitular(cartaoCreditoDTO.getNmNomeTitular());
 
         return cartaoCreditoEntity;

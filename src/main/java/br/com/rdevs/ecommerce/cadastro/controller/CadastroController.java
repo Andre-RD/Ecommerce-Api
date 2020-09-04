@@ -10,6 +10,7 @@ import br.com.rdevs.ecommerce.cadastro.repository.EnderecoRepository;
 import br.com.rdevs.ecommerce.cadastro.service.ClienteService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -124,6 +125,8 @@ public class CadastroController {
     public ResponseEntity<Object> deletarCartaoCredito(@PathVariable("idCartaoCredito") Long idCartaoCredito){
         return ResponseEntity.ok().body(service.deletarCartaoCredito(idCartaoCredito));
     }
+
+
 
 
 

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.security.RolesAllowed;
+import java.util.Base64;
 
 @RestController
 public class LoginController {
@@ -33,7 +34,10 @@ public class LoginController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resultData);
         }else {
             try {
-                if (login.getSenha().equals(cliente.getPwCliente())) {
+                byte[] decodedBytes = Base64.getDecoder().decode(cliente.getPwCliente());
+                String decodedString = new String(decodedBytes);
+
+                if (login.getSenha().equals(decodedString)) {
                     resultData = new ResultData<ClienteDTO>(HttpStatus.OK.value(), "Login efetivado!",cliente);
                     return ResponseEntity.status(HttpStatus.OK).body(resultData);
                 } else {
