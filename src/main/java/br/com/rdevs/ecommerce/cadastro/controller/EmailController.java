@@ -1,7 +1,5 @@
 package br.com.rdevs.ecommerce.cadastro.controller;
 
-import br.com.rdevs.ecommerce.cadastro.model.dto.EnderecoDTO;
-import br.com.rdevs.ecommerce.cadastro.model.dto.EsqueciSenha;
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbCliente;
 import br.com.rdevs.ecommerce.cadastro.repository.CadastroRepository;
 import br.com.rdevs.ecommerce.cadastro.service.EmailService;

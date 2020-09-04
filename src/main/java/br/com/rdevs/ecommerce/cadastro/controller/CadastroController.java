@@ -1,9 +1,6 @@
 package br.com.rdevs.ecommerce.cadastro.controller;
 
-import br.com.rdevs.ecommerce.cadastro.model.dto.CartaoCreditoDTO;
-import br.com.rdevs.ecommerce.cadastro.model.dto.ClienteDTO;
-import br.com.rdevs.ecommerce.cadastro.model.dto.EnderecoDTO;
-import br.com.rdevs.ecommerce.cadastro.model.dto.ResultData;
+import br.com.rdevs.ecommerce.cadastro.model.dto.*;
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbCliente;
 import br.com.rdevs.ecommerce.cadastro.repository.CadastroRepository;
 import br.com.rdevs.ecommerce.cadastro.repository.EnderecoRepository;
@@ -16,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
+import java.util.Base64;
 import java.util.List;
 
 
@@ -127,6 +125,35 @@ public class CadastroController {
     }
 
 
+    @PutMapping(value = "/atualizarSenha")
+    public ResponseEntity<Object> alterarSenha(@RequestBody AlterarSenha alterarSenha) {
+        ResultData resultData = null;
+        TbCliente cliente = repository.findByIdCliente(alterarSenha.getIdCliente());
+
+        byte[] decodedBytes = Base64.getDecoder().decode(cliente.getPwCliente());
+        String decodedString = new String(decodedBytes);
+
+        if (!(alterarSenha.getSenhaAtual().equals(decodedString))) {
+            resultData = new ResultData(HttpStatus.BAD_REQUEST.value(), "SENHA ATUAL INVALIDA!");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resultData);
+        }else if (!(alterarSenha.getNovaSenha().equals(alterarSenha.getConfirmarSenha()))){
+            resultData = new ResultData(HttpStatus.BAD_REQUEST.value(), "AS SENHAS NÃO BATEM!!");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resultData);
+        }else {
+            try {
+                TbCliente tbCliente = service.alterarSenha(alterarSenha);
+                resultData = new ResultData<TbCliente>(HttpStatus.OK.value(),
+                        "Senha Alterada Com sucesso!!", tbCliente);
+                return ResponseEntity.status(HttpStatus.CREATED).body(resultData);
+
+            } catch (Exception e) {
+                resultData = new ResultData(HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                        "Ocorreu um erro Alterar a senha!!", e.getMessage());
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value()).body(resultData);
+            }
+        }
+
+    }
 
 
 

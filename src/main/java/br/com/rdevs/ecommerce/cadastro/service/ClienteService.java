@@ -1,9 +1,6 @@
 package br.com.rdevs.ecommerce.cadastro.service;
 
-import br.com.rdevs.ecommerce.cadastro.model.dto.CartaoCreditoDTO;
-import br.com.rdevs.ecommerce.cadastro.model.dto.ClienteDTO;
-import br.com.rdevs.ecommerce.cadastro.model.dto.EnderecoDTO;
-import br.com.rdevs.ecommerce.cadastro.model.dto.Login;
+import br.com.rdevs.ecommerce.cadastro.model.dto.*;
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbCartaoCredito;
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbCliente;
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbEndereco;
@@ -20,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 @Service
@@ -232,6 +230,21 @@ public class ClienteService {
         return cartaoCreditoDTO;
     }
 
+    public TbCliente alterarSenha(AlterarSenha alterarSenha){
+        TbCliente cliente = cadastroRepository.getOne(alterarSenha.getIdCliente());
+
+        byte[] decodedBytes = Base64.getDecoder().decode(cliente.getPwCliente());
+        String decodedString = new String(decodedBytes);
+
+        if (alterarSenha.getNovaSenha().equals(alterarSenha.getConfirmarSenha()) && alterarSenha.getSenhaAtual().equals(decodedString)){
+            alterarSenha.setNovaSenha(Base64.getEncoder().encodeToString(alterarSenha.getNovaSenha().getBytes()));
+            cliente.setPwCliente(alterarSenha.getNovaSenha());
+
+
+            return cadastroRepository.save(cliente);
+        }
+        return cliente;
+    }
 
 
 }

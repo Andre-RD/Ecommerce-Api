@@ -1,7 +1,6 @@
 package br.com.rdevs.ecommerce.cadastro.service;
 
 
-import br.com.rdevs.ecommerce.cadastro.model.dto.EsqueciSenha;
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbCliente;
 import br.com.rdevs.ecommerce.cadastro.repository.CadastroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
