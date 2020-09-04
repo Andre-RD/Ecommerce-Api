@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e1737c85-d18e-41cb-b698-a8194f8fb3b8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_mail_jakarta_mail_1_6_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_mail_2_3_2_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_support_5_2_8_RELEASE.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/controller/ProdutoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/controller/ProdutoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/repository/ProdutoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/repository/ProdutoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/service/ProdutoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/service/ProdutoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/ClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/ClienteService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +23,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -41,6 +46,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="C:/springboot/springboot" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
@@ -78,10 +84,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="488" y="80" key="#com.intellij.ide.util.MemberChooser" timestamp="1599139975728">
+    <state x="488" y="80" key="#com.intellij.ide.util.MemberChooser" timestamp="1599163675699">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="488" y="80" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1599139975728" />
+    <state x="488" y="80" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1599163675699" />
     <state x="412" y="249" width="600" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1598758570246">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -94,22 +100,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1598988356219" />
-    <state width="1323" height="302" key="GridCell.Tab.0.bottom" timestamp="1599158864019">
+    <state width="637" height="110" key="GridCell.Tab.0.bottom" timestamp="1599166195280">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="302" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1599158864019" />
-    <state width="1323" height="302" key="GridCell.Tab.0.center" timestamp="1599158864019">
+    <state width="637" height="110" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1599166195280" />
+    <state width="637" height="110" key="GridCell.Tab.0.center" timestamp="1599166195280">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="302" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1599158864019" />
-    <state width="1323" height="302" key="GridCell.Tab.0.left" timestamp="1599158864019">
+    <state width="637" height="110" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1599166195280" />
+    <state width="637" height="110" key="GridCell.Tab.0.left" timestamp="1599166195280">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="302" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1599158864019" />
-    <state width="1323" height="302" key="GridCell.Tab.0.right" timestamp="1599158864019">
+    <state width="637" height="110" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1599166195280" />
+    <state width="637" height="110" key="GridCell.Tab.0.right" timestamp="1599166195280">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="302" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1599158864019" />
+    <state width="637" height="110" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1599166195280" />
     <state width="1323" height="376" key="GridCell.Tab.1.bottom" timestamp="1599067975964">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -154,6 +160,21 @@
           <url>file://$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/ClienteService.java</url>
           <line>125</line>
           <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/service/DocumentoFiscalService.java</url>
+          <line>112</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/service/DocumentoFiscalService.java</url>
+          <line>113</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/service/DocumentoFiscalService.java</url>
+          <line>114</line>
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
