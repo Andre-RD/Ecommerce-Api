@@ -2,6 +2,7 @@ package br.com.rdevs.ecommerce.produto.service;
 
 import br.com.rdevs.ecommerce.estoque.model.dto.EstoqueProdutoDTO;
 import br.com.rdevs.ecommerce.estoque.model.entity.TbProdutoFilialEstoque;
+import br.com.rdevs.ecommerce.estoque.repository.EstoqueRepository;
 import br.com.rdevs.ecommerce.produto.model.dto.*;
 
 import br.com.rdevs.ecommerce.produto.model.entity.TbProduto;
@@ -32,6 +33,9 @@ public class ProdutoService {
 
     @Autowired
     private ProdutoPageRepository pageRepository;
+
+    @Autowired
+    private EstoqueRepository estoqueRepository;
 
     @Autowired
     private ProdutoBo produtoBo;
@@ -70,19 +74,13 @@ public class ProdutoService {
                 dto.setImagens(imagemsProdutodto);
 
 
-                List<EstoqueProdutoDTO> estoquesProdutosDTO = new ArrayList<>();
+                TbProdutoFilialEstoque produtoEstoqueEntity = estoqueRepository.getOne(4L);
+                EstoqueProdutoDTO estoqueProdutoDTO = new EstoqueProdutoDTO();
+                estoqueProdutoDTO.setCdFilial(produtoEstoqueEntity.getCdFilial());
+                estoqueProdutoDTO.setQtEstoque(produtoEstoqueEntity.getQtEstoque());
+                estoqueProdutoDTO.setQtEmpenho(produtoEstoqueEntity.getQtEmpenho());
+                dto.setEstoques(estoqueProdutoDTO);
 
-                for (TbProdutoFilialEstoque produtoEstoqueEntity : prod.getProdutosEstoqueEntity()) {
-                    EstoqueProdutoDTO estoqueProdutoDTO = new EstoqueProdutoDTO();
-                    estoqueProdutoDTO.setCdFilial(produtoEstoqueEntity.getCdFilial());
-                    estoqueProdutoDTO.setQtEstoque(produtoEstoqueEntity.getQtEstoque());
-                    estoqueProdutoDTO.setQtEmpenho(produtoEstoqueEntity.getQtEmpenho());
-
-
-                    estoquesProdutosDTO.add(estoqueProdutoDTO);
-                }
-
-                dto.setEstoques(estoquesProdutosDTO);
 
 
                 listaDTO.add(dto);
@@ -119,19 +117,14 @@ public class ProdutoService {
                 dto.setImagens(imagemsProdutodto);
 
 
-                List<EstoqueProdutoDTO> estoquesProdutosDTO = new ArrayList<>();
+                TbProdutoFilialEstoque produtoEstoqueEntity = estoqueRepository.findByProdutoFilialCdProdutoAndCdFilial(prod.getCdProduto(),4L);
+                EstoqueProdutoDTO estoqueProdutoDTO = new EstoqueProdutoDTO();
+                estoqueProdutoDTO.setCdFilial(produtoEstoqueEntity.getCdFilial());
+                estoqueProdutoDTO.setQtEstoque(produtoEstoqueEntity.getQtEstoque());
+                estoqueProdutoDTO.setQtEmpenho(produtoEstoqueEntity.getQtEmpenho());
+                dto.setEstoques(estoqueProdutoDTO);
 
-                for (TbProdutoFilialEstoque produtoEstoqueEntity : prod.getProdutosEstoqueEntity()) {
-                    EstoqueProdutoDTO estoqueProdutoDTO = new EstoqueProdutoDTO();
-                    estoqueProdutoDTO.setCdFilial(produtoEstoqueEntity.getCdFilial());
-                    estoqueProdutoDTO.setQtEstoque(produtoEstoqueEntity.getQtEstoque());
-                    estoqueProdutoDTO.setQtEmpenho(produtoEstoqueEntity.getQtEmpenho());
 
-
-                    estoquesProdutosDTO.add(estoqueProdutoDTO);
-                }
-
-                dto.setEstoques(estoquesProdutosDTO);
 
 
                 listaDTO.add(dto);
@@ -166,20 +159,27 @@ public class ProdutoService {
                 }
                 dto.setImagens(imagemsProdutodto);
 
+//                List<TbProdutoFilialEstoque> listEstoques = prod.getProdutosEstoqueEntity();
 
-                List<EstoqueProdutoDTO> estoquesProdutosDTO = new ArrayList<>();
-
-                for (TbProdutoFilialEstoque produtoEstoqueEntity : prod.getProdutosEstoqueEntity()) {
+                TbProdutoFilialEstoque produtoEstoqueEntity = estoqueRepository.findByProdutoFilialCdProdutoAndCdFilial(prod.getCdProduto(),4L);
                     EstoqueProdutoDTO estoqueProdutoDTO = new EstoqueProdutoDTO();
                     estoqueProdutoDTO.setCdFilial(produtoEstoqueEntity.getCdFilial());
                     estoqueProdutoDTO.setQtEstoque(produtoEstoqueEntity.getQtEstoque());
                     estoqueProdutoDTO.setQtEmpenho(produtoEstoqueEntity.getQtEmpenho());
+                dto.setEstoques(estoqueProdutoDTO);
+
+//                for (TbProdutoFilialEstoque produtoEstoqueEntity : prod.getProdutosEstoqueEntity()) {
+//                    if ()
+//                    EstoqueProdutoDTO estoqueProdutoDTO = new EstoqueProdutoDTO();
+//                    estoqueProdutoDTO.setCdFilial(produtoEstoqueEntity.getCdFilial());
+//                    estoqueProdutoDTO.setQtEstoque(produtoEstoqueEntity.getQtEstoque());
+//                    estoqueProdutoDTO.setQtEmpenho(produtoEstoqueEntity.getQtEmpenho());
+//
+//
+//                    estoquesProdutosDTO.add(estoqueProdutoDTO);
+//                }
 
 
-                    estoquesProdutosDTO.add(estoqueProdutoDTO);
-                }
-
-                dto.setEstoques(estoquesProdutosDTO);
 
 
                 listaDTO.add(dto);
@@ -215,19 +215,13 @@ public class ProdutoService {
                 dto.setImagens(imagemsProdutodto);
 
 
-                List<EstoqueProdutoDTO> estoquesProdutosDTO = new ArrayList<>();
+                TbProdutoFilialEstoque produtoEstoqueEntity = estoqueRepository.findByProdutoFilialCdProdutoAndCdFilial(prod.getCdProduto(),4L);
+                EstoqueProdutoDTO estoqueProdutoDTO = new EstoqueProdutoDTO();
+                estoqueProdutoDTO.setCdFilial(produtoEstoqueEntity.getCdFilial());
+                estoqueProdutoDTO.setQtEstoque(produtoEstoqueEntity.getQtEstoque());
+                estoqueProdutoDTO.setQtEmpenho(produtoEstoqueEntity.getQtEmpenho());
+                dto.setEstoques(estoqueProdutoDTO);
 
-                for (TbProdutoFilialEstoque produtoEstoqueEntity : prod.getProdutosEstoqueEntity()) {
-                    EstoqueProdutoDTO estoqueProdutoDTO = new EstoqueProdutoDTO();
-                    estoqueProdutoDTO.setCdFilial(produtoEstoqueEntity.getCdFilial());
-                    estoqueProdutoDTO.setQtEstoque(produtoEstoqueEntity.getQtEstoque());
-                    estoqueProdutoDTO.setQtEmpenho(produtoEstoqueEntity.getQtEmpenho());
-
-
-                    estoquesProdutosDTO.add(estoqueProdutoDTO);
-                }
-
-                dto.setEstoques(estoquesProdutosDTO);
 
 
                 listaDTO.add(dto);
@@ -264,17 +258,13 @@ public class ProdutoService {
                     }
                     dto.setImagens(imagemsProdutodto);
 
-                    List<EstoqueProdutoDTO> estoquesProdutosDTO = new ArrayList<>();
-                    for (TbProdutoFilialEstoque produtoEstoqueEntity : prod.getProdutosEstoqueEntity()) {
-                        EstoqueProdutoDTO estoqueProdutoDTO = new EstoqueProdutoDTO();
-                        estoqueProdutoDTO.setCdFilial(produtoEstoqueEntity.getCdFilial());
-                        estoqueProdutoDTO.setQtEstoque(produtoEstoqueEntity.getQtEstoque());
-                        estoqueProdutoDTO.setQtEmpenho(produtoEstoqueEntity.getQtEmpenho());
+                    TbProdutoFilialEstoque produtoEstoqueEntity = estoqueRepository.findByProdutoFilialCdProdutoAndCdFilial(prod.getCdProduto(),4L);
+                    EstoqueProdutoDTO estoqueProdutoDTO = new EstoqueProdutoDTO();
+                    estoqueProdutoDTO.setCdFilial(produtoEstoqueEntity.getCdFilial());
+                    estoqueProdutoDTO.setQtEstoque(produtoEstoqueEntity.getQtEstoque());
+                    estoqueProdutoDTO.setQtEmpenho(produtoEstoqueEntity.getQtEmpenho());
+                    dto.setEstoques(estoqueProdutoDTO);
 
-
-                        estoquesProdutosDTO.add(estoqueProdutoDTO);
-                    }
-                    dto.setEstoques(estoquesProdutosDTO);
 
                     listaDTO.add(dto);
                 }
@@ -311,17 +301,13 @@ public class ProdutoService {
                     }
                     dto.setImagens(imagemsProdutodto);
 
-                    List<EstoqueProdutoDTO> estoquesProdutosDTO = new ArrayList<>();
-                    for (TbProdutoFilialEstoque produtoEstoqueEntity : prod.getProdutosEstoqueEntity()) {
-                        EstoqueProdutoDTO estoqueProdutoDTO = new EstoqueProdutoDTO();
-                        estoqueProdutoDTO.setCdFilial(produtoEstoqueEntity.getCdFilial());
-                        estoqueProdutoDTO.setQtEstoque(produtoEstoqueEntity.getQtEstoque());
-                        estoqueProdutoDTO.setQtEmpenho(produtoEstoqueEntity.getQtEmpenho());
+                    TbProdutoFilialEstoque produtoEstoqueEntity = estoqueRepository.findByProdutoFilialCdProdutoAndCdFilial(prod.getCdProduto(),4L);
+                    EstoqueProdutoDTO estoqueProdutoDTO = new EstoqueProdutoDTO();
+                    estoqueProdutoDTO.setCdFilial(produtoEstoqueEntity.getCdFilial());
+                    estoqueProdutoDTO.setQtEstoque(produtoEstoqueEntity.getQtEstoque());
+                    estoqueProdutoDTO.setQtEmpenho(produtoEstoqueEntity.getQtEmpenho());
+                    dto.setEstoques(estoqueProdutoDTO);
 
-
-                        estoquesProdutosDTO.add(estoqueProdutoDTO);
-                    }
-                    dto.setEstoques(estoquesProdutosDTO);
 
                     listaDTO.add(dto);
                 }
@@ -362,17 +348,13 @@ public class ProdutoService {
                 }
                 dto.setImagens(imagemsProdutodto);
 
-                List<EstoqueProdutoDTO> estoquesProdutosDTO = new ArrayList<>();
-                for (TbProdutoFilialEstoque produtoEstoqueEntity : prod.getProdutosEstoqueEntity()) {
-                    EstoqueProdutoDTO estoqueProdutoDTO = new EstoqueProdutoDTO();
-                    estoqueProdutoDTO.setCdFilial(produtoEstoqueEntity.getCdFilial());
-                    estoqueProdutoDTO.setQtEstoque(produtoEstoqueEntity.getQtEstoque());
-                    estoqueProdutoDTO.setQtEmpenho(produtoEstoqueEntity.getQtEmpenho());
+                TbProdutoFilialEstoque produtoEstoqueEntity = estoqueRepository.findByProdutoFilialCdProdutoAndCdFilial(prod.getCdProduto(),4L);
+                EstoqueProdutoDTO estoqueProdutoDTO = new EstoqueProdutoDTO();
+                estoqueProdutoDTO.setCdFilial(produtoEstoqueEntity.getCdFilial());
+                estoqueProdutoDTO.setQtEstoque(produtoEstoqueEntity.getQtEstoque());
+                estoqueProdutoDTO.setQtEmpenho(produtoEstoqueEntity.getQtEmpenho());
+                dto.setEstoques(estoqueProdutoDTO);
 
-
-                    estoquesProdutosDTO.add(estoqueProdutoDTO);
-                }
-                dto.setEstoques(estoquesProdutosDTO);
 
                 listaDTO.add(dto);
 
@@ -382,7 +364,6 @@ public class ProdutoService {
         return listaDTO;
 
     }
-
 
     public List<ProdutoDTO> buscarPorSubCategoria(Long idSubCategoriaProduto){
         List<ProdutoDTO> listaDTO = new ArrayList<>();
@@ -413,17 +394,13 @@ public class ProdutoService {
                 }
                 dto.setImagens(imagemsProdutodto);
 
-                List<EstoqueProdutoDTO> estoquesProdutosDTO = new ArrayList<>();
-                for (TbProdutoFilialEstoque produtoEstoqueEntity : prod.getProdutosEstoqueEntity()) {
-                    EstoqueProdutoDTO estoqueProdutoDTO = new EstoqueProdutoDTO();
-                    estoqueProdutoDTO.setCdFilial(produtoEstoqueEntity.getCdFilial());
-                    estoqueProdutoDTO.setQtEstoque(produtoEstoqueEntity.getQtEstoque());
-                    estoqueProdutoDTO.setQtEmpenho(produtoEstoqueEntity.getQtEmpenho());
+                TbProdutoFilialEstoque produtoEstoqueEntity = estoqueRepository.findByProdutoFilialCdProdutoAndCdFilial(prod.getCdProduto(),4L);
+                EstoqueProdutoDTO estoqueProdutoDTO = new EstoqueProdutoDTO();
+                estoqueProdutoDTO.setCdFilial(produtoEstoqueEntity.getCdFilial());
+                estoqueProdutoDTO.setQtEstoque(produtoEstoqueEntity.getQtEstoque());
+                estoqueProdutoDTO.setQtEmpenho(produtoEstoqueEntity.getQtEmpenho());
+                dto.setEstoques(estoqueProdutoDTO);
 
-
-                    estoquesProdutosDTO.add(estoqueProdutoDTO);
-                }
-                dto.setEstoques(estoquesProdutosDTO);
 
                 listaDTO.add(dto);
 
@@ -433,7 +410,6 @@ public class ProdutoService {
         return listaDTO;
 
     }
-
 
     public List<ProdutoDTO> buscaPorCategoriaESubCategoria(Long idCategoriaProduto, Long idSubCategoriaProduto){
 
@@ -462,17 +438,13 @@ public class ProdutoService {
                     }
                     dto.setImagens(imagemsProdutodto);
 
-                    List<EstoqueProdutoDTO> estoquesProdutosDTO = new ArrayList<>();
-                    for (TbProdutoFilialEstoque produtoEstoqueEntity : prod.getProdutosEstoqueEntity()) {
-                        EstoqueProdutoDTO estoqueProdutoDTO = new EstoqueProdutoDTO();
-                        estoqueProdutoDTO.setCdFilial(produtoEstoqueEntity.getCdFilial());
-                        estoqueProdutoDTO.setQtEstoque(produtoEstoqueEntity.getQtEstoque());
-                        estoqueProdutoDTO.setQtEmpenho(produtoEstoqueEntity.getQtEmpenho());
+                    TbProdutoFilialEstoque produtoEstoqueEntity = estoqueRepository.findByProdutoFilialCdProdutoAndCdFilial(prod.getCdProduto(),4L);
+                    EstoqueProdutoDTO estoqueProdutoDTO = new EstoqueProdutoDTO();
+                    estoqueProdutoDTO.setCdFilial(produtoEstoqueEntity.getCdFilial());
+                    estoqueProdutoDTO.setQtEstoque(produtoEstoqueEntity.getQtEstoque());
+                    estoqueProdutoDTO.setQtEmpenho(produtoEstoqueEntity.getQtEmpenho());
+                    dto.setEstoques(estoqueProdutoDTO);
 
-
-                        estoquesProdutosDTO.add(estoqueProdutoDTO);
-                    }
-                    dto.setEstoques(estoquesProdutosDTO);
 
                     listaDTO.add(dto);
                 }

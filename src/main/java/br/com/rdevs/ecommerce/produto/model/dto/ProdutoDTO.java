@@ -25,6 +25,7 @@ public class ProdutoDTO {
 //    private TipoProdutoDTO tipoProduto;
 
     private List<ProdutoImagemDTO> imagens;
-    private List<EstoqueProdutoDTO> estoques;
+//    private List<EstoqueProdutoDTO> estoques;
+    private EstoqueProdutoDTO estoques;
 
 }

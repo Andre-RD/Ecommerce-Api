@@ -124,7 +124,6 @@ public class CadastroController {
         return ResponseEntity.ok().body(service.deletarCartaoCredito(idCartaoCredito));
     }
 
-
     @PutMapping(value = "/atualizarSenha")
     public ResponseEntity<Object> alterarSenha(@RequestBody AlterarSenha alterarSenha) {
         ResultData resultData = null;
