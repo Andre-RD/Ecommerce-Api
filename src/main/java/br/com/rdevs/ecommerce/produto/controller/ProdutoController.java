@@ -66,6 +66,11 @@ public class ProdutoController {
         return ResponseEntity.ok().body(service.buscarPorSubCategoria(idSubCategoria));
     }
 
+    @ApiOperation(value = "Buscar Produtos dos cards de Promoção")
+    @GetMapping("/produtos/produtoPromo")
+    public ResponseEntity buscarPorCdProduto() {
+        return ResponseEntity.ok().body(service.produtosPromo());
+    }
 
 
 

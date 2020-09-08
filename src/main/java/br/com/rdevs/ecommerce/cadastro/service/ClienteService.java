@@ -94,7 +94,6 @@ public class ClienteService {
             return cadastroRepository.save(clienteEntity);
         }
 
-        //TODO adicionar confirmar pwCliete
         else{
             return null;
         }

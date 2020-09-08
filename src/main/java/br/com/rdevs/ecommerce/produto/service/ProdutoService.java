@@ -137,6 +137,7 @@ public class ProdutoService {
     public List<ProdutoDTO> buscarPorCdProduto(Long cdProduto){
         List<ProdutoDTO> listaDTO = new ArrayList<>();
         TbProduto prod = produtoRepository.findByCdProduto(cdProduto);
+
             if(prod.getDsProduto()!=null) {
                 ProdutoDTO dto = produtoBo.parseToDTO(prod);
                 CategoriaProdutoDTO catdto = new CategoriaProdutoDTO();
@@ -455,15 +456,43 @@ public class ProdutoService {
 
     }
 
-    public List<ProdutoDTO> produtosAleatorios(){
-
-
-//TODO criar metodo que me traz 8 produtos para promoção
-        List<TbProduto> produtosEntity = new ArrayList<>();
+    public List<ProdutoDTO> produtosPromo(){
+        Long[] produtosPromo = {76L,69L,46L,51L,80L,82L,79L,70L};
         List<ProdutoDTO> produtosDTOS = new ArrayList<>();
 
+        for (Long cdProduto: produtosPromo) {
+            TbProduto produtosEntity = produtoRepository.findByCdProduto(cdProduto);
+            ProdutoDTO produtoDTO = produtoBo.parseToDTO(produtosEntity);
 
 
+            CategoriaProdutoDTO catdto = new CategoriaProdutoDTO();
+            SubCategoriaProdutoDTO subCategoriaProduto = new SubCategoriaProdutoDTO();
+
+            subCategoriaProduto.setIdSubCategoria(produtosEntity.getSubCategoriaProduto().getIdSubCategoria());
+            subCategoriaProduto.setDsSubCategoria(produtosEntity.getSubCategoriaProduto().getDsSubCategoria());
+            catdto.setIdCategoriaProduto(produtosEntity.getCategoriaProduto().getIdCategoriaProduto());
+            catdto.setDsCategoriaProduto(produtosEntity.getCategoriaProduto().getDsCategoriaProduto());
+
+            produtoDTO.setSubCategoriaProduto(subCategoriaProduto);
+            produtoDTO.setCategoriaProduto(catdto);
+
+            List<ProdutoImagemDTO> imagemsProdutodto = new ArrayList<>();
+            for (TbProdutoImagem produtoImagemEntity : produtosEntity.getImagens()) {
+                ProdutoImagemDTO imagemDTO = produtoImagemBo.parseToDTO(produtoImagemEntity);
+
+                imagemsProdutodto.add(imagemDTO);
+            }
+            produtoDTO.setImagens(imagemsProdutodto);
+
+            TbProdutoFilialEstoque produtoEstoqueEntity = estoqueRepository.findByProdutoFilialCdProdutoAndCdFilial(produtosEntity.getCdProduto(),4L);
+            EstoqueProdutoDTO estoqueProdutoDTO = new EstoqueProdutoDTO();
+            estoqueProdutoDTO.setCdFilial(produtoEstoqueEntity.getCdFilial());
+            estoqueProdutoDTO.setQtEstoque(produtoEstoqueEntity.getQtEstoque());
+            estoqueProdutoDTO.setQtEmpenho(produtoEstoqueEntity.getQtEmpenho());
+            produtoDTO.setEstoques(estoqueProdutoDTO);
+
+            produtosDTOS.add(produtoDTO);
+        }
 
         return produtosDTOS;
     }
