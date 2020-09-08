@@ -12,4 +12,6 @@ public interface PedidoRepository extends JpaRepository<TbPedido, Long> {
 
      List<TbPedido> findByClienteIdCliente(Long idCliente);
 
+     TbPedido findByIdPedido(Long idPedido);
+
 }

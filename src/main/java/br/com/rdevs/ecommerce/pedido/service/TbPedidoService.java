@@ -2,6 +2,10 @@ package br.com.rdevs.ecommerce.pedido.service;
 //Classe para inserir as regras de negócio e metodos a serem inseridos na classe Controller
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbCliente;
 import br.com.rdevs.ecommerce.cadastro.repository.CadastroRepository;
+import br.com.rdevs.ecommerce.estoque.model.dto.EstoqueProdutoDTO;
+import br.com.rdevs.ecommerce.estoque.model.entity.TbProdutoFilialEstoque;
+import br.com.rdevs.ecommerce.estoque.repository.EstoqueRepository;
+import br.com.rdevs.ecommerce.pedido.model.dto.CarrinhoPedidoDTO;
 import br.com.rdevs.ecommerce.pedido.model.dto.PedidoDTO;
 import br.com.rdevs.ecommerce.pedido.model.dto.PedidoItemDTO;
 import br.com.rdevs.ecommerce.pedido.model.entity.TbPedido;
@@ -9,13 +13,22 @@ import br.com.rdevs.ecommerce.pedido.model.entity.TbPedidoItem;
 import br.com.rdevs.ecommerce.pedido.model.entity.TbStatusPedido;
 import br.com.rdevs.ecommerce.pedido.repository.PedidoRepository;
 import br.com.rdevs.ecommerce.pedido.service.bo.TbPedidoBO;
+import br.com.rdevs.ecommerce.produto.model.dto.CategoriaProdutoDTO;
+import br.com.rdevs.ecommerce.produto.model.dto.ProdutoDTO;
+import br.com.rdevs.ecommerce.produto.model.dto.ProdutoImagemDTO;
+import br.com.rdevs.ecommerce.produto.model.dto.SubCategoriaProdutoDTO;
+import br.com.rdevs.ecommerce.produto.model.entity.TbProduto;
+import br.com.rdevs.ecommerce.produto.model.entity.TbProdutoImagem;
 import br.com.rdevs.ecommerce.produto.repository.ProdutoRepository;
+import br.com.rdevs.ecommerce.produto.service.bo.ProdutoBo;
+import br.com.rdevs.ecommerce.produto.service.bo.ProdutoImagemBo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.math.BigDecimal;
+import java.sql.ClientInfoStatus;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +43,15 @@ public class TbPedidoService {
 
     @Autowired
     private ProdutoRepository produtoRepository;
+
+    @Autowired
+    private EstoqueRepository estoqueRepository;
+
+    @Autowired
+    private ProdutoBo produtoBo;
+
+    @Autowired
+    private ProdutoImagemBo produtoImagemBo;
 
     @Autowired
     private TbPedidoBO pedidoBO;
@@ -69,6 +91,49 @@ public class TbPedidoService {
         return pedidosDTO;
     }
 
+    public List<ProdutoDTO> buscarPedidoPorIdPedido(Long idPedido) {
+
+        TbPedido pedidoEntity = pedidoRepository.findByIdPedido(idPedido);
+
+        List<ProdutoDTO> produtosDTOS = new ArrayList<>();
+        for (TbPedidoItem produto : pedidoEntity.getItens()){
+            TbProduto produtoEtity = produtoRepository.findByCdProduto(produto.getProduto().getCdProduto());
+            ProdutoDTO produtoDTO = produtoBo.parseToDTO(produtoEtity);
+
+
+            CategoriaProdutoDTO catdto = new CategoriaProdutoDTO();
+            SubCategoriaProdutoDTO subCategoriaProduto = new SubCategoriaProdutoDTO();
+
+            subCategoriaProduto.setIdSubCategoria(produtoEtity.getSubCategoriaProduto().getIdSubCategoria());
+            subCategoriaProduto.setDsSubCategoria(produtoEtity.getSubCategoriaProduto().getDsSubCategoria());
+            catdto.setIdCategoriaProduto(produtoEtity.getCategoriaProduto().getIdCategoriaProduto());
+            catdto.setDsCategoriaProduto(produtoEtity.getCategoriaProduto().getDsCategoriaProduto());
+
+            produtoDTO.setSubCategoriaProduto(subCategoriaProduto);
+            produtoDTO.setCategoriaProduto(catdto);
+
+            List<ProdutoImagemDTO> imagemsProdutodto = new ArrayList<>();
+            for (TbProdutoImagem produtoImagemEntity : produtoEtity.getImagens()) {
+                ProdutoImagemDTO imagemDTO = produtoImagemBo.parseToDTO(produtoImagemEntity);
+
+                imagemsProdutodto.add(imagemDTO);
+            }
+            produtoDTO.setImagens(imagemsProdutodto);
+
+            TbProdutoFilialEstoque produtoEstoqueEntity = estoqueRepository.findByProdutoFilialCdProdutoAndCdFilial(produtoEtity.getCdProduto(),4L);
+            EstoqueProdutoDTO estoqueProdutoDTO = new EstoqueProdutoDTO();
+            estoqueProdutoDTO.setCdFilial(produtoEstoqueEntity.getCdFilial());
+            estoqueProdutoDTO.setQtEstoque(produtoEstoqueEntity.getQtEstoque());
+            estoqueProdutoDTO.setQtEmpenho(produtoEstoqueEntity.getQtEmpenho());
+            produtoDTO.setEstoques(estoqueProdutoDTO);
+
+            produtosDTOS.add(produtoDTO);
+        }
+
+
+        return produtosDTOS;
+    }
+    
     //Método de inserir Pedidos
     public TbPedido inserirPedido(PedidoDTO dto) throws Exception{
         TbPedido pedidoEntity = pedidoBO.parseToEntity(dto,null);

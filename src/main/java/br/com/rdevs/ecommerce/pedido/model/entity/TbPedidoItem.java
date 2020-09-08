@@ -27,6 +27,9 @@ public class TbPedidoItem implements Serializable {
     @Column(name = "VL_PEDIDO_ITEM")
     private BigDecimal vlPedidoItem;
 
+    @Column(name = "QT_PRODUTO")
+    private Long qtProduto;
+
     @ManyToOne
     @JoinColumn(name = "CD_PRODUTO")
     private TbProduto produto;

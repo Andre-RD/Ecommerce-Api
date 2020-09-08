@@ -16,14 +16,14 @@ public class PedidoController {
 @Autowired
 private TbPedidoService service;
 
-@ApiOperation(value = "buscar Pedidos pela id do cliente")
-@GetMapping("/pedidos/cliente/{idCliente}")
-    public ResponseEntity<Object> buscarPedidoPorIdCliente(@PathVariable("idCliente") Long idCliente) {
-    return ResponseEntity.ok().body(service.buscarPedidoPorIdCliente(idCliente));
-}
+    @ApiOperation(value = "buscar Pedidos pela id do cliente")
+    @GetMapping("/pedidos/cliente/{idCliente}")
+        public ResponseEntity<Object> buscarPedidoPorIdCliente(@PathVariable("idCliente") Long idCliente) {
+        return ResponseEntity.ok().body(service.buscarPedidoPorIdCliente(idCliente));
+    }
 
-@ApiOperation(value = "Incluir novo pedido")
-@PostMapping("/pedido")
+    @ApiOperation(value = "Incluir novo pedido")
+    @PostMapping("/pedido")
     public ResponseEntity<Object> inserirPedidos(@RequestBody PedidoDTO pedidoDTO){
         ResultData resultData = null;
         if(pedidoDTO.getIdCliente() == null)
@@ -42,5 +42,10 @@ private TbPedidoService service;
             }
         }
     }
-}
 
+
+    @GetMapping("/pedido/{idPedido}")
+    public ResponseEntity<Object> buscarPedidoPorIdPedido(@PathVariable("idPedido") Long idPedido) {
+        return ResponseEntity.ok().body(service.buscarPedidoPorIdPedido(idPedido));
+    }
+}
