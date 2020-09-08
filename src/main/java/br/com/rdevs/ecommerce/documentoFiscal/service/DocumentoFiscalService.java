@@ -56,7 +56,6 @@ public class DocumentoFiscalService {
     EstoqueRepository estoqueRepository;
 
 
-
     public List<TbDocumentoFiscal> listaDocumentos(){
         return documentoFiscalRepository.findAll();
     }
@@ -76,16 +75,15 @@ public class DocumentoFiscalService {
 
         Calendar data = Calendar.getInstance();
         Random random = new Random();
-        Long numeroAleatorio =Math.abs(random.nextLong()*100000);
+        Long numeroAleatorio =Math.abs(random.nextLong()*100);
 
         TbCliente tbCliente = cadastroRepository.getOne(dfDTO.getIdCliente());
         dfEntity.setTbCliente(tbCliente);
         pedidoEntity.setCliente(tbCliente);
 
+        dfEntity.setCdOperacao(9l);
 
-
-        dfEntity.setCdOperacao(1l);
-
+        dfEntity.setCdFilial(4l);
         dfEntity.setNrChaveAcesso(numeroAleatorio);
         dfEntity.setNrNF(2001L);
         dfEntity.setDtEmissao(data.getTime());
@@ -162,6 +160,8 @@ public class DocumentoFiscalService {
 
         return pagamentoPedidoRepository.save(pagamentoPedidoEntity);
     }
+
+
 
 
 

@@ -26,6 +26,7 @@ public class TbPedido {
     @Column(name = "VL_TOTAL_PEDIDO")
     private BigDecimal vlTotalPedido;
 
+
     @Column(name = "QT_ITENS_PEDIDO")
     private Integer qtItensPedido;
 

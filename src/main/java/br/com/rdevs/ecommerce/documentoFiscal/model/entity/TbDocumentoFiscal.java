@@ -27,6 +27,9 @@ public class TbDocumentoFiscal {
     @JoinColumn(name = "ID_CLIENTE")
     private TbCliente tbCliente;
 
+    @Column(name = "FL_NF")
+    private Long flNf;
+
     @Column(name = "NR_CHAVE_ACESSO")
     private Long nrChaveAcesso;
 
@@ -38,6 +41,9 @@ public class TbDocumentoFiscal {
 
     @Column(name = "DT_EMISSAO")
     private Date dtEmissao;
+
+    @Column(name = "CD_FILIAL")
+    private Long cdFilial;
 
     @Column(name = "CD_OPERACAO")
     private Long cdOperacao;

@@ -133,7 +133,7 @@ public class TbPedidoService {
 
         return produtosDTOS;
     }
-    
+
     //Método de inserir Pedidos
     public TbPedido inserirPedido(PedidoDTO dto) throws Exception{
         TbPedido pedidoEntity = pedidoBO.parseToEntity(dto,null);
@@ -167,6 +167,8 @@ public class TbPedidoService {
 
         return pedidoRepository.save(pedidoEntity);
         }
+
+
 
     }
 
