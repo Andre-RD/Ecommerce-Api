@@ -52,6 +52,7 @@ public class CadastroController {
         ResultData resultData = null;
         TbCliente clienteCpf = repository.findByNrCpf(clienteDTO.getNrCpf());
         TbCliente clienteEmail = repository.findByDsEmail(clienteDTO.getDsEmail());
+        TbCliente tbCliente = service.inserir(clienteDTO);
         if (clienteCpf != null) {
             resultData = new ResultData(HttpStatus.BAD_REQUEST.value(), "CPF JÁ CADASTRADO");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resultData);
@@ -60,9 +61,12 @@ public class CadastroController {
             resultData = new ResultData(HttpStatus.BAD_REQUEST.value(), "EMAIL JÁ CADASTRADO");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resultData);
         }
+        else if(tbCliente == null){
+            resultData = new ResultData(HttpStatus.BAD_REQUEST.value(), "Os campos senha e Confirmar senha não são iguais");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resultData);
+        }
         else {
             try {
-                TbCliente tbCliente = service.inserir(clienteDTO);
                 resultData = new ResultData<TbCliente>(HttpStatus.OK.value(),
                         "Cliente registrada com sucesso!", tbCliente);
                 return ResponseEntity.status(HttpStatus.CREATED).body(resultData);

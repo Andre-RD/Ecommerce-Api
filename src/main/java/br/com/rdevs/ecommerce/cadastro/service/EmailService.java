@@ -24,7 +24,7 @@ public class EmailService {
                 return email;
             }
             else {
-                return "Cliente não cadastrado";
+                return null;
             }
         } else {
             TbCliente clienteEntity = cadastroRepository.findByDsEmail(esqueciSenha);
@@ -34,7 +34,7 @@ public class EmailService {
                 return email;
             }
             else {
-                return "Cliente não cadastrado";
+                return null;
             }
         }
 

@@ -17,7 +17,11 @@ public class ClienteDTO {
     private String dsGenero;
     private String nrTelefone1;
     private String nrTelefone2;
+
     private String pwCliente;
+    private String confirmarSenha;
+
+    private String categoriaCliente;
 
 
     private List<EnderecoDTO> enderecos;

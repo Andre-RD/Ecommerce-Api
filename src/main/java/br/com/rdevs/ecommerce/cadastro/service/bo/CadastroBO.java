@@ -43,6 +43,9 @@ public class CadastroBO{
         clienteEntity.setNrTelefone2(clienteDTO.getNrTelefone2());
 
         clienteEntity.setPwCliente(Base64.getEncoder().encodeToString(clienteDTO.getPwCliente().getBytes()));
+
+        //TODO Criar validação por data para clientes acima de 60 anos serem setados como 2
+
         clienteEntity.setIdCategoriaCliente(1L);
 
         return clienteEntity;

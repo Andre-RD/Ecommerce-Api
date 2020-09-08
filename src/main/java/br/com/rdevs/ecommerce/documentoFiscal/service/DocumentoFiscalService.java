@@ -81,8 +81,9 @@ public class DocumentoFiscalService {
         dfEntity.setTbCliente(tbCliente);
         pedidoEntity.setCliente(tbCliente);
 
-        dfEntity.setCdOperacao(9l);
 
+        dfEntity.setCdOperacao(9l);
+        dfEntity.setFlNf(1l);
         dfEntity.setCdFilial(4l);
         dfEntity.setNrChaveAcesso(numeroAleatorio);
         dfEntity.setNrNF(2001L);
@@ -106,6 +107,9 @@ public class DocumentoFiscalService {
             itemPedido.setProduto(produto);
 
             TbProdutoFilialEstoque estoque = estoqueRepository.findByProdutoFilialCdProdutoAndCdFilial(produto.getCdProduto(),4L);
+
+
+            //TODO validar a quantidade de itens na compra
             Long quantidadeComprada = 1L;
 
             Long estoqueNovo = estoque.getQtEstoque() - quantidadeComprada;

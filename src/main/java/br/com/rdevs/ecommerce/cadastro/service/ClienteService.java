@@ -89,8 +89,16 @@ public class ClienteService {
 
     public TbCliente inserir (ClienteDTO clienteDTO){
         TbCliente clienteEntity = cadastroBO.parseToEntity(clienteDTO, null);
+        if (clienteDTO.getPwCliente().equals(clienteDTO.getConfirmarSenha())){
 
-        return cadastroRepository.save(clienteEntity);
+            return cadastroRepository.save(clienteEntity);
+        }
+
+        //TODO adicionar confirmar pwCliete
+        else{
+            return null;
+        }
+
     }
 
     public TbCliente atualizar(ClienteDTO clienteDTO){

@@ -455,14 +455,29 @@ public class ProdutoService {
 
     }
 
+    public List<ProdutoDTO> produtosAleatorios(){
+
+
+//TODO criar metodo que me traz 8 produtos para promoção
+        List<TbProduto> produtosEntity = new ArrayList<>();
+        List<ProdutoDTO> produtosDTOS = new ArrayList<>();
+
+
+
+
+        return produtosDTOS;
+    }
+
     public List<ListaFabricantes> fabricantesPorSubCategoria(Long idSubcategoria){
         List<ListaFabricantes> listaFabricantes = new ArrayList<>();
         List<TbProduto> produtos = produtoRepository.findBySubCategoriaProdutoIdSubCategoria(idSubcategoria);
         for (TbProduto produto: produtos){
-            ListaFabricantes fabricante = new ListaFabricantes();
-            fabricante.setNomeFabricante(produto.getNomeFabricante());
+            if(produto.getDsProduto()!=null) {
+                ListaFabricantes fabricante = new ListaFabricantes();
+                fabricante.setNomeFabricante(produto.getNomeFabricante());
 
-            listaFabricantes.add(fabricante);
+                listaFabricantes.add(fabricante);
+            }
         }
         List<ListaFabricantes> listaFabricantes1 = listaFabricantes.stream().distinct().collect(Collectors.toList());
         return listaFabricantes1;

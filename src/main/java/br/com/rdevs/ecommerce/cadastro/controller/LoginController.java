@@ -42,11 +42,11 @@ public class LoginController {
                     resultData = new ResultData<ClienteDTO>(HttpStatus.OK.value(), "Login efetivado!",cliente);
                     return ResponseEntity.status(HttpStatus.OK).body(resultData);
                 } else {
-                    resultData = new ResultData(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Senha incorreta");
+                    resultData = new ResultData(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Senha ou email incorreto!!");
                     return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value()).body(resultData);
                 }
             } catch (Exception e) {
-                resultData = new ResultData(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Senha incorreta", e.getMessage());
+                resultData = new ResultData(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Senha ou email incorreto!!", e.getMessage());
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value()).body(resultData);
             }
         }
