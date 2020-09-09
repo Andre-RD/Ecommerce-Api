@@ -15,6 +15,7 @@ public class PedidoItemDTO {
     private Long idPedido;
     private Long nrItemPedido;
     private Long cdProduto;
+    private Long qtProduto;
     private String dsProduto;
     private BigDecimal vlPedidoItem;
 

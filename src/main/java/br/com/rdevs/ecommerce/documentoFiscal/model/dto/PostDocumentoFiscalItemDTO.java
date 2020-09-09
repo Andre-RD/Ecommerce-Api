@@ -6,6 +6,8 @@ import lombok.Data;
 public class PostDocumentoFiscalItemDTO {
 
 
+    private Long qtProduto;
+
     private Long cdProduto;
 
 

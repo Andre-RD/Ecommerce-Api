@@ -79,6 +79,11 @@ public class TbPedidoService {
                 pedidoItemDTO.setNrItemPedido(pedidoItem.getNrItemPedido());
                 pedidoItemDTO.setCdProduto(pedidoItem.getProduto().getCdProduto());
                 pedidoItemDTO.setVlPedidoItem(pedidoItem.getVlPedidoItem());
+                if (pedidoItem.getQtProduto()==null){
+                    pedidoItemDTO.setQtProduto(1L);
+                }else {
+                    pedidoItemDTO.setQtProduto(pedidoItem.getQtProduto());
+                }
 
                 pedidoItensDto.add(pedidoItemDTO);
             }

@@ -78,6 +78,7 @@ public class DocumentoFiscalService {
         Long numeroAleatorio =Math.abs(random.nextLong()*100);
 
         TbCliente tbCliente = cadastroRepository.getOne(dfDTO.getIdCliente());
+
         dfEntity.setTbCliente(tbCliente);
         pedidoEntity.setCliente(tbCliente);
 
@@ -97,6 +98,7 @@ public class DocumentoFiscalService {
 
         double valor = 0d;
         Long contador = 0L;
+        Long contadorItens = 0L;
         double calculoIcms = 0d;
         for (PostDocumentoFiscalItemDTO itemDTO: dfDTO.getItensDTOPost()){
             TbDocumentoItem itemNF = new TbDocumentoItem();
@@ -106,11 +108,16 @@ public class DocumentoFiscalService {
             itemNF.setProduto(produto);
             itemPedido.setProduto(produto);
 
+            itemNF.setQtItem(itemDTO.getQtProduto());
+            itemPedido.setQtProduto(itemDTO.getQtProduto());
+
             TbProdutoFilialEstoque estoque = estoqueRepository.findByProdutoFilialCdProdutoAndCdFilial(produto.getCdProduto(),4L);
 
 
             //TODO validar a quantidade de itens na compra
-            Long quantidadeComprada = 1L;
+            Long quantidadeComprada = itemDTO.getQtProduto();
+            contadorItens += quantidadeComprada;
+
 
             Long estoqueNovo = estoque.getQtEstoque() - quantidadeComprada;
             estoque.setQtEstoque(estoqueNovo);
@@ -123,12 +130,14 @@ public class DocumentoFiscalService {
             itemNF.setNrItemDocumento(contador);
             itemPedido.setNrItemPedido(contador);
 
-            itemNF.setQtItem(1L);
+            Double valorRefaturado = produto.getValorUnidade().doubleValue() * quantidadeComprada;
+
 
             itemNF.setVlItem(produto.getValorUnidade());
+
             itemPedido.setVlPedidoItem(produto.getValorUnidade());
 
-            valor += produto.getValorUnidade().doubleValue();
+            valor += valorRefaturado;
 
             itemNF.setPcIcms(BigDecimal.valueOf(0.17));
 
@@ -144,7 +153,8 @@ public class DocumentoFiscalService {
         dfEntity.setVlDocumentoFiscal(BigDecimal.valueOf(valor));
 
         pedidoEntity.setVlTotalPedido(dfEntity.getVlDocumentoFiscal());
-        pedidoEntity.setQtItensPedido(contador.intValue());
+
+        pedidoEntity.setQtItensPedido(contadorItens.intValue());
 
         TbStatusPedido tbStatusPedido = new TbStatusPedido();
         tbStatusPedido.setCdStatusPedido(2L);

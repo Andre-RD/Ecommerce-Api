@@ -68,10 +68,21 @@ public class ProdutoController {
 
     @ApiOperation(value = "Buscar Produtos dos cards de Promoção")
     @GetMapping("/produtos/produtoPromo")
-    public ResponseEntity buscarPorCdProduto() {
+    public ResponseEntity produtosPromo() {
         return ResponseEntity.ok().body(service.produtosPromo());
     }
 
+    @ApiOperation(value = "Buscar Produtos dos cards de Destaque da semana")
+    @GetMapping("/produtos/destaqueSemana")
+    public ResponseEntity produtosDestaquesdaSemana() {
+        return ResponseEntity.ok().body(service.produtosDestaquesSemana());
+    }
+
+    @ApiOperation(value = "Buscar Produtos dos cards de populares")
+    @GetMapping("/produtos/populares")
+    public ResponseEntity produtosPopulares() {
+        return ResponseEntity.ok().body(service.produtosPopulares());
+    }
 
 
     @ApiOperation(value = "Buscar Produto Por cdProduto")

@@ -497,6 +497,88 @@ public class ProdutoService {
         return produtosDTOS;
     }
 
+    public List<ProdutoDTO> produtosDestaquesSemana(){
+        Long[] produtosPromo = {80L,81L,67L,69L,80L,82L,79L,55L};
+        List<ProdutoDTO> produtosDTOS = new ArrayList<>();
+
+        for (Long cdProduto: produtosPromo) {
+            TbProduto produtosEntity = produtoRepository.findByCdProduto(cdProduto);
+            ProdutoDTO produtoDTO = produtoBo.parseToDTO(produtosEntity);
+
+
+            CategoriaProdutoDTO catdto = new CategoriaProdutoDTO();
+            SubCategoriaProdutoDTO subCategoriaProduto = new SubCategoriaProdutoDTO();
+
+            subCategoriaProduto.setIdSubCategoria(produtosEntity.getSubCategoriaProduto().getIdSubCategoria());
+            subCategoriaProduto.setDsSubCategoria(produtosEntity.getSubCategoriaProduto().getDsSubCategoria());
+            catdto.setIdCategoriaProduto(produtosEntity.getCategoriaProduto().getIdCategoriaProduto());
+            catdto.setDsCategoriaProduto(produtosEntity.getCategoriaProduto().getDsCategoriaProduto());
+
+            produtoDTO.setSubCategoriaProduto(subCategoriaProduto);
+            produtoDTO.setCategoriaProduto(catdto);
+
+            List<ProdutoImagemDTO> imagemsProdutodto = new ArrayList<>();
+            for (TbProdutoImagem produtoImagemEntity : produtosEntity.getImagens()) {
+                ProdutoImagemDTO imagemDTO = produtoImagemBo.parseToDTO(produtoImagemEntity);
+
+                imagemsProdutodto.add(imagemDTO);
+            }
+            produtoDTO.setImagens(imagemsProdutodto);
+
+            TbProdutoFilialEstoque produtoEstoqueEntity = estoqueRepository.findByProdutoFilialCdProdutoAndCdFilial(produtosEntity.getCdProduto(),4L);
+            EstoqueProdutoDTO estoqueProdutoDTO = new EstoqueProdutoDTO();
+            estoqueProdutoDTO.setCdFilial(produtoEstoqueEntity.getCdFilial());
+            estoqueProdutoDTO.setQtEstoque(produtoEstoqueEntity.getQtEstoque());
+            estoqueProdutoDTO.setQtEmpenho(produtoEstoqueEntity.getQtEmpenho());
+            produtoDTO.setEstoques(estoqueProdutoDTO);
+
+            produtosDTOS.add(produtoDTO);
+        }
+
+        return produtosDTOS;
+    }
+
+    public List<ProdutoDTO> produtosPopulares(){
+        Long[] produtosPromo = {77L,80L,89L,51L,48L,49L,50L,71L};
+        List<ProdutoDTO> produtosDTOS = new ArrayList<>();
+
+        for (Long cdProduto: produtosPromo) {
+            TbProduto produtosEntity = produtoRepository.findByCdProduto(cdProduto);
+            ProdutoDTO produtoDTO = produtoBo.parseToDTO(produtosEntity);
+
+
+            CategoriaProdutoDTO catdto = new CategoriaProdutoDTO();
+            SubCategoriaProdutoDTO subCategoriaProduto = new SubCategoriaProdutoDTO();
+
+            subCategoriaProduto.setIdSubCategoria(produtosEntity.getSubCategoriaProduto().getIdSubCategoria());
+            subCategoriaProduto.setDsSubCategoria(produtosEntity.getSubCategoriaProduto().getDsSubCategoria());
+            catdto.setIdCategoriaProduto(produtosEntity.getCategoriaProduto().getIdCategoriaProduto());
+            catdto.setDsCategoriaProduto(produtosEntity.getCategoriaProduto().getDsCategoriaProduto());
+
+            produtoDTO.setSubCategoriaProduto(subCategoriaProduto);
+            produtoDTO.setCategoriaProduto(catdto);
+
+            List<ProdutoImagemDTO> imagemsProdutodto = new ArrayList<>();
+            for (TbProdutoImagem produtoImagemEntity : produtosEntity.getImagens()) {
+                ProdutoImagemDTO imagemDTO = produtoImagemBo.parseToDTO(produtoImagemEntity);
+
+                imagemsProdutodto.add(imagemDTO);
+            }
+            produtoDTO.setImagens(imagemsProdutodto);
+
+            TbProdutoFilialEstoque produtoEstoqueEntity = estoqueRepository.findByProdutoFilialCdProdutoAndCdFilial(produtosEntity.getCdProduto(),4L);
+            EstoqueProdutoDTO estoqueProdutoDTO = new EstoqueProdutoDTO();
+            estoqueProdutoDTO.setCdFilial(produtoEstoqueEntity.getCdFilial());
+            estoqueProdutoDTO.setQtEstoque(produtoEstoqueEntity.getQtEstoque());
+            estoqueProdutoDTO.setQtEmpenho(produtoEstoqueEntity.getQtEmpenho());
+            produtoDTO.setEstoques(estoqueProdutoDTO);
+
+            produtosDTOS.add(produtoDTO);
+        }
+
+        return produtosDTOS;
+    }
+
     public List<ListaFabricantes> fabricantesPorSubCategoria(Long idSubcategoria){
         List<ListaFabricantes> listaFabricantes = new ArrayList<>();
         List<TbProduto> produtos = produtoRepository.findBySubCategoriaProdutoIdSubCategoria(idSubcategoria);

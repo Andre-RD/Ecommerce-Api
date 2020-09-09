@@ -55,4 +55,7 @@ public class TbCliente {
     @Column(name = "ID_CLIENTE")
     private List<TbCartaoCredito> cartoesCredito;
 
+
+
+
 }

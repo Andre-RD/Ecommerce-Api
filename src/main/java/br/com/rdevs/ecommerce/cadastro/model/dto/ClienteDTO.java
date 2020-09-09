@@ -21,7 +21,7 @@ public class ClienteDTO {
     private String pwCliente;
     private String confirmarSenha;
 
-    private String categoriaCliente;
+    private Long idCategoriaCliente;
 
 
     private List<EnderecoDTO> enderecos;
