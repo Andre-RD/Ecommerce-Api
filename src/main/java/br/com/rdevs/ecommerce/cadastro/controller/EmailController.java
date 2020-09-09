@@ -46,8 +46,8 @@ public class EmailController{
 //        }
 //    }
 
-    @PutMapping(value = "/esqueciSenha")
-    public ResponseEntity trocarSenha(String login){
+    @PutMapping(value = "/esqueciSenha/{login}")
+    public ResponseEntity trocarSenha(@PathVariable("login") String login){
         String email = service.esqueciSenha(login);
         ResultData resultData = null;
         if (email==null) {

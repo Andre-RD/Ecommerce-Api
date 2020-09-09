@@ -35,14 +35,14 @@ public class TbCliente {
     private String dsGenero;
     @Column(name = "NR_TELEFONE1")
     private String nrTelefone1;
-    @Column(name = "ID_CATEGORIA_CLIENTE")
-    private Long idCategoriaCliente;
+
     @Column(name = "NR_TELEFONE2")
     private String nrTelefone2;
     @Column(name = "PW_CLIENTE")
     private String pwCliente;
 
-
+    @Column(name = "ID_CATEGORIA_CLIENTE")
+    private Long idCategoriaCliente;
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "TB_ENDERECO_CLIENTE",
