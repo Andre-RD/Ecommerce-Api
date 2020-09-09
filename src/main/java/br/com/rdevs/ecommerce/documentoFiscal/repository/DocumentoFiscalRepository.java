@@ -10,5 +10,6 @@ import java.util.List;
 public interface DocumentoFiscalRepository extends JpaRepository<TbDocumentoFiscal, Long> {
 
     List<TbDocumentoFiscal> findByTbClienteIdCliente(Long idCliente);
+    TbDocumentoFiscal findByIdDocumentoFiscal(Long idDocumentoFiscal);
 
 }

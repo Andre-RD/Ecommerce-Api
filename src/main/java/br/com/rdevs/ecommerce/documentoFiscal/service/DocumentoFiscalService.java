@@ -4,6 +4,8 @@ import br.com.rdevs.ecommerce.cadastro.model.entity.TbCliente;
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbEndereco;
 import br.com.rdevs.ecommerce.cadastro.repository.CadastroRepository;
 import br.com.rdevs.ecommerce.cadastro.repository.EnderecoRepository;
+import br.com.rdevs.ecommerce.documentoFiscal.model.dto.DocumentoFiscalDTO;
+import br.com.rdevs.ecommerce.documentoFiscal.model.dto.DocumentoFiscalItemDTO;
 import br.com.rdevs.ecommerce.documentoFiscal.model.dto.PostDocumentoFiscalDTO;
 import br.com.rdevs.ecommerce.documentoFiscal.model.dto.PostDocumentoFiscalItemDTO;
 import br.com.rdevs.ecommerce.documentoFiscal.model.entity.TbDocumentoFiscal;
@@ -15,6 +17,8 @@ import br.com.rdevs.ecommerce.pagamentopedido.model.entity.TbPagamentoPedido;
 import br.com.rdevs.ecommerce.pagamentopedido.model.entity.TbTipoPagamento;
 import br.com.rdevs.ecommerce.pagamentopedido.repository.PagamentoPedidoRepository;
 import br.com.rdevs.ecommerce.pagamentopedido.repository.TipoPagamentoRepository;
+import br.com.rdevs.ecommerce.pedido.model.dto.PedidoDTO;
+import br.com.rdevs.ecommerce.pedido.model.dto.PedidoItemDTO;
 import br.com.rdevs.ecommerce.pedido.model.entity.TbPedido;
 import br.com.rdevs.ecommerce.pedido.model.entity.TbPedidoItem;
 import br.com.rdevs.ecommerce.pedido.model.entity.TbStatusPedido;
@@ -56,21 +60,104 @@ public class DocumentoFiscalService {
     EstoqueRepository estoqueRepository;
 
 
-    public List<TbDocumentoFiscal> listaDocumentos(){
-        return documentoFiscalRepository.findAll();
+    public Object listaDocumentosPorID(Long idDocumentoFiscal){
+        DocumentoFiscalDTO documentoFiscalDTO = new DocumentoFiscalDTO();
+        TbDocumentoFiscal documentoFiscalEntity =  documentoFiscalRepository.findByIdDocumentoFiscal(idDocumentoFiscal);
+        documentoFiscalDTO.setNrCpf(documentoFiscalEntity.getTbCliente().getNrCpf());
+        documentoFiscalDTO.setNrChaveAcesso(documentoFiscalEntity.getNrChaveAcesso());
+        documentoFiscalDTO.setNrNF(documentoFiscalEntity.getNrNF());
+        documentoFiscalDTO.setDtEmissao(documentoFiscalEntity.getDtEmissao());
+
+        List<DocumentoFiscalItemDTO> itensDTO = new ArrayList<>();
+        for (TbDocumentoItem itensEntity: documentoFiscalEntity.getItensNf()){
+            DocumentoFiscalItemDTO itemDTO = new DocumentoFiscalItemDTO();
+
+            itemDTO.setNrItemDocumento(itensEntity.getNrItemDocumento());
+            itemDTO.setCdProduto(itensEntity.getProduto().getCdProduto());
+            itemDTO.setQtItem(itensEntity.getQtItem());
+            itemDTO.setNmProduto(itensEntity.getProduto().getNomeFantasia());
+            itemDTO.setVlItemUnitario(itensEntity.getVlItem());
+            Double valorRefaturado = itensEntity.getVlItem().doubleValue()*itensEntity.getQtItem();
+            itemDTO.setVlTotalItem(BigDecimal.valueOf(valorRefaturado));
+            itemDTO.setVlIcms(itensEntity.getVlIcms());
+            itemDTO.setPcIcms(itensEntity.getPcIcms());
+
+            itensDTO.add(itemDTO);
+        }
+        documentoFiscalDTO.setItensDocumento(itensDTO);
+
+
+        return documentoFiscalDTO;
     }
 
-    public List<TbDocumentoFiscal> listarPorIdCliente(Long idCliente){
-        return documentoFiscalRepository.findByTbClienteIdCliente(idCliente);
+    public List<PedidoDTO> listarPorIdCliente(Long idCliente){
+        List<PedidoDTO> pedidosDTO = new ArrayList<>();
+        List<TbDocumentoFiscal> documentoFiscalList = documentoFiscalRepository.findByTbClienteIdCliente(idCliente);
+
+        for(TbDocumentoFiscal documentoFiscal: documentoFiscalList){
+            PedidoDTO pedidoDTO = new PedidoDTO();
+
+            pedidoDTO.setIdPedido(documentoFiscal.getIdDocumentoFiscal());
+            pedidoDTO.setDtCompra(documentoFiscal.getDtEmissao());
+            pedidoDTO.setVlFrete(BigDecimal.valueOf(0L));
+
+
+            pedidoDTO.setIdCliente(idCliente);
+            pedidoDTO.setDsStatusPedido("Vendido");
+
+            List<PedidoItemDTO> pedidoItensDto = new ArrayList<>();
+
+            Long quatidadeItens = 0L;
+            for (TbDocumentoItem itemNF: documentoFiscal.getItensNf()){
+                PedidoItemDTO pedidoItemDTO = new PedidoItemDTO();
+
+                pedidoItemDTO.setIdPedido(itemNF.getDocumentoFiscal().getIdDocumentoFiscal());
+                pedidoItemDTO.setDsProduto(itemNF.getProduto().getNomeFantasia());
+                pedidoItemDTO.setNrItemPedido(itemNF.getNrItemDocumento());
+                pedidoItemDTO.setCdProduto(itemNF.getProduto().getCdProduto());
+                pedidoItemDTO.setVlPedidoItem(itemNF.getVlItem());
+
+                if (itemNF.getQtItem()==null){
+                    pedidoItemDTO.setQtProduto(1L);
+                }else {
+                    pedidoItemDTO.setQtProduto(itemNF.getQtItem());
+                }
+
+
+                quatidadeItens += pedidoItemDTO.getQtProduto();
+
+                pedidoItensDto.add(pedidoItemDTO);
+            }
+            pedidoDTO.setItems(pedidoItensDto);
+
+            if (documentoFiscal.getCdOperacao()==9){
+
+                pedidoDTO.setTipoVenda("Comprado no Ecommerce");
+            }else{
+                pedidoDTO.setTipoVenda("Comprado em Loja");
+            }
+
+
+            pedidoDTO.setQtItensPedido(Math.toIntExact(quatidadeItens));
+            pedidoDTO.setVlTotalPedido(documentoFiscal.getVlDocumentoFiscal());
+
+
+            pedidosDTO.add(pedidoDTO);
+        }
+
+
+        return pedidosDTO;
     }
 
-    public TbPagamentoPedido inserirItem(@RequestBody PostDocumentoFiscalDTO dfDTO){
+
+    public Object inserirItem(@RequestBody PostDocumentoFiscalDTO dfDTO){
+
         TbDocumentoFiscal dfEntity = new TbDocumentoFiscal();
         TbPedido pedidoEntity = new TbPedido();
         TbPagamentoPedido pagamentoPedidoEntity = new TbPagamentoPedido();
+        DocumentoFiscalDTO documentoFiscalDTO = new DocumentoFiscalDTO();
 
         TbEndereco endereco = enderecoRepository.getOne(dfDTO.getIdEndereco());
-
         TbTipoPagamento tipoPagamento = tipoPagamentoRepository.getOne(dfDTO.getIdFormaPagamento());
 
         Calendar data = Calendar.getInstance();
@@ -78,6 +165,7 @@ public class DocumentoFiscalService {
         Long numeroAleatorio =Math.abs(random.nextLong()*100);
 
         TbCliente tbCliente = cadastroRepository.getOne(dfDTO.getIdCliente());
+        documentoFiscalDTO.setNrCpf(tbCliente.getNrCpf());
 
         dfEntity.setTbCliente(tbCliente);
         pedidoEntity.setCliente(tbCliente);
@@ -87,14 +175,19 @@ public class DocumentoFiscalService {
         dfEntity.setFlNf(1l);
         dfEntity.setCdFilial(4l);
         dfEntity.setNrChaveAcesso(numeroAleatorio);
+        documentoFiscalDTO.setNrChaveAcesso(numeroAleatorio);
+
         dfEntity.setNrNF(2001L);
+        documentoFiscalDTO.setNrNF(2001L);
+
         dfEntity.setDtEmissao(data.getTime());
+        documentoFiscalDTO.setDtEmissao(data.getTime());
         pedidoEntity.setDtCompra(data.getTime());
 
 
         List<TbDocumentoItem> itensNF = new ArrayList<>();
         List<TbPedidoItem> itensPedido = new ArrayList<>();
-
+        List<DocumentoFiscalItemDTO> itensNfDTOS = new ArrayList<>();
 
         double valor = 0d;
         Long contador = 0L;
@@ -103,13 +196,20 @@ public class DocumentoFiscalService {
         for (PostDocumentoFiscalItemDTO itemDTO: dfDTO.getItensDTOPost()){
             TbDocumentoItem itemNF = new TbDocumentoItem();
             TbPedidoItem itemPedido = new TbPedidoItem();
+            DocumentoFiscalItemDTO itemNfDTO = new DocumentoFiscalItemDTO();
 
             TbProduto produto = produtoRepository.getOne(itemDTO.getCdProduto());
             itemNF.setProduto(produto);
             itemPedido.setProduto(produto);
+            itemNfDTO.setCdProduto(itemDTO.getCdProduto());
+
 
             itemNF.setQtItem(itemDTO.getQtProduto());
             itemPedido.setQtProduto(itemDTO.getQtProduto());
+            itemNfDTO.setQtItem(itemDTO.getQtProduto());
+            itemNfDTO.setNmProduto(produto.getNomeFantasia());
+
+
 
             TbProdutoFilialEstoque estoque = estoqueRepository.findByProdutoFilialCdProdutoAndCdFilial(produto.getCdProduto(),4L);
 
@@ -129,26 +229,34 @@ public class DocumentoFiscalService {
             contador++;
             itemNF.setNrItemDocumento(contador);
             itemPedido.setNrItemPedido(contador);
+            itemNfDTO.setNrItemDocumento(contador);
 
             Double valorRefaturado = produto.getValorUnidade().doubleValue() * quantidadeComprada;
-
+            itemNfDTO.setVlTotalItem(BigDecimal.valueOf(valorRefaturado));
 
             itemNF.setVlItem(produto.getValorUnidade());
+            itemNfDTO.setVlItemUnitario(produto.getValorUnidade());
 
             itemPedido.setVlPedidoItem(produto.getValorUnidade());
 
             valor += valorRefaturado;
 
             itemNF.setPcIcms(BigDecimal.valueOf(0.17));
+            itemNfDTO.setPcIcms(BigDecimal.valueOf(0.17));
 
-            calculoIcms = produto.getValorUnidade().doubleValue()*0.17;
+            calculoIcms = valorRefaturado*0.17;
             itemNF.setVlIcms(BigDecimal.valueOf(calculoIcms));
+            itemNfDTO.setVlIcms(BigDecimal.valueOf(calculoIcms));
 
             itensNF.add(itemNF);
             itensPedido.add(itemPedido);
+            itensNfDTOS.add(itemNfDTO);
+
         }
+
         dfEntity.setItensNf(itensNF);
         pedidoEntity.setItens(itensPedido);
+        documentoFiscalDTO.setItensDocumento(itensNfDTOS);
 
         dfEntity.setVlDocumentoFiscal(BigDecimal.valueOf(valor));
 
@@ -160,22 +268,26 @@ public class DocumentoFiscalService {
         tbStatusPedido.setCdStatusPedido(2L);
         pedidoEntity.setStatusPedido(tbStatusPedido);
         pedidoRepository.save(pedidoEntity);
+        documentoFiscalDTO.setNrPedido(pedidoEntity.getIdPedido());
+
         documentoFiscalRepository.save(dfEntity);
 
         pagamentoPedidoEntity.setTbEndereco(endereco);
         pagamentoPedidoEntity.setNmNomeTitular(dfDTO.getNmNomeTitular());
+        documentoFiscalDTO.setNmNomeTitular(dfDTO.getNmNomeTitular());
         pagamentoPedidoEntity.setNrNumeroCartao(dfDTO.getNrNumeroCartao());
+        documentoFiscalDTO.setNrNumeroCartao(dfDTO.getNrNumeroCartao());
         pagamentoPedidoEntity.setTbCliente(tbCliente);
         pagamentoPedidoEntity.setTbPedidoEntity(pedidoEntity);
         pagamentoPedidoEntity.setIdPagamentoPedido(pedidoEntity.getIdPedido());
         pagamentoPedidoEntity.setDocumentoFiscal(dfEntity);
         pagamentoPedidoEntity.setTipoPagamento(tipoPagamento);
+        pagamentoPedidoRepository.save(pagamentoPedidoEntity);
 
 
-        return pagamentoPedidoRepository.save(pagamentoPedidoEntity);
+
+        return documentoFiscalDTO;
     }
-
-
 
 
 

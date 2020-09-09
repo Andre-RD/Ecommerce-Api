@@ -19,5 +19,6 @@ public class PedidoDTO {
     private Integer qtItensPedido;
     private Long idCliente;
     private String dsStatusPedido;
+    private String tipoVenda;
     private List<PedidoItemDTO> items;
 }

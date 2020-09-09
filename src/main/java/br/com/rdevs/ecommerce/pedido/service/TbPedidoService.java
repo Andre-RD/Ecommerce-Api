@@ -2,6 +2,9 @@ package br.com.rdevs.ecommerce.pedido.service;
 //Classe para inserir as regras de negócio e metodos a serem inseridos na classe Controller
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbCliente;
 import br.com.rdevs.ecommerce.cadastro.repository.CadastroRepository;
+import br.com.rdevs.ecommerce.documentoFiscal.model.entity.TbDocumentoFiscal;
+import br.com.rdevs.ecommerce.documentoFiscal.model.entity.TbDocumentoItem;
+import br.com.rdevs.ecommerce.documentoFiscal.repository.DocumentoFiscalRepository;
 import br.com.rdevs.ecommerce.estoque.model.dto.EstoqueProdutoDTO;
 import br.com.rdevs.ecommerce.estoque.model.entity.TbProdutoFilialEstoque;
 import br.com.rdevs.ecommerce.estoque.repository.EstoqueRepository;
@@ -42,6 +45,9 @@ public class TbPedidoService {
     private CadastroRepository clienteRepository;
 
     @Autowired
+    private DocumentoFiscalRepository documentoFiscalRepository;
+
+    @Autowired
     private ProdutoRepository produtoRepository;
 
     @Autowired
@@ -79,6 +85,7 @@ public class TbPedidoService {
                 pedidoItemDTO.setNrItemPedido(pedidoItem.getNrItemPedido());
                 pedidoItemDTO.setCdProduto(pedidoItem.getProduto().getCdProduto());
                 pedidoItemDTO.setVlPedidoItem(pedidoItem.getVlPedidoItem());
+
                 if (pedidoItem.getQtProduto()==null){
                     pedidoItemDTO.setQtProduto(1L);
                 }else {
@@ -96,12 +103,14 @@ public class TbPedidoService {
         return pedidosDTO;
     }
 
+
     public List<ProdutoDTO> buscarPedidoPorIdPedido(Long idPedido) {
 
-        TbPedido pedidoEntity = pedidoRepository.findByIdPedido(idPedido);
+        TbDocumentoFiscal documentoFiscal = documentoFiscalRepository.findByIdDocumentoFiscal(idPedido);
 
         List<ProdutoDTO> produtosDTOS = new ArrayList<>();
-        for (TbPedidoItem produto : pedidoEntity.getItens()){
+
+        for (TbDocumentoItem produto : documentoFiscal.getItensNf()){
             TbProduto produtoEtity = produtoRepository.findByCdProduto(produto.getProduto().getCdProduto());
             ProdutoDTO produtoDTO = produtoBo.parseToDTO(produtoEtity);
 
@@ -175,7 +184,8 @@ public class TbPedidoService {
 
 
 
-    }
+
+}
 
 
 

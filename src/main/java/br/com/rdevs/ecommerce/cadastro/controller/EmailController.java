@@ -71,7 +71,7 @@ public class EmailController{
 
 
             SimpleMailMessage message = new SimpleMailMessage();
-            message.setText("Essa é uma mensagem automatica favor não responder!!");
+            message.setText("Essa é uma mensagem automatica favor não responder!!\n");
             message.setText("Foi solicitado a alteração da senha, sua nova senha é: " + senha);
             message.setSubject("Alteração de senha:");
             message.setTo(email);

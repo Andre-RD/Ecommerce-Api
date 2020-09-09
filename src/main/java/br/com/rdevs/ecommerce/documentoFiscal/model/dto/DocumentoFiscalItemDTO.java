@@ -19,7 +19,11 @@ public class DocumentoFiscalItemDTO {
 
     private Long qtItem;
 
-    private BigDecimal vlItem;
+    private String nmProduto;
+
+    private BigDecimal vlItemUnitario;
+
+    private BigDecimal vlTotalItem;
 
     private BigDecimal pcIcms;
 

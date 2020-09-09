@@ -10,17 +10,17 @@ import java.util.List;
 @Data
 public class DocumentoFiscalDTO {
 
-   private Long idCliente;
+   private String titulo = "RaiaDrogasil SA" + "\n";
+
+   private String nrCpf;
 
    private Long nrChaveAcesso;
 
    private Long nrNF;
 
-   private Long nrSerie;
-
    private Date dtEmissao;
 
-   private Long idPagamentoPedido;
+   private Long nrPedido;
 
    private Long nrNumeroCartao;
 

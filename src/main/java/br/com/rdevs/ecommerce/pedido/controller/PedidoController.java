@@ -1,5 +1,6 @@
 package br.com.rdevs.ecommerce.pedido.controller;
 
+import br.com.rdevs.ecommerce.documentoFiscal.service.DocumentoFiscalService;
 import br.com.rdevs.ecommerce.pedido.model.dto.PedidoDTO;
 import br.com.rdevs.ecommerce.pedido.model.entity.TbPedido;
 import br.com.rdevs.ecommerce.pedido.service.TbPedidoService;
@@ -16,10 +17,13 @@ public class PedidoController {
 @Autowired
 private TbPedidoService service;
 
+@Autowired
+private DocumentoFiscalService documentoFiscalService;
+
     @ApiOperation(value = "buscar Pedidos pela id do cliente")
     @GetMapping("/pedidos/cliente/{idCliente}")
         public ResponseEntity<Object> buscarPedidoPorIdCliente(@PathVariable("idCliente") Long idCliente) {
-        return ResponseEntity.ok().body(service.buscarPedidoPorIdCliente(idCliente));
+        return ResponseEntity.ok().body(documentoFiscalService.listarPorIdCliente(idCliente));
     }
 
     @ApiOperation(value = "Incluir novo pedido")
