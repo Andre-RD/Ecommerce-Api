@@ -19,5 +19,4 @@ public class PostDocumentoFiscalDTO {
 
     private List<PostDocumentoFiscalItemDTO> itensDTOPost;
 
-
 }

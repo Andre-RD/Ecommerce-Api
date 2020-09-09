@@ -14,5 +14,5 @@ public class CategoriaProdutoDTO {
 
 //    private SubCategoriaProdutoDTO subCategoriaProduto;
 
-    private List<TbProduto> produtos;
+//    private List<TbProduto> produtos;
 }
