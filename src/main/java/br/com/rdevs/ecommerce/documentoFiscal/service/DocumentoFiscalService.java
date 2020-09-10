@@ -327,14 +327,17 @@ public class DocumentoFiscalService {
         List<TbCartaoCredito> cartaoCredito = cartaoRepository.findByClienteCartaoIdCliente(dfDTO.getIdCliente());
 
         if (cartaoConvertido.contains("*")) {
-            byte[] decodedBytes = Base64.getDecoder().decode(cartaoCredito.get(0).getNrNumeroCartao());
-            String decodedString = new String(decodedBytes);
-            cartaoConvertido = decodedString;
-            String ultimosDigitos ="****.****.****." + decodedString.substring(decodedString.length()-4);
+            for (TbCartaoCredito i : cartaoCredito) {
+                byte[] decodedBytes = Base64.getDecoder().decode(i.getNrNumeroCartao());
+                String decodedString = new String(decodedBytes);
 
-            pagamentoPedidoEntity.setNrNumeroCartao(Base64.getEncoder().encodeToString(cartaoConvertido.getBytes()));
+                cartaoConvertido = decodedString;
+                String ultimosDigitos = "****.****.****." + decodedString.substring(decodedString.length() - 4);
 
-            documentoFiscalDTO.setNrNumeroCartao(ultimosDigitos);
+                pagamentoPedidoEntity.setNrNumeroCartao(Base64.getEncoder().encodeToString(cartaoConvertido.getBytes()));
+
+                documentoFiscalDTO.setNrNumeroCartao(ultimosDigitos);
+            }
         }else {
             String ultimosDigitos ="****.****.****." + cartaoConvertido.substring(cartaoConvertido.length()-4);
             pagamentoPedidoEntity.setNrNumeroCartao(Base64.getEncoder().encodeToString(cartaoConvertido.getBytes()));
@@ -351,19 +354,6 @@ public class DocumentoFiscalService {
         pagamentoPedidoEntity.setTipoPagamento(tipoPagamento);
         pagamentoPedidoRepository.save(pagamentoPedidoEntity);
 
-        Boolean flag = dfDTO.getSalvarCartao();
-        if (flag){
-
-            CartaoCreditoDTO cartaoCreditoDTO = new CartaoCreditoDTO();
-            cartaoCreditoDTO.setIdCliente(dfDTO.getIdCliente());
-            cartaoCreditoDTO.setNmNomeTitular(dfDTO.getNmNomeTitular());
-            cartaoCreditoDTO.setNrNumeroCartao(dfDTO.getNrNumeroCartao());
-            TbCartaoCredito cartaoCreditoEnti = cartaoCreditoBO.parseToEntity(cartaoCreditoDTO,null);
-
-            cartaoCreditoEnti.setClienteCartao(tbCliente);
-
-            cartaoRepository.save(cartaoCreditoEnti);
-        }
 
         return documentoFiscalDTO;
     }

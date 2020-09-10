@@ -1,6 +1,10 @@
 package br.com.rdevs.ecommerce.documentoFiscal.controller;
 
+import br.com.rdevs.ecommerce.cadastro.model.dto.CartaoCreditoDTO;
+import br.com.rdevs.ecommerce.cadastro.model.entity.TbCartaoCredito;
 import br.com.rdevs.ecommerce.cadastro.repository.CadastroRepository;
+import br.com.rdevs.ecommerce.cadastro.service.ClienteService;
+import br.com.rdevs.ecommerce.cadastro.service.bo.CartaoCreditoBO;
 import br.com.rdevs.ecommerce.documentoFiscal.model.dto.PostDocumentoFiscalDTO;
 import br.com.rdevs.ecommerce.documentoFiscal.service.DocumentoFiscalService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +12,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Base64;
+
 @RestController
 public class DocumentoFiscalController {
     @Autowired
     DocumentoFiscalService documentoFiscalService;
+
+    @Autowired
+    ClienteService clienteService;
+
+    @Autowired
+    CartaoCreditoBO cartaoCreditoBO;
 
     @Autowired
     CadastroRepository cadastroRepository;
@@ -28,10 +40,19 @@ public class DocumentoFiscalController {
 
     @PostMapping("/adicionaNota")
     public ResponseEntity inserirNotaF(@RequestBody PostDocumentoFiscalDTO nfDto){
-        String email = cadastroRepository.findByIdCliente(nfDto.getIdCliente()).getDsEmail();
-        SimpleMailMessage message = new SimpleMailMessage();
+        if (nfDto.getSalvarCartao()){
+            CartaoCreditoDTO cartaoCreditoDTO = new CartaoCreditoDTO();
 
-        return ResponseEntity.ok().body(documentoFiscalService.inserirItem(nfDto));
+            cartaoCreditoDTO.setNrNumeroCartao(Base64.getEncoder().encodeToString(nfDto.getNrNumeroCartao().getBytes()));
+            cartaoCreditoDTO.setNmNomeTitular(nfDto.getNmNomeTitular());
+            cartaoCreditoDTO.setIdCliente(nfDto.getIdCliente());
+
+            clienteService.adicionaCartaoCredito(cartaoCreditoDTO,nfDto.getIdCliente());
+
+            return ResponseEntity.ok().body(documentoFiscalService.inserirItem(nfDto));
+        }else {
+            return ResponseEntity.ok().body(documentoFiscalService.inserirItem(nfDto));
+        }
     }
 
     @PostMapping("/enviaEmail/{idDocumentoFiscal}")

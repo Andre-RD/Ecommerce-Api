@@ -79,8 +79,11 @@ public class ClienteService {
 
         List<CartaoCreditoDTO> cartaoCreditoDTOS = new ArrayList<>();
         for (TbCartaoCredito cartaoCreditoEntity: clienteEntity.getCartoesCredito()){
+
             CartaoCreditoDTO dtoCard = cartaoCreditoBO.parseToDTO(cartaoCreditoEntity);
+
             cartaoCreditoDTOS.add(dtoCard);
+
         }
         clienteDTO.setCartoesCreditoDTO(cartaoCreditoDTOS);
 
