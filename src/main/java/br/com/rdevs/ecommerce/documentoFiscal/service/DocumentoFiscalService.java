@@ -320,31 +320,32 @@ public class DocumentoFiscalService {
         documentoFiscalRepository.save(dfEntity);
 
         pagamentoPedidoEntity.setTbEndereco(endereco);
-        pagamentoPedidoEntity.setNmNomeTitular(dfDTO.getNmNomeTitular());
-        documentoFiscalDTO.setNmNomeTitular(dfDTO.getNmNomeTitular());
+        if (dfDTO.getNrNumeroCartao()!=null) {
+            pagamentoPedidoEntity.setNmNomeTitular(dfDTO.getNmNomeTitular());
+            documentoFiscalDTO.setNmNomeTitular(dfDTO.getNmNomeTitular());
 
-        String cartaoConvertido = dfDTO.getNrNumeroCartao();
-        List<TbCartaoCredito> cartaoCredito = cartaoRepository.findByClienteCartaoIdCliente(dfDTO.getIdCliente());
+            String cartaoConvertido = dfDTO.getNrNumeroCartao();
+            List<TbCartaoCredito> cartaoCredito = cartaoRepository.findByClienteCartaoIdCliente(dfDTO.getIdCliente());
 
-        if (cartaoConvertido.contains("*")) {
-            for (TbCartaoCredito i : cartaoCredito) {
-                byte[] decodedBytes = Base64.getDecoder().decode(i.getNrNumeroCartao());
-                String decodedString = new String(decodedBytes);
+            if (cartaoConvertido.contains("*")) {
+                for (TbCartaoCredito i : cartaoCredito) {
+                    byte[] decodedBytes = Base64.getDecoder().decode(i.getNrNumeroCartao());
+                    String decodedString = new String(decodedBytes);
 
-                cartaoConvertido = decodedString;
-                String ultimosDigitos = "****.****.****." + decodedString.substring(decodedString.length() - 4);
+                    cartaoConvertido = decodedString;
+                    String ultimosDigitos = "****.****.****." + decodedString.substring(decodedString.length() - 4);
 
+                    pagamentoPedidoEntity.setNrNumeroCartao(Base64.getEncoder().encodeToString(cartaoConvertido.getBytes()));
+
+                    documentoFiscalDTO.setNrNumeroCartao(ultimosDigitos);
+                }
+            } else {
+                String ultimosDigitos = "****.****.****." + cartaoConvertido.substring(cartaoConvertido.length() - 4);
                 pagamentoPedidoEntity.setNrNumeroCartao(Base64.getEncoder().encodeToString(cartaoConvertido.getBytes()));
 
                 documentoFiscalDTO.setNrNumeroCartao(ultimosDigitos);
             }
-        }else {
-            String ultimosDigitos ="****.****.****." + cartaoConvertido.substring(cartaoConvertido.length()-4);
-            pagamentoPedidoEntity.setNrNumeroCartao(Base64.getEncoder().encodeToString(cartaoConvertido.getBytes()));
-
-            documentoFiscalDTO.setNrNumeroCartao(ultimosDigitos);
         }
-
 
 
         pagamentoPedidoEntity.setTbCliente(tbCliente);

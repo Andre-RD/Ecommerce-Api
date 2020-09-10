@@ -58,17 +58,21 @@ public class CadastroBO{
         clienteEntity.setPwCliente(Base64.getEncoder().encodeToString(clienteDTO.getPwCliente().getBytes()));
 
         //TODO Criar validação por data para clientes acima de 60 anos serem setados como 2
-//        int anoNasc = clienteEntity.getDtNasc().getYear();
-//        int anoAtual= 99;
-//        if ((anoAtual-anoNasc)>=60){
-//            clienteEntity.setIdCategoriaCliente(2L);
-//        }else {
-//            clienteEntity.setIdCategoriaCliente(1L);
-//        }
 
+        GregorianCalendar calendar = new GregorianCalendar();
 
         TbCategoriaCliente categoriaCliente = new TbCategoriaCliente();
-        categoriaCliente.setIdCategoriaCliente(1L);
+        int anoNasc = clienteEntity.getDtNasc().getYear();
+        int anoAtual= calendar.getTime().getYear();
+
+        if ((anoAtual-anoNasc)>=60){
+            categoriaCliente.setIdCategoriaCliente(2L);
+        }else {
+            categoriaCliente.setIdCategoriaCliente(1L);
+        }
+        clienteDTO.setIdCategoriaCliente(categoriaCliente.getIdCategoriaCliente());
+        clienteEntity.setDtCadastro(calendar.getTime());
+
         clienteEntity.setCategoriaCliente(categoriaCliente);
 
 
