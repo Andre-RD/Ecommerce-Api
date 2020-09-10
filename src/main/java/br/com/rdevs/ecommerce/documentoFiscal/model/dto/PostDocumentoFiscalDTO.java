@@ -15,6 +15,8 @@ public class PostDocumentoFiscalDTO {
 
     private String nrNumeroCartao;
 
+    private Boolean salvarCartao = false;
+
     private String nmNomeTitular;
 
     private List<PostDocumentoFiscalItemDTO> itensDTOPost;

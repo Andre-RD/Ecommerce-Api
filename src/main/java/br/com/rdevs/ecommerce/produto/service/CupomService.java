@@ -1,5 +1,7 @@
 package br.com.rdevs.ecommerce.produto.service;
 
+import br.com.rdevs.ecommerce.cadastro.model.entity.TbCliente;
+import br.com.rdevs.ecommerce.cadastro.repository.CadastroRepository;
 import br.com.rdevs.ecommerce.estoque.model.dto.EstoqueProdutoDTO;
 import br.com.rdevs.ecommerce.estoque.model.entity.TbProdutoFilialEstoque;
 import br.com.rdevs.ecommerce.estoque.repository.EstoqueRepository;
@@ -15,6 +17,8 @@ import br.com.rdevs.ecommerce.produto.service.bo.ProdutoImagemBo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +29,9 @@ public class CupomService {
 
     @Autowired
     private CupomItemRepository cupomItemRepository;
+
+    @Autowired
+    private CadastroRepository cadastroRepository;
 
     @Autowired
     private ProdutoBo produtoBo;
@@ -41,10 +48,15 @@ public class CupomService {
         tcCupomDTO.setNmCliente(tcCupomEntity.getCliente().getNmCliente());
         tcCupomDTO.setIdCupom(tcCupomEntity.getIdCupom());
         tcCupomDTO.setDtFinalCupom(tcCupomEntity.getDtFinalCupom());
+        TbTcCupom tcCupom = cupomRepository.findByClienteIdCliente(idCliente);
+        TbCliente cliente = cadastroRepository.findByIdCliente(idCliente);
+
 
         List<TcCupomItemDTO> tcCupomItensDTO = new ArrayList<>();
 
         for (TbTcCupomItem itemEntity: tcCupomEntity.getItensCupom()){
+            Double pcDensconto = 1D;
+            Double valorConvertido = null;
             TcCupomItemDTO itemCupomDTO = new TcCupomItemDTO();
 
             itemCupomDTO.setIdTcCupom(itemEntity.getTcCupom().getIdCupom());
@@ -53,6 +65,24 @@ public class CupomService {
 
             TbProduto prod = itemEntity.getProdutoCp();
             ProdutoDTO dto = produtoBo.parseToDTO(prod);
+            TbTcCupomItem tcCupomItem = cupomItemRepository.findByTcCupomClienteIdClienteAndProdutoCpCdProduto(idCliente,prod.getCdProduto());
+
+
+
+            if (tcCupom==null||tcCupomItem==null) {
+                pcDensconto -= cliente.getCategoriaCliente().getPcDescontoEcommerce().doubleValue();
+            }else if(tcCupomItem.getPcDesconto().doubleValue()<cliente.getCategoriaCliente().getPcDescontoEcommerce().doubleValue()){
+                pcDensconto -= cliente.getCategoriaCliente().getPcDescontoEcommerce().doubleValue();
+            }else if(tcCupomItem.getPcDesconto().doubleValue()>cliente.getCategoriaCliente().getPcDescontoEcommerce().doubleValue()){
+                pcDensconto -= tcCupomItem.getPcDesconto().doubleValue();
+            }else {
+                pcDensconto -= cliente.getCategoriaCliente().getPcDescontoEcommerce().doubleValue();
+            }
+
+
+            valorConvertido = dto.getValorUnidade().doubleValue()*pcDensconto;
+            dto.setValorUnidade(BigDecimal.valueOf(valorConvertido).setScale(2, RoundingMode.HALF_EVEN));
+
 
 
             CategoriaProdutoDTO catdto = new CategoriaProdutoDTO();

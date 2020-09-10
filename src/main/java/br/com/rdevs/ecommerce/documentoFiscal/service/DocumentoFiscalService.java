@@ -1,11 +1,13 @@
 package br.com.rdevs.ecommerce.documentoFiscal.service;
 
+import br.com.rdevs.ecommerce.cadastro.model.dto.CartaoCreditoDTO;
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbCartaoCredito;
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbCliente;
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbEndereco;
 import br.com.rdevs.ecommerce.cadastro.repository.CadastroRepository;
 import br.com.rdevs.ecommerce.cadastro.repository.CartaoRepository;
 import br.com.rdevs.ecommerce.cadastro.repository.EnderecoRepository;
+import br.com.rdevs.ecommerce.cadastro.service.bo.CartaoCreditoBO;
 import br.com.rdevs.ecommerce.documentoFiscal.model.dto.DocumentoFiscalDTO;
 import br.com.rdevs.ecommerce.documentoFiscal.model.dto.DocumentoFiscalItemDTO;
 import br.com.rdevs.ecommerce.documentoFiscal.model.dto.PostDocumentoFiscalDTO;
@@ -74,6 +76,9 @@ public class DocumentoFiscalService {
 
     @Autowired
     CartaoRepository cartaoRepository;
+
+    @Autowired
+    CartaoCreditoBO cartaoCreditoBO;
 
 
     public Object listaDocumentosPorID(Long idDocumentoFiscal){
@@ -319,23 +324,25 @@ public class DocumentoFiscalService {
         documentoFiscalDTO.setNmNomeTitular(dfDTO.getNmNomeTitular());
 
         String cartaoConvertido = dfDTO.getNrNumeroCartao();
-        if (cartaoConvertido.contains("*")) {
-            List<TbCartaoCredito> cartaoCredito = cartaoRepository.findByClienteCartaoIdCliente(dfDTO.getIdCliente());
+        List<TbCartaoCredito> cartaoCredito = cartaoRepository.findByClienteCartaoIdCliente(dfDTO.getIdCliente());
 
+        if (cartaoConvertido.contains("*")) {
             byte[] decodedBytes = Base64.getDecoder().decode(cartaoCredito.get(0).getNrNumeroCartao());
             String decodedString = new String(decodedBytes);
             cartaoConvertido = decodedString;
-            String ultimosDigitos ="************" + decodedString.substring(decodedString.length()-4);
+            String ultimosDigitos ="****.****.****." + decodedString.substring(decodedString.length()-4);
 
             pagamentoPedidoEntity.setNrNumeroCartao(Base64.getEncoder().encodeToString(cartaoConvertido.getBytes()));
 
             documentoFiscalDTO.setNrNumeroCartao(ultimosDigitos);
         }else {
-            
+            String ultimosDigitos ="****.****.****." + cartaoConvertido.substring(cartaoConvertido.length()-4);
             pagamentoPedidoEntity.setNrNumeroCartao(Base64.getEncoder().encodeToString(cartaoConvertido.getBytes()));
 
-            documentoFiscalDTO.setNrNumeroCartao(Base64.getEncoder().encodeToString(cartaoConvertido.getBytes()));
+            documentoFiscalDTO.setNrNumeroCartao(ultimosDigitos);
         }
+
+
 
         pagamentoPedidoEntity.setTbCliente(tbCliente);
         pagamentoPedidoEntity.setTbPedidoEntity(pedidoEntity);
@@ -344,7 +351,19 @@ public class DocumentoFiscalService {
         pagamentoPedidoEntity.setTipoPagamento(tipoPagamento);
         pagamentoPedidoRepository.save(pagamentoPedidoEntity);
 
+        Boolean flag = dfDTO.getSalvarCartao();
+        if (flag){
 
+            CartaoCreditoDTO cartaoCreditoDTO = new CartaoCreditoDTO();
+            cartaoCreditoDTO.setIdCliente(dfDTO.getIdCliente());
+            cartaoCreditoDTO.setNmNomeTitular(dfDTO.getNmNomeTitular());
+            cartaoCreditoDTO.setNrNumeroCartao(dfDTO.getNrNumeroCartao());
+            TbCartaoCredito cartaoCreditoEnti = cartaoCreditoBO.parseToEntity(cartaoCreditoDTO,null);
+
+            cartaoCreditoEnti.setClienteCartao(tbCliente);
+
+            cartaoRepository.save(cartaoCreditoEnti);
+        }
 
         return documentoFiscalDTO;
     }

@@ -23,7 +23,7 @@ public class CartaoCreditoBO {
         String cartaoCompleto = decodedString;
 
 
-        String ultimosDigitos ="************" + cartaoCompleto.substring(cartaoCompleto.length()-4);
+        String ultimosDigitos ="****.****.****." + cartaoCompleto.substring(cartaoCompleto.length()-4);
         cartaoCreditoDTO.setNrNumeroCartao(ultimosDigitos);
 
 
