@@ -19,6 +19,7 @@ public class ProdutoDTO {
     private String dsProduto;
 
     private BigDecimal valorUnidade;
+    private BigDecimal valorSemDesconto;
 
 
 

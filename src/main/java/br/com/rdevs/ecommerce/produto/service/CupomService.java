@@ -79,9 +79,10 @@ public class CupomService {
                 pcDensconto -= cliente.getCategoriaCliente().getPcDescontoEcommerce().doubleValue();
             }
 
-
+            dto.setValorSemDesconto(dto.getValorUnidade());
             valorConvertido = dto.getValorUnidade().doubleValue()*pcDensconto;
             dto.setValorUnidade(BigDecimal.valueOf(valorConvertido).setScale(2, RoundingMode.HALF_EVEN));
+
 
 
 

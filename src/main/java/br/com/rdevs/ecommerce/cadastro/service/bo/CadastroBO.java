@@ -65,6 +65,8 @@ public class CadastroBO{
 //        }else {
 //            clienteEntity.setIdCategoriaCliente(1L);
 //        }
+
+
         TbCategoriaCliente categoriaCliente = new TbCategoriaCliente();
         categoriaCliente.setIdCategoriaCliente(1L);
         clienteEntity.setCategoriaCliente(categoriaCliente);

@@ -43,7 +43,7 @@ public class DocumentoFiscalController {
         if (nfDto.getSalvarCartao()){
             CartaoCreditoDTO cartaoCreditoDTO = new CartaoCreditoDTO();
 
-            cartaoCreditoDTO.setNrNumeroCartao(Base64.getEncoder().encodeToString(nfDto.getNrNumeroCartao().getBytes()));
+            cartaoCreditoDTO.setNrNumeroCartao(nfDto.getNrNumeroCartao());
             cartaoCreditoDTO.setNmNomeTitular(nfDto.getNmNomeTitular());
             cartaoCreditoDTO.setIdCliente(nfDto.getIdCliente());
 
