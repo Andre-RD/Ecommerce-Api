@@ -15,6 +15,5 @@ public interface CadastroRepository extends JpaRepository<TbCliente, Long> {
 
     TbCliente findByDsEmail(String dsEmail);
 
-    List<TbCliente> findByPwCliente(String pwCliente);
 
 }

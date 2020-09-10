@@ -1,6 +1,7 @@
 package br.com.rdevs.ecommerce.cadastro.service.bo;
 
 import br.com.rdevs.ecommerce.cadastro.model.dto.ClienteDTO;
+import br.com.rdevs.ecommerce.cadastro.model.entity.TbCategoriaCliente;
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbCliente;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
@@ -31,7 +32,8 @@ public class CadastroBO{
         clienteDTO.setNrTelefone1(clienteEntity.getNrTelefone1());
         clienteDTO.setNrTelefone2(clienteEntity.getNrTelefone2());
         clienteDTO.setPwCliente(clienteEntity.getPwCliente());
-        clienteDTO.setIdCategoriaCliente(clienteEntity.getIdCategoriaCliente());
+        clienteDTO.setIdCategoriaCliente(clienteEntity.getCategoriaCliente().getIdCategoriaCliente());
+        clienteDTO.setPcDescontoEcommerce(clienteEntity.getCategoriaCliente().getPcDescontoEcommerce());
 
         return clienteDTO;
     }
@@ -63,7 +65,9 @@ public class CadastroBO{
 //        }else {
 //            clienteEntity.setIdCategoriaCliente(1L);
 //        }
-        clienteEntity.setIdCategoriaCliente(1L);
+        TbCategoriaCliente categoriaCliente = new TbCategoriaCliente();
+        categoriaCliente.setIdCategoriaCliente(1L);
+        clienteEntity.setCategoriaCliente(categoriaCliente);
 
 
 

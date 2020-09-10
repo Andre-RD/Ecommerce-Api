@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -25,6 +26,10 @@ public class DocumentoFiscalDTO {
    private Long nrNumeroCartao;
 
    private String nmNomeTitular;
+
+   private BigDecimal valorTotalNota;
+
+   private Long QtItens;
 
    private List<DocumentoFiscalItemDTO> itensDocumento;
 

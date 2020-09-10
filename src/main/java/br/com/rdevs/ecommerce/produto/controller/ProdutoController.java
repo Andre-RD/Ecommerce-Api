@@ -22,11 +22,6 @@ public class ProdutoController {
     @Autowired
     private ProdutoService service;
 
-    @ApiOperation(value = "Listar todos os produtos")
-    @GetMapping("/produtos")
-    public ResponseEntity<Object> listarTodos() {
-        return ResponseEntity.ok().body(service.listarTodos());
-    }
 
     @ApiOperation(value = "Buscar Produto Por Nome")
     @GetMapping("/produtos/nomeFantasia/{nomeFantasia}")
@@ -60,11 +55,7 @@ public class ProdutoController {
         return ResponseEntity.ok().body(service.buscarPorSubCategoriaPage(idSubCategoria,page));
     }
 
-    @ApiOperation(value = "Buscar Produto Por Sub Categoria")
-    @GetMapping("/produtos/subcategoria/{idSubCategoria}")
-    public ResponseEntity buscarPorSubCategoria(@PathVariable("idSubCategoria") Long idSubCategoria){
-        return ResponseEntity.ok().body(service.buscarPorSubCategoria(idSubCategoria));
-    }
+
 
     @ApiOperation(value = "Buscar Produtos dos cards de Promoção")
     @GetMapping("/produtos/produtoPromo")
@@ -85,29 +76,46 @@ public class ProdutoController {
     }
 
 
-    @ApiOperation(value = "Buscar Produto Por cdProduto")
-    @GetMapping("/produtos/codigo/{cdProduto}")
-    public ResponseEntity buscarPorCdProduto(@PathVariable("cdProduto") Long cdProduto) {
-        return ResponseEntity.ok().body(service.buscarPorCdProduto(cdProduto));
+
+    @ApiOperation(value = "Buscar Produto Por Sub Categoria")
+    @RequestMapping(value = "/produtos/subcategoria/{idSubCategoria}",method = RequestMethod.GET)
+    public ResponseEntity buscarPorSubCategoria(@PathVariable("idSubCategoria") Long idSubCategoria,@RequestParam(value = "idCliente", required=false) Long idCliente){
+        if (idCliente==null){
+            idCliente=1L;
+            return ResponseEntity.ok().body(service.buscarPorSubCategoria(idSubCategoria, idCliente));
+        }
+        else {
+            return ResponseEntity.ok().body(service.buscarPorSubCategoria(idSubCategoria, idCliente));
+        }
+
     }
 
-    @ApiOperation(value = "Buscar Produto Por categoria e subcategoria")
-    @RequestMapping(value = "/produtos/categoria/{idCategoriaProduto}/{idSubCategoria}",method = RequestMethod.GET)
-    public ResponseEntity buscarPorCdProduto(@PathVariable("idCategoriaProduto")Long idCategoriaProduto,@PathVariable("idSubCategoria") Long idSubCategoria) {
-        return ResponseEntity.ok().body(service.buscaPorCategoriaESubCategoria(idCategoriaProduto,idSubCategoria));
-    }
-
-
-    @GetMapping(value = "/fabricantes/{idSubCategoria}")
+    @GetMapping( "/fabricantes/{idSubCategoria}")
     public ResponseEntity nomesFabrincates(@PathVariable("idSubCategoria") Long idSubCategoria){
-
         return ResponseEntity.ok().body(service.fabricantesPorSubCategoria(idSubCategoria));
     }
 
-    @GetMapping(value = "/produto/page/{pagina}")
-    public ResponseEntity buscarProdutoPagina(@PathVariable("pagina") Long pagina){
-        return ResponseEntity.ok().body(service.buscarPaginas(pagina));
+
+    @ApiOperation(value = "Buscar Produto Por cdProduto")
+    @RequestMapping(value = "/produtos/codigo/{cdProduto}",method = RequestMethod.GET)
+    public ResponseEntity buscarPorCdProduto(@PathVariable("cdProduto") Long cdProduto, @RequestParam(value = "idCliente", required=false) Long idCliente){
+        if (idCliente==null){
+            idCliente=1L;
+            return ResponseEntity.ok().body(service.buscarPorCdProduto(cdProduto,idCliente));
+        }
+        else {
+            return ResponseEntity.ok().body(service.buscarPorCdProduto(cdProduto,idCliente));
+        }
     }
+
+//    @ApiOperation(value = "Buscar Produto Por categoria e subcategoria")
+//    @RequestMapping(value = "/produtos/categoria/{idCategoriaProduto}/{idSubCategoria}",method = RequestMethod.GET)
+//    public ResponseEntity buscarPorCdProduto(@PathVariable("idCategoriaProduto")Long idCategoriaProduto, @PathVariable("idSubCategoria") Long idSubCategoria) {
+//        return ResponseEntity.ok().body(service.buscaPorCategoriaESubCategoria(idCategoriaProduto,idSubCategoria));
+//    }
+
+
+
 
 
 

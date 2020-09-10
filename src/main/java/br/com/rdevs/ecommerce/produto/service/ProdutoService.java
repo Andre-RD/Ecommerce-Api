@@ -1,5 +1,7 @@
 package br.com.rdevs.ecommerce.produto.service;
 
+import br.com.rdevs.ecommerce.cadastro.model.entity.TbCliente;
+import br.com.rdevs.ecommerce.cadastro.repository.CadastroRepository;
 import br.com.rdevs.ecommerce.estoque.model.dto.EstoqueProdutoDTO;
 import br.com.rdevs.ecommerce.estoque.model.entity.TbProdutoFilialEstoque;
 import br.com.rdevs.ecommerce.estoque.repository.EstoqueRepository;
@@ -7,6 +9,10 @@ import br.com.rdevs.ecommerce.produto.model.dto.*;
 
 import br.com.rdevs.ecommerce.produto.model.entity.TbProduto;
 import br.com.rdevs.ecommerce.produto.model.entity.TbProdutoImagem;
+import br.com.rdevs.ecommerce.produto.model.entity.TbTcCupom;
+import br.com.rdevs.ecommerce.produto.model.entity.TbTcCupomItem;
+import br.com.rdevs.ecommerce.produto.repository.CupomItemRepository;
+import br.com.rdevs.ecommerce.produto.repository.CupomRepository;
 import br.com.rdevs.ecommerce.produto.repository.ProdutoPageRepository;
 import br.com.rdevs.ecommerce.produto.repository.ProdutoRepository;
 import br.com.rdevs.ecommerce.produto.service.bo.ProdutoBo;
@@ -22,6 +28,8 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,6 +46,15 @@ public class ProdutoService {
     private EstoqueRepository estoqueRepository;
 
     @Autowired
+    private CadastroRepository cadastroRepository;
+
+    @Autowired
+    private CupomRepository cupomRepository;
+
+    @Autowired
+    private CupomItemRepository cupomItemRepository;
+
+    @Autowired
     private ProdutoBo produtoBo;
 
     @Autowired
@@ -46,49 +63,6 @@ public class ProdutoService {
 
     @PersistenceContext
     private EntityManager em;
-
-    public List<ProdutoDTO> listarTodos() {
-        List<ProdutoDTO> listaDTO = new ArrayList<>();
-        List<TbProduto> listaEntity = produtoRepository.findAll();
-
-        for (TbProduto prod : listaEntity) {
-            if(prod.getDsProduto()!=null) {
-                ProdutoDTO dto = produtoBo.parseToDTO(prod);
-                CategoriaProdutoDTO catdto = new CategoriaProdutoDTO();
-                SubCategoriaProdutoDTO subCategoriaProduto = new SubCategoriaProdutoDTO();
-
-                subCategoriaProduto.setIdSubCategoria(prod.getSubCategoriaProduto().getIdSubCategoria());
-                subCategoriaProduto.setDsSubCategoria(prod.getSubCategoriaProduto().getDsSubCategoria());
-                catdto.setIdCategoriaProduto(prod.getCategoriaProduto().getIdCategoriaProduto());
-                catdto.setDsCategoriaProduto(prod.getCategoriaProduto().getDsCategoriaProduto());
-
-                dto.setSubCategoriaProduto(subCategoriaProduto);
-                dto.setCategoriaProduto(catdto);
-
-                List<ProdutoImagemDTO> imagemsProdutodto = new ArrayList<>();
-                for (TbProdutoImagem produtoImagemEntity : prod.getImagens()) {
-                    ProdutoImagemDTO imagemDTO = produtoImagemBo.parseToDTO(produtoImagemEntity);
-
-                    imagemsProdutodto.add(imagemDTO);
-                }
-                dto.setImagens(imagemsProdutodto);
-
-
-                TbProdutoFilialEstoque produtoEstoqueEntity = estoqueRepository.getOne(4L);
-                EstoqueProdutoDTO estoqueProdutoDTO = new EstoqueProdutoDTO();
-                estoqueProdutoDTO.setCdFilial(produtoEstoqueEntity.getCdFilial());
-                estoqueProdutoDTO.setQtEstoque(produtoEstoqueEntity.getQtEstoque());
-                estoqueProdutoDTO.setQtEmpenho(produtoEstoqueEntity.getQtEmpenho());
-                dto.setEstoques(estoqueProdutoDTO);
-
-
-
-                listaDTO.add(dto);
-            }
-        }
-
-        return listaDTO;
-    }
 
     public List<ProdutoDTO> buscarPorNome(String nomeFantasia) {
         List<ProdutoDTO> listaDTO = new ArrayList<>();
@@ -134,12 +108,39 @@ public class ProdutoService {
         return listaDTO;
     }
 
-    public List<ProdutoDTO> buscarPorCdProduto(Long cdProduto){
+    public List<ProdutoDTO> buscarPorCdProduto(Long cdProduto, Long idCliente){
         List<ProdutoDTO> listaDTO = new ArrayList<>();
+        if (idCliente == null){
+            idCliente = 1l;
+        }
+        TbCliente cliente = cadastroRepository.findByIdCliente(idCliente);
+        TbTcCupom tcCupom = cupomRepository.findByClienteIdCliente(idCliente);
+        TbTcCupomItem tcCupomItem = cupomItemRepository.findByTcCupomClienteIdClienteAndProdutoCpCdProduto(idCliente,cdProduto);
         TbProduto prod = produtoRepository.findByCdProduto(cdProduto);
+
+        Double pcDensconto = 1D;
+        Double valorConvertido = null;
 
             if(prod.getDsProduto()!=null) {
                 ProdutoDTO dto = produtoBo.parseToDTO(prod);
+
+
+                if (tcCupom==null||tcCupomItem==null) {
+                    pcDensconto -= cliente.getCategoriaCliente().getPcDescontoEcommerce().doubleValue();
+                }else if(tcCupomItem.getPcDesconto().doubleValue()<cliente.getCategoriaCliente().getPcDescontoEcommerce().doubleValue()){
+                    pcDensconto -= cliente.getCategoriaCliente().getPcDescontoEcommerce().doubleValue();
+                }else if(tcCupomItem.getPcDesconto().doubleValue()>cliente.getCategoriaCliente().getPcDescontoEcommerce().doubleValue()){
+                    pcDensconto -= tcCupomItem.getPcDesconto().doubleValue();
+                }else {
+                    pcDensconto -= cliente.getCategoriaCliente().getPcDescontoEcommerce().doubleValue();
+                }
+
+
+
+                valorConvertido = dto.getValorUnidade().doubleValue()*pcDensconto;
+                dto.setValorUnidade(BigDecimal.valueOf(valorConvertido).setScale(2, RoundingMode.HALF_EVEN));
+
+
                 CategoriaProdutoDTO catdto = new CategoriaProdutoDTO();
                 SubCategoriaProdutoDTO subCategoriaProduto = new SubCategoriaProdutoDTO();
 
@@ -366,15 +367,39 @@ public class ProdutoService {
 
     }
 
-    public List<ProdutoDTO> buscarPorSubCategoria(Long idSubCategoriaProduto){
+    public List<ProdutoDTO> buscarPorSubCategoria(Long idSubCategoriaProduto, Long idCliente){
         List<ProdutoDTO> listaDTO = new ArrayList<>();
-
+        if (idCliente == null){
+            idCliente = 1l;
+        }
+        TbCliente cliente = cadastroRepository.findByIdCliente(idCliente);
+        TbTcCupom tcCupom = cupomRepository.findByClienteIdCliente(idCliente);
         List<TbProduto> listaEntity = produtoRepository.findBySubCategoriaProdutoIdSubCategoria(idSubCategoriaProduto);
 
+
+
         for (TbProduto prod : listaEntity) {
+            Double pcDensconto = 1D;
+            Double valorConvertido = null;
             if(prod.getDsProduto()!=null) {
 
+                TbTcCupomItem tcCupomItem = cupomItemRepository.findByTcCupomClienteIdClienteAndProdutoCpCdProduto(idCliente,prod.getCdProduto());
                 ProdutoDTO dto = produtoBo.parseToDTO(prod);
+
+
+                if (tcCupom==null||tcCupomItem==null) {
+                    pcDensconto -= cliente.getCategoriaCliente().getPcDescontoEcommerce().doubleValue();
+                }else if(tcCupomItem.getPcDesconto().doubleValue()<cliente.getCategoriaCliente().getPcDescontoEcommerce().doubleValue()){
+                    pcDensconto -= cliente.getCategoriaCliente().getPcDescontoEcommerce().doubleValue();
+                }else if(tcCupomItem.getPcDesconto().doubleValue()>cliente.getCategoriaCliente().getPcDescontoEcommerce().doubleValue()){
+                    pcDensconto -= tcCupomItem.getPcDesconto().doubleValue();
+                }else {
+                    pcDensconto -= cliente.getCategoriaCliente().getPcDescontoEcommerce().doubleValue();
+                }
+
+
+                valorConvertido = dto.getValorUnidade().doubleValue()*pcDensconto;
+                dto.setValorUnidade(BigDecimal.valueOf(valorConvertido).setScale(2, RoundingMode.HALF_EVEN));
 
                 CategoriaProdutoDTO catdto = new CategoriaProdutoDTO();
                 SubCategoriaProdutoDTO subCategoriaProduto = new SubCategoriaProdutoDTO();
@@ -405,50 +430,7 @@ public class ProdutoService {
 
                 listaDTO.add(dto);
 
-            }
-        }
 
-        return listaDTO;
-
-    }
-
-    public List<ProdutoDTO> buscaPorCategoriaESubCategoria(Long idCategoriaProduto, Long idSubCategoriaProduto){
-
-        List<ProdutoDTO> listaDTO = new ArrayList<>();
-        List<TbProduto> listaEntity =  produtoRepository.findByCategoriaProdutoIdCategoriaProdutoAndSubCategoriaProdutoIdSubCategoria(idCategoriaProduto,idSubCategoriaProduto);
-        for (TbProduto prod : listaEntity) {
-            if(prod.getDsProduto()!=null) {
-                if(prod.getDsProduto()!=null) {
-                    ProdutoDTO dto = produtoBo.parseToDTO(prod);
-                    CategoriaProdutoDTO catdto = new CategoriaProdutoDTO();
-                    SubCategoriaProdutoDTO subCategoriaProduto = new SubCategoriaProdutoDTO();
-
-                    subCategoriaProduto.setIdSubCategoria(prod.getSubCategoriaProduto().getIdSubCategoria());
-                    subCategoriaProduto.setDsSubCategoria(prod.getSubCategoriaProduto().getDsSubCategoria());
-                    catdto.setIdCategoriaProduto(prod.getCategoriaProduto().getIdCategoriaProduto());
-                    catdto.setDsCategoriaProduto(prod.getCategoriaProduto().getDsCategoriaProduto());
-
-                    dto.setSubCategoriaProduto(subCategoriaProduto);
-                    dto.setCategoriaProduto(catdto);
-
-                    List<ProdutoImagemDTO> imagemsProdutodto = new ArrayList<>();
-                    for (TbProdutoImagem produtoImagemEntity : prod.getImagens()) {
-                        ProdutoImagemDTO imagemDTO = produtoImagemBo.parseToDTO(produtoImagemEntity);
-
-                        imagemsProdutodto.add(imagemDTO);
-                    }
-                    dto.setImagens(imagemsProdutodto);
-
-                    TbProdutoFilialEstoque produtoEstoqueEntity = estoqueRepository.findByProdutoFilialCdProdutoAndCdFilial(prod.getCdProduto(),4L);
-                    EstoqueProdutoDTO estoqueProdutoDTO = new EstoqueProdutoDTO();
-                    estoqueProdutoDTO.setCdFilial(produtoEstoqueEntity.getCdFilial());
-                    estoqueProdutoDTO.setQtEstoque(produtoEstoqueEntity.getQtEstoque());
-                    estoqueProdutoDTO.setQtEmpenho(produtoEstoqueEntity.getQtEmpenho());
-                    dto.setEstoques(estoqueProdutoDTO);
-
-
-                    listaDTO.add(dto);
-                }
             }
         }
 
@@ -594,14 +576,6 @@ public class ProdutoService {
         return listaFabricantes1;
     }
 
-    public Page<TbProduto> buscarPaginas(Long page){
-
-        Pageable firstPageWithTwoElements = PageRequest.of(Math.toIntExact(page), 2);
-        Page<TbProduto> listaEntity = pageRepository.findAll(firstPageWithTwoElements);
-
-
-        return listaEntity;
-    }
 
 
 }

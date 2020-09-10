@@ -3,6 +3,7 @@ package br.com.rdevs.ecommerce.cadastro.model.dto;
 import lombok.Data;
 
 import javax.persistence.Column;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -22,6 +23,8 @@ public class ClienteDTO {
     private String confirmarSenha;
 
     private Long idCategoriaCliente;
+    private BigDecimal pcDescontoEcommerce;
+
 
 
     private List<EnderecoDTO> enderecos;

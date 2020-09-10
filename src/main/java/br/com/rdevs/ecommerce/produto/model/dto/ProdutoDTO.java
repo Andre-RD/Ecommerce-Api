@@ -17,12 +17,13 @@ public class ProdutoDTO {
     private String nomeFantasia;
     private String nomeFabricante;
     private String dsProduto;
+
     private BigDecimal valorUnidade;
+
 
 
     private CategoriaProdutoDTO categoriaProduto;
     private SubCategoriaProdutoDTO subCategoriaProduto;
-//    private TipoProdutoDTO tipoProduto;
 
     private List<ProdutoImagemDTO> imagens;
 //    private List<EstoqueProdutoDTO> estoques;

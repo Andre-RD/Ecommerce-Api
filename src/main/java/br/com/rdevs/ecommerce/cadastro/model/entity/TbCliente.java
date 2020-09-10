@@ -41,8 +41,9 @@ public class TbCliente {
     @Column(name = "PW_CLIENTE")
     private String pwCliente;
 
-    @Column(name = "ID_CATEGORIA_CLIENTE")
-    private Long idCategoriaCliente;
+    @ManyToOne
+    @JoinColumn(name = "ID_CATEGORIA_CLIENTE")
+    private TbCategoriaCliente categoriaCliente;
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "TB_ENDERECO_CLIENTE",

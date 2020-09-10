@@ -24,6 +24,10 @@ import br.com.rdevs.ecommerce.pedido.model.entity.TbPedidoItem;
 import br.com.rdevs.ecommerce.pedido.model.entity.TbStatusPedido;
 import br.com.rdevs.ecommerce.pedido.repository.PedidoRepository;
 import br.com.rdevs.ecommerce.produto.model.entity.TbProduto;
+import br.com.rdevs.ecommerce.produto.model.entity.TbTcCupom;
+import br.com.rdevs.ecommerce.produto.model.entity.TbTcCupomItem;
+import br.com.rdevs.ecommerce.produto.repository.CupomItemRepository;
+import br.com.rdevs.ecommerce.produto.repository.CupomRepository;
 import br.com.rdevs.ecommerce.produto.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +35,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 
 @Service
@@ -52,6 +57,12 @@ public class DocumentoFiscalService {
 
     @Autowired
     EnderecoRepository enderecoRepository;
+
+    @Autowired
+    CupomItemRepository cupomItemRepository;
+
+    @Autowired
+    CupomRepository cupomRepository;
 
     @Autowired
     TipoPagamentoRepository tipoPagamentoRepository;
@@ -94,6 +105,7 @@ public class DocumentoFiscalService {
         List<PedidoDTO> pedidosDTO = new ArrayList<>();
         List<TbDocumentoFiscal> documentoFiscalList = documentoFiscalRepository.findByTbClienteIdCliente(idCliente);
 
+
         for(TbDocumentoFiscal documentoFiscal: documentoFiscalList){
             PedidoDTO pedidoDTO = new PedidoDTO();
 
@@ -115,6 +127,8 @@ public class DocumentoFiscalService {
                 pedidoItemDTO.setDsProduto(itemNF.getProduto().getNomeFantasia());
                 pedidoItemDTO.setNrItemPedido(itemNF.getNrItemDocumento());
                 pedidoItemDTO.setCdProduto(itemNF.getProduto().getCdProduto());
+
+
                 pedidoItemDTO.setVlPedidoItem(itemNF.getVlItem());
 
                 if (itemNF.getQtItem()==null){
@@ -157,6 +171,8 @@ public class DocumentoFiscalService {
         TbPagamentoPedido pagamentoPedidoEntity = new TbPagamentoPedido();
         DocumentoFiscalDTO documentoFiscalDTO = new DocumentoFiscalDTO();
 
+        TbTcCupom tcCupom = cupomRepository.findByClienteIdCliente(dfDTO.getIdCliente());
+
         TbEndereco endereco = enderecoRepository.getOne(dfDTO.getIdEndereco());
         TbTipoPagamento tipoPagamento = tipoPagamentoRepository.getOne(dfDTO.getIdFormaPagamento());
 
@@ -194,11 +210,15 @@ public class DocumentoFiscalService {
         Long contadorItens = 0L;
         double calculoIcms = 0d;
         for (PostDocumentoFiscalItemDTO itemDTO: dfDTO.getItensDTOPost()){
+            Double pcDensconto = 1D;
+            Double valorConvertido = null;
             TbDocumentoItem itemNF = new TbDocumentoItem();
             TbPedidoItem itemPedido = new TbPedidoItem();
             DocumentoFiscalItemDTO itemNfDTO = new DocumentoFiscalItemDTO();
 
             TbProduto produto = produtoRepository.getOne(itemDTO.getCdProduto());
+
+            TbTcCupomItem tcCupomItem = cupomItemRepository.findByTcCupomClienteIdClienteAndProdutoCpCdProduto(dfDTO.getIdCliente(),itemDTO.getCdProduto());
             itemNF.setProduto(produto);
             itemPedido.setProduto(produto);
             itemNfDTO.setCdProduto(itemDTO.getCdProduto());
@@ -231,13 +251,28 @@ public class DocumentoFiscalService {
             itemPedido.setNrItemPedido(contador);
             itemNfDTO.setNrItemDocumento(contador);
 
-            Double valorRefaturado = produto.getValorUnidade().doubleValue() * quantidadeComprada;
-            itemNfDTO.setVlTotalItem(BigDecimal.valueOf(valorRefaturado));
 
-            itemNF.setVlItem(produto.getValorUnidade());
-            itemNfDTO.setVlItemUnitario(produto.getValorUnidade());
 
-            itemPedido.setVlPedidoItem(produto.getValorUnidade());
+            if (tcCupom==null||tcCupomItem==null) {
+                pcDensconto -= tbCliente.getCategoriaCliente().getPcDescontoEcommerce().doubleValue();
+            }else if(tcCupomItem.getPcDesconto().doubleValue()<tbCliente.getCategoriaCliente().getPcDescontoEcommerce().doubleValue()){
+                pcDensconto -= tbCliente.getCategoriaCliente().getPcDescontoEcommerce().doubleValue();
+            }else if(tcCupomItem.getPcDesconto().doubleValue()>tbCliente.getCategoriaCliente().getPcDescontoEcommerce().doubleValue()){
+                pcDensconto -= tcCupomItem.getPcDesconto().doubleValue();
+            }else {
+                pcDensconto -= tbCliente.getCategoriaCliente().getPcDescontoEcommerce().doubleValue();
+            }
+
+            valorConvertido = produto.getValorUnidade().doubleValue()*pcDensconto;
+
+            Double valorRefaturado = valorConvertido * quantidadeComprada;
+
+            itemNfDTO.setVlTotalItem(BigDecimal.valueOf(valorRefaturado).setScale(2, RoundingMode.HALF_EVEN));
+            itemNF.setVlItem(BigDecimal.valueOf(valorConvertido).setScale(2, RoundingMode.HALF_EVEN));
+            itemNfDTO.setVlItemUnitario(BigDecimal.valueOf(valorConvertido).setScale(2, RoundingMode.HALF_EVEN));
+            itemPedido.setVlPedidoItem(BigDecimal.valueOf(valorConvertido).setScale(2, RoundingMode.HALF_EVEN));
+
+
 
             valor += valorRefaturado;
 
@@ -246,7 +281,7 @@ public class DocumentoFiscalService {
 
             calculoIcms = valorRefaturado*0.17;
             itemNF.setVlIcms(BigDecimal.valueOf(calculoIcms));
-            itemNfDTO.setVlIcms(BigDecimal.valueOf(calculoIcms));
+            itemNfDTO.setVlIcms(BigDecimal.valueOf(calculoIcms).setScale(2, RoundingMode.HALF_EVEN));
 
             itensNF.add(itemNF);
             itensPedido.add(itemPedido);
@@ -258,7 +293,9 @@ public class DocumentoFiscalService {
         pedidoEntity.setItens(itensPedido);
         documentoFiscalDTO.setItensDocumento(itensNfDTOS);
 
-        dfEntity.setVlDocumentoFiscal(BigDecimal.valueOf(valor));
+        dfEntity.setVlDocumentoFiscal(BigDecimal.valueOf(valor).setScale(2, RoundingMode.HALF_EVEN));
+        documentoFiscalDTO.setValorTotalNota(BigDecimal.valueOf(valor).setScale(2, RoundingMode.HALF_EVEN));
+        documentoFiscalDTO.setQtItens(contadorItens);
 
         pedidoEntity.setVlTotalPedido(dfEntity.getVlDocumentoFiscal());
 
