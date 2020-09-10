@@ -8,7 +8,7 @@ public class CartaoCreditoDTO {
 
     private Long idCartaoCredito;
 
-    private Long nrNumeroCartao;
+    private String nrNumeroCartao;
 
     private String nmNomeTitular;
 

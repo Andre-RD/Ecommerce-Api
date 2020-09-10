@@ -4,8 +4,12 @@ import br.com.rdevs.ecommerce.cadastro.model.entity.TbCartaoCredito;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface CartaoRepository extends JpaRepository<TbCartaoCredito, Long> {
+
+    List<TbCartaoCredito> findByClienteCartaoIdCliente(Long idCliente);
 
 
 }

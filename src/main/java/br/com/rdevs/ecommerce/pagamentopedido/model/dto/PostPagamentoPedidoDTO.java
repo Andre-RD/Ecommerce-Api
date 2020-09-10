@@ -9,7 +9,7 @@ public class PostPagamentoPedidoDTO {
     private Long idPedido;
     private Long idDocumentoFiscal;
     private Long idTipoPagameto;
-    private Long nrNumeroCartao;
+    private String nrNumeroCartao;
     private String nmNomeTitular;
 
 }

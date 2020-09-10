@@ -23,7 +23,7 @@ public class DocumentoFiscalDTO {
 
    private Long nrPedido;
 
-   private Long nrNumeroCartao;
+   private String nrNumeroCartao;
 
    private String nmNomeTitular;
 

@@ -13,7 +13,7 @@ public class PostDocumentoFiscalDTO {
 
     private Long idFormaPagamento;
 
-    private Long nrNumeroCartao;
+    private String nrNumeroCartao;
 
     private String nmNomeTitular;
 

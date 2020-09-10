@@ -22,7 +22,7 @@ public class TbPagamentoPedido implements Serializable {
     private Long idPagamentoPedido;
 
     @Column(name = "NR_NUMERO_CARTAO")
-    private Long nrNumeroCartao;
+    private String nrNumeroCartao;
 
     @Column(name = "NM_NOME_TITULAR")
     private String nmNomeTitular;

@@ -1,8 +1,10 @@
 package br.com.rdevs.ecommerce.documentoFiscal.service;
 
+import br.com.rdevs.ecommerce.cadastro.model.entity.TbCartaoCredito;
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbCliente;
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbEndereco;
 import br.com.rdevs.ecommerce.cadastro.repository.CadastroRepository;
+import br.com.rdevs.ecommerce.cadastro.repository.CartaoRepository;
 import br.com.rdevs.ecommerce.cadastro.repository.EnderecoRepository;
 import br.com.rdevs.ecommerce.documentoFiscal.model.dto.DocumentoFiscalDTO;
 import br.com.rdevs.ecommerce.documentoFiscal.model.dto.DocumentoFiscalItemDTO;
@@ -69,6 +71,9 @@ public class DocumentoFiscalService {
 
     @Autowired
     EstoqueRepository estoqueRepository;
+
+    @Autowired
+    CartaoRepository cartaoRepository;
 
 
     public Object listaDocumentosPorID(Long idDocumentoFiscal){
@@ -312,8 +317,26 @@ public class DocumentoFiscalService {
         pagamentoPedidoEntity.setTbEndereco(endereco);
         pagamentoPedidoEntity.setNmNomeTitular(dfDTO.getNmNomeTitular());
         documentoFiscalDTO.setNmNomeTitular(dfDTO.getNmNomeTitular());
-        pagamentoPedidoEntity.setNrNumeroCartao(dfDTO.getNrNumeroCartao());
-        documentoFiscalDTO.setNrNumeroCartao(dfDTO.getNrNumeroCartao());
+
+        String cartaoConvertido = dfDTO.getNrNumeroCartao();
+        if (cartaoConvertido.contains("*")) {
+            List<TbCartaoCredito> cartaoCredito = cartaoRepository.findByClienteCartaoIdCliente(dfDTO.getIdCliente());
+
+            byte[] decodedBytes = Base64.getDecoder().decode(cartaoCredito.get(0).getNrNumeroCartao());
+            String decodedString = new String(decodedBytes);
+            cartaoConvertido = decodedString;
+            String ultimosDigitos ="************" + decodedString.substring(decodedString.length()-4);
+
+            pagamentoPedidoEntity.setNrNumeroCartao(Base64.getEncoder().encodeToString(cartaoConvertido.getBytes()));
+
+            documentoFiscalDTO.setNrNumeroCartao(ultimosDigitos);
+        }else {
+            
+            pagamentoPedidoEntity.setNrNumeroCartao(Base64.getEncoder().encodeToString(cartaoConvertido.getBytes()));
+
+            documentoFiscalDTO.setNrNumeroCartao(Base64.getEncoder().encodeToString(cartaoConvertido.getBytes()));
+        }
+
         pagamentoPedidoEntity.setTbCliente(tbCliente);
         pagamentoPedidoEntity.setTbPedidoEntity(pedidoEntity);
         pagamentoPedidoEntity.setIdPagamentoPedido(pedidoEntity.getIdPedido());

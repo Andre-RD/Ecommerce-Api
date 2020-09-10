@@ -15,7 +15,7 @@ public class TbCartaoCredito implements Serializable {
     @Column(name = "ID_CARTAO_CREDITO")
     private Long idCartaoCredito;
     @Column(name = "NR_NUMERO_CARTAO")
-    private Long nrNumeroCartao;
+    private String nrNumeroCartao;
     @Column(name = "NM_NOME_TITULAR")
     private String nmNomeTitular;
 
