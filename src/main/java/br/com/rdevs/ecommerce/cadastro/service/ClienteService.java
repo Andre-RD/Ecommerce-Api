@@ -113,14 +113,19 @@ public class ClienteService {
 
     public TbCliente atualizar(ClienteDTO clienteDTO){
         TbCliente clienteEntity = cadastroRepository.getOne(clienteDTO.getIdCliente());
+
         if(clienteEntity!= null) {
             clienteEntity = cadastroBO.parseToEntity(clienteDTO,null);
+            clienteDTO.setPwCliente(clienteEntity.getPwCliente());
             List<TbEndereco> enderecosEntitys = new ArrayList<>();
             for (EnderecoDTO enderecoDTO: clienteDTO.getEnderecos()){
                 TbEndereco enderecoEntity = enderecoBO.parseToEntity(enderecoDTO,null);
                 enderecosEntitys.add(enderecoEntity);
                 enderecoRepository.save(enderecoEntity);
             }
+            TbCliente clienteEntity1 = cadastroRepository.getOne(clienteDTO.getIdCliente());
+            clienteEntity.setPwCliente(clienteEntity1.getPwCliente());
+
             clienteEntity.setEnderecos(enderecosEntitys);
 
 
