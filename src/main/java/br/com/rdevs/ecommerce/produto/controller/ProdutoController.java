@@ -69,6 +69,13 @@ public class ProdutoController {
         return ResponseEntity.ok().body(service.produtosDestaquesSemana());
     }
 
+    @ApiOperation(value = "Buscar Produtos dos cards de Destaque da semana")
+    @GetMapping("/produtos/destaqueSemana2")
+    public ResponseEntity produtosDestaquesdaSemana2() {
+        return ResponseEntity.ok().body(service.produtosDestaquesSemana2());
+    }
+
+
     @ApiOperation(value = "Buscar Produtos dos cards de populares")
     @GetMapping("/produtos/populares")
     public ResponseEntity produtosPopulares() {
@@ -90,10 +97,27 @@ public class ProdutoController {
 
     }
 
+    @ApiOperation(value = "Buscar Produto Por Sub Categoria2")
+    @RequestMapping(value = "/produtos/subcategoria2/{idSubCategoria}",method = RequestMethod.GET)
+    public ResponseEntity buscarPorSubCategoria2(@PathVariable("idSubCategoria") Long idSubCategoria,@RequestParam(value = "idCliente", required=false) Long idCliente){
+        if (idCliente==null){
+            idCliente=1L;
+            return ResponseEntity.ok().body(service.buscarPorSubCategoria2(idSubCategoria, idCliente));
+        }
+        else {
+            return ResponseEntity.ok().body(service.buscarPorSubCategoria2(idSubCategoria, idCliente));
+        }
+
+    }
+
+
+
+
     @GetMapping( "/fabricantes/{idSubCategoria}")
-    public ResponseEntity nomesFabrincates(@PathVariable("idSubCategoria") Long idSubCategoria){
+    public ResponseEntity nomesFabrincates(@PathVariable("idSubCategoria") String idSubCategoria){
         return ResponseEntity.ok().body(service.fabricantesPorSubCategoria(idSubCategoria));
     }
+
 
 
     @ApiOperation(value = "Buscar Produto Por cdProduto")

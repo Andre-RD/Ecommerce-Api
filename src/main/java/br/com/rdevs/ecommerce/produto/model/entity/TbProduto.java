@@ -36,6 +36,7 @@ public class TbProduto {
     private String dsProduto;
 
     @OneToMany(mappedBy = "produtoImagem", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<TbProdutoImagem> imagens;
 
 //    @ManyToOne(fetch = FetchType.LAZY)
@@ -50,9 +51,11 @@ public class TbProduto {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_SUB_CATEGORIA")
+    @JsonIgnore
     private TbSubCategoriaProduto subCategoriaProduto;
 
     @OneToMany(mappedBy = "produtoFilial", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<TbProdutoFilialEstoque> produtosEstoqueEntity;
 
 }

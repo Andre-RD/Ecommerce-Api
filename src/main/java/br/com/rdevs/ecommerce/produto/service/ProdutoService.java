@@ -63,10 +63,18 @@ public class ProdutoService {
 
     @PersistenceContext
     private EntityManager em;
-    public List<ListaFabricantes> fabricantesPorSubCategoria(Long idSubcategoria) {
+
+    public List<ListaFabricantes> fabricantesPorSubCategoria(String idSubcategoria) {
         List<ListaFabricantes> listaFabricantes = new ArrayList<>();
-        List<TbProduto> produtos = produtoRepository.findBySubCategoriaProdutoIdSubCategoria(idSubcategoria);
-        for (TbProduto produto : produtos) {
+        List<TbProduto> produtosConvert = new ArrayList<>();
+        if (idSubcategoria.matches("[0-9]+")){
+            Long produto = Long.parseLong(idSubcategoria);
+            produtosConvert = produtoRepository.findBySubCategoriaProdutoIdSubCategoria(produto);
+        }else {
+            produtosConvert = produtoRepository.findByNomeFantasiaContaining(idSubcategoria);
+        }
+
+        for (TbProduto produto : produtosConvert) {
             if (produto.getDsProduto() != null) {
                 ListaFabricantes fabricante = new ListaFabricantes();
                 fabricante.setNomeFabricante(produto.getNomeFabricante());
@@ -74,7 +82,6 @@ public class ProdutoService {
                 listaFabricantes.add(fabricante);
             }
         }
-
         List<ListaFabricantes> listaFabricantes1 = listaFabricantes.stream().distinct().collect(Collectors.toList());
         return listaFabricantes1;
     }
@@ -447,6 +454,74 @@ public class ProdutoService {
 
     }
 
+    public List<ProdutoDTO2> buscarPorSubCategoria2(Long idSubCategoriaProduto, Long idCliente) {
+        List<ProdutoDTO2> listaDTO = new ArrayList<>();
+        if (idCliente == null) {
+            idCliente = 1l;
+        }
+        TbCliente cliente = cadastroRepository.findByIdCliente(idCliente);
+        TbTcCupom tcCupom = cupomRepository.findByClienteIdCliente(idCliente);
+        List<TbProduto> listaEntity = produtoRepository.findBySubCategoriaProdutoIdSubCategoria(idSubCategoriaProduto);
+
+
+        for (TbProduto prod : listaEntity) {
+            Double pcDensconto = 1D;
+            Double valorConvertido = null;
+            if (prod.getDsProduto() != null) {
+
+                TbTcCupomItem tcCupomItem = cupomItemRepository.findByTcCupomClienteIdClienteAndProdutoCpCdProduto(idCliente, prod.getCdProduto());
+                ProdutoDTO2 dto = new ProdutoDTO2();
+                dto.setCdProduto(prod.getCdProduto());
+                dto.setIdStatusProduto(prod.getIdStatusProduto());
+                dto.setNomeFantasia(prod.getNomeFantasia());
+                dto.setNomeFabricante(prod.getNomeFabricante());
+                dto.setDsProduto(prod.getDsProduto());
+                dto.setValorUnidade(prod.getValorUnidade());
+
+
+                if (tcCupom == null || tcCupomItem == null) {
+                    pcDensconto -= cliente.getCategoriaCliente().getPcDescontoEcommerce().doubleValue();
+                } else if (tcCupomItem.getPcDesconto().doubleValue() < cliente.getCategoriaCliente().getPcDescontoEcommerce().doubleValue()) {
+                    pcDensconto -= cliente.getCategoriaCliente().getPcDescontoEcommerce().doubleValue();
+                } else if (tcCupomItem.getPcDesconto().doubleValue() > cliente.getCategoriaCliente().getPcDescontoEcommerce().doubleValue()) {
+                    pcDensconto -= tcCupomItem.getPcDesconto().doubleValue();
+                } else {
+                    pcDensconto -= cliente.getCategoriaCliente().getPcDescontoEcommerce().doubleValue();
+                }
+
+
+                valorConvertido = dto.getValorUnidade().doubleValue() * pcDensconto;
+                dto.setValorUnidade(BigDecimal.valueOf(valorConvertido).setScale(2, RoundingMode.HALF_EVEN));
+
+                CategoriaProdutoDTO catdto = new CategoriaProdutoDTO();
+                SubCategoriaProdutoDTO subCategoriaProduto = new SubCategoriaProdutoDTO();
+
+                subCategoriaProduto.setIdSubCategoria(prod.getSubCategoriaProduto().getIdSubCategoria());
+                subCategoriaProduto.setDsSubCategoria(prod.getSubCategoriaProduto().getDsSubCategoria());
+
+                dto.setSubCategoriaProduto(subCategoriaProduto);
+
+                dto.setDsUrl(prod.getImagens().get(0).getDsUrl());
+
+
+                TbProdutoFilialEstoque produtoEstoqueEntity = estoqueRepository.findByProdutoFilialCdProdutoAndCdFilial(prod.getCdProduto(), 4L);
+                EstoqueProdutoDTO estoqueProdutoDTO = new EstoqueProdutoDTO();
+                estoqueProdutoDTO.setCdFilial(produtoEstoqueEntity.getCdFilial());
+                estoqueProdutoDTO.setQtEstoque(produtoEstoqueEntity.getQtEstoque());
+                estoqueProdutoDTO.setQtEmpenho(produtoEstoqueEntity.getQtEmpenho());
+                dto.setEstoques(estoqueProdutoDTO);
+
+
+                listaDTO.add(dto);
+
+
+            }
+        }
+
+        return listaDTO;
+
+    }
+
     public List<ProdutoDTO> produtosPromo() {
         Long[] produtosPromo = {76L, 69L, 46L, 51L, 80L, 82L, 79L, 70L};
         List<ProdutoDTO> produtosDTOS = new ArrayList<>();
@@ -571,6 +646,38 @@ public class ProdutoService {
     }
 
 
+    public List<ProdutoDTO2> produtosDestaquesSemana2() {
+        Long[] produtosPromo = {80L, 81L, 67L, 69L, 80L, 82L, 79L, 55L};
+        List<ProdutoDTO2> produtosDTOS = new ArrayList<>();
+
+        for (Long cdProduto : produtosPromo) {
+            TbProduto produtoEntity = produtoRepository.findByCdProduto(cdProduto);
+            ProdutoDTO2 produtoDTO = new ProdutoDTO2();
+
+            produtoDTO.setCdProduto(produtoEntity.getCdProduto());
+            produtoDTO.setIdStatusProduto(produtoEntity.getIdStatusProduto());
+            produtoDTO.setNomeFantasia(produtoEntity.getNomeFantasia());
+            produtoDTO.setNomeFabricante(produtoEntity.getNomeFabricante());
+            produtoDTO.setDsProduto(produtoEntity.getDsProduto());
+            produtoDTO.setValorUnidade(produtoEntity.getValorUnidade());
+
+            TbProdutoImagem produtoImagemEntity = produtoEntity.getImagens().get(0);
+            produtoDTO.setDsUrl(produtoImagemEntity.getDsUrl());
+
+
+
+            TbProdutoFilialEstoque produtoEstoqueEntity = estoqueRepository.findByProdutoFilialCdProdutoAndCdFilial(produtoEntity.getCdProduto(), 4L);
+            EstoqueProdutoDTO estoqueProdutoDTO = new EstoqueProdutoDTO();
+            estoqueProdutoDTO.setCdFilial(produtoEstoqueEntity.getCdFilial());
+            estoqueProdutoDTO.setQtEstoque(produtoEstoqueEntity.getQtEstoque());
+            estoqueProdutoDTO.setQtEmpenho(produtoEstoqueEntity.getQtEmpenho());
+            produtoDTO.setEstoques(estoqueProdutoDTO);
+
+            produtosDTOS.add(produtoDTO);
+        }
+
+        return produtosDTOS;
+    }
 
 
 }
