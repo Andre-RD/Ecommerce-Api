@@ -81,7 +81,7 @@ public class DocumentoFiscalService {
     CartaoCreditoBO cartaoCreditoBO;
 
 
-    public Object listaDocumentosPorID(Long idDocumentoFiscal){
+    public TbDocumentoFiscal listaDocumentosPorID(Long idDocumentoFiscal){
         DocumentoFiscalDTO documentoFiscalDTO = new DocumentoFiscalDTO();
         TbDocumentoFiscal documentoFiscalEntity =  documentoFiscalRepository.findByIdDocumentoFiscal(idDocumentoFiscal);
         documentoFiscalDTO.setNrCpf(documentoFiscalEntity.getTbCliente().getNrCpf());
@@ -108,7 +108,7 @@ public class DocumentoFiscalService {
         documentoFiscalDTO.setItensDocumento(itensDTO);
 
 
-        return documentoFiscalDTO;
+        return documentoFiscalEntity;
     }
 
     public List<PedidoDTO> listarPorIdCliente(Long idCliente){
@@ -172,7 +172,6 @@ public class DocumentoFiscalService {
 
         return pedidosDTO;
     }
-
 
     public Object inserirItem(@RequestBody PostDocumentoFiscalDTO dfDTO){
 
@@ -358,6 +357,8 @@ public class DocumentoFiscalService {
 
         return documentoFiscalDTO;
     }
+
+
 
 
 

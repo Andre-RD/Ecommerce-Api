@@ -94,13 +94,20 @@ public class ClienteService {
         TbCliente clienteEntity = cadastroBO.parseToEntity(clienteDTO, null);
         if (clienteDTO.getPwCliente().equals(clienteDTO.getConfirmarSenha())){
 
+            List<TbEndereco> enderecos = new ArrayList<>();
+            for (EnderecoDTO enderecoDTO: clienteDTO.getEnderecos()){
+                TbEndereco endereco = enderecoBO.parseToEntity(enderecoDTO,null);
+                enderecos.add(endereco);
+            }
+            clienteEntity.setEnderecos(enderecos);
+
             return cadastroRepository.save(clienteEntity);
         }
-
-        //TODO adicionar confirmar pwCliete
         else{
             return null;
         }
+
+
 
     }
 
@@ -116,15 +123,6 @@ public class ClienteService {
             }
             clienteEntity.setEnderecos(enderecosEntitys);
 
-            List<TbCartaoCredito> cartoesCreditoEntitys = new ArrayList<>();
-
-            for (CartaoCreditoDTO cartaoCreditoDTO: clienteDTO.getCartoesCreditoDTO()){
-                TbCartaoCredito cartaoCreditoEntity = cartaoCreditoBO.parseToEntity(cartaoCreditoDTO, null);
-                cartoesCreditoEntitys.add(cartaoCreditoEntity);
-                cartaoCreditoEntity.setClienteCartao(clienteEntity);
-                cartaoRepository.save(cartaoCreditoEntity);
-            }
-            clienteEntity.setCartoesCredito(cartoesCreditoEntitys);
 
         }
         return cadastroRepository.save(clienteEntity);

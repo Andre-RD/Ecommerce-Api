@@ -5,6 +5,10 @@ import br.com.rdevs.ecommerce.cadastro.model.dto.ResultData;
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbCliente;
 import br.com.rdevs.ecommerce.cadastro.repository.CadastroRepository;
 import br.com.rdevs.ecommerce.cadastro.service.EmailService;
+import br.com.rdevs.ecommerce.documentoFiscal.model.dto.DocumentoFiscalDTO;
+import br.com.rdevs.ecommerce.documentoFiscal.model.entity.TbDocumentoFiscal;
+import br.com.rdevs.ecommerce.documentoFiscal.model.entity.TbDocumentoItem;
+import br.com.rdevs.ecommerce.documentoFiscal.service.DocumentoFiscalService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
@@ -28,23 +32,49 @@ public class EmailController{
     private CadastroController cadastroController;
 
     @Autowired
+    private DocumentoFiscalService documentoFiscalService;
+
+    @Autowired
     private JavaMailSender mailSender;
 
-//    @RequestMapping(path = "/email-send", method = RequestMethod.GET)
-//    public String sendMail() {
-//        SimpleMailMessage message = new SimpleMailMessage();
-//        message.setText("Este é o meu teste de envio de email");
-//        message.setTo("andremouraer@gmail.com");
-//        message.setFrom("andremouraer@gmail.com");
-//
-//        try {
-//            mailSender.send(message);
-//            return "Email enviado com sucesso!";
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return "Erro ao enviar email.";
+    @RequestMapping(path = "/email-send", method = RequestMethod.GET)
+    public String sendMail() {
+
+        SimpleMailMessage message = new SimpleMailMessage();
+        TbDocumentoFiscal documentoFiscalEntity = documentoFiscalService.listaDocumentosPorID(622L);
+
+
+
+        String mensagem = ("Compra realizada com sucesso! \n " +
+                        "Valor Totatl da Compra: "+documentoFiscalEntity.getVlDocumentoFiscal().toString()+ "\n"+
+                        "Data da Compra: " +documentoFiscalEntity.getDtEmissao().toString()+ "\n"+
+                        "Numero da Chave de Acesso: " +documentoFiscalEntity.getNrChaveAcesso().toString()+ "\n"+
+                        "Numero da nota: " +documentoFiscalEntity.getIdDocumentoFiscal().toString() + "\n"+
+                        "numero   cd   qt    ds      vl    vlIcms  pcIcms%  " + "\n");
+
+//        for (TbDocumentoItem documentoItem: documentoFiscalEntity.getItensNf()){
+//            mensagem.concat(documentoItem.getNrItemDocumento().toString()+" "+
+//                            documentoItem.getProduto().getCdProduto().toString()+" "+
+//                            documentoItem.getQtItem().toString()+" "+
+//                            documentoItem.getProduto().getNomeFantasia() +" "+
+//                            documentoItem.getVlItem().toString()+ " "+
+//                            documentoItem.getVlIcms().toString()+ " "+
+//                            documentoItem.getPcIcms().toString()+ " \n");
 //        }
-//    }
+//
+//        message.setText(mensagem.concat("Raia drogasil gente que cuida de Gente!"));
+
+        message.setTo("andremouraer@gmail.com");
+        message.setFrom("andremouraer@gmail.com");
+
+        try {
+            mailSender.send(message);
+            return "Email enviado com sucesso!";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Erro ao enviar email.";
+        }
+    }
 
     @PutMapping(value = "/esqueciSenha/{login}")
     public ResponseEntity trocarSenha(@PathVariable("login") String login){

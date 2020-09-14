@@ -2,15 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e1737c85-d18e-41cb-b698-a8194f8fb3b8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/bo/CadastroBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/bo/CadastroBO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/controller/EmailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/controller/EmailController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/ClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/ClienteService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/EmailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/model/dto/DocumentoFiscalDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/model/dto/DocumentoFiscalDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/service/DocumentoFiscalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/service/DocumentoFiscalService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/repository/ProdutoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/repository/ProdutoRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/service/ProdutoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/service/ProdutoService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ErrorTreeViewConfiguration">
+    <option name="autoscrollToSource" value="true" />
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="true" />
   </component>
   <component name="FavoritesManager">
     <favorites_list name="ecommerce" />
@@ -95,22 +104,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1599699350879" />
-    <state width="1323" height="281" key="GridCell.Tab.0.bottom" timestamp="1599773488867">
+    <state width="1323" height="33" key="GridCell.Tab.0.bottom" timestamp="1600089792130">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="281" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1599773488867" />
-    <state width="1323" height="281" key="GridCell.Tab.0.center" timestamp="1599773488867">
+    <state width="1323" height="33" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1600089792130" />
+    <state width="1323" height="33" key="GridCell.Tab.0.center" timestamp="1600089792130">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="281" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1599773488867" />
-    <state width="1323" height="281" key="GridCell.Tab.0.left" timestamp="1599773488867">
+    <state width="1323" height="33" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1600089792130" />
+    <state width="1323" height="33" key="GridCell.Tab.0.left" timestamp="1600089792130">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="281" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1599773488867" />
-    <state width="1323" height="281" key="GridCell.Tab.0.right" timestamp="1599773488867">
+    <state width="1323" height="33" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1600089792130" />
+    <state width="1323" height="33" key="GridCell.Tab.0.right" timestamp="1600089792130">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="281" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1599773488867" />
+    <state width="1323" height="33" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1600089792130" />
     <state width="1323" height="250" key="GridCell.Tab.1.bottom" timestamp="1599771682841">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -127,10 +136,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="250" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1599771682841" />
-    <state x="379" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1599067999729">
+    <state x="379" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1599793657234">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="379" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1599067999729" />
+    <state x="379" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1599793657234" />
     <state x="329" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1599251051997">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

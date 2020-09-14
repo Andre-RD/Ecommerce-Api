@@ -74,6 +74,7 @@ public class ProdutoService {
                 listaFabricantes.add(fabricante);
             }
         }
+
         List<ListaFabricantes> listaFabricantes1 = listaFabricantes.stream().distinct().collect(Collectors.toList());
         return listaFabricantes1;
     }
@@ -81,7 +82,7 @@ public class ProdutoService {
 
     public List<ProdutoDTO> buscarPorNome(String nomeFantasia) {
         List<ProdutoDTO> listaDTO = new ArrayList<>();
-        List<TbProduto> listaEntity = produtoRepository.findByNomeFantasia(nomeFantasia);
+        List<TbProduto> listaEntity = produtoRepository.findByNomeFantasiaContaining(nomeFantasia);
 
         for (TbProduto prod : listaEntity) {
             if (prod.getDsProduto() != null) {

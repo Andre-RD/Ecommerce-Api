@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 public class DocumentoFiscalDTO {
 
-   private String titulo = "RaiaDrogasil SA" + "\n";
+   private String titulo = "RaiaDrogasil SA";
 
    private String nrCpf;
 
