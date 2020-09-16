@@ -10,16 +10,18 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 
 @Data
 public class EstoqueDTO {
 
-    private Long cdProduto;
-    private Long cdCategoria;
+    private BigInteger cdProduto;
+    private BigInteger cdCategoria;
     private String dsProduto;
-    private Long qtEstoque;
-    private Long qtEmpenho;
-    private Long cdEstoque;
+    private Integer qtEstoque;
+    private Integer qtEmpenho;
+    private BigInteger cdEstoque;
 
 
 

@@ -6,6 +6,7 @@ import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigInteger;
 
 @Entity
 @Table(name="TB_PRODUTO_IMAGEM")
@@ -20,7 +21,7 @@ public class TbProdutoImagem implements Serializable {
 
     @Id
     @Column(name = "ID_IMAGEM")
-    private Long idImagem;
+    private BigInteger idImagem;
 
     @Column(name = "DS_URL")
     private String dsUrl;

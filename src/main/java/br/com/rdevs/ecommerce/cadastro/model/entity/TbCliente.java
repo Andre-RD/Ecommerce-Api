@@ -6,6 +6,7 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class TbCliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_CLIENTE")
-    private Long idCliente;
+    private BigInteger idCliente;
     @Column(name = "NM_CLIENTE")
     private String nmCliente;
     @Column(name = "NR_CPF")

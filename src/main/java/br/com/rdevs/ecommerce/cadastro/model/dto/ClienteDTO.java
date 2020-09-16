@@ -4,13 +4,14 @@ import lombok.Data;
 
 import javax.persistence.Column;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
 @Data
 public class ClienteDTO {
 
-    private Long idCliente;
+    private BigInteger idCliente;
     private String nmCliente;
     private String nrCpf;
     private String dsEmail;
@@ -22,7 +23,7 @@ public class ClienteDTO {
     private String pwCliente;
     private String confirmarSenha;
 
-    private Long idCategoriaCliente;
+    private BigInteger idCategoriaCliente;
     private BigDecimal pcDescontoEcommerce;
 
 

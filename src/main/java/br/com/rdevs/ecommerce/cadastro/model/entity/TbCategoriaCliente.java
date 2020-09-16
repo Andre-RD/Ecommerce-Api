@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 @Entity
 @Table(name = "TB_CATEGORIA_CLIENTE")
@@ -14,7 +15,7 @@ public class TbCategoriaCliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_CATEGORIA_CLIENTE")
-    private Long idCategoriaCliente;
+    private BigInteger idCategoriaCliente;
 
     @Column(name = "DS_CATEGORIA_CLIENTE")
     private String dsCategoriaCliente;

@@ -3,11 +3,13 @@ package br.com.rdevs.ecommerce.cadastro.model.dto;
 
 import lombok.Data;
 
+import java.math.BigInteger;
+
 
 @Data
 public class EnderecoDTO {
 
-    private Long idEndereco;
+    private BigInteger idEndereco;
 
     private String dsEndereco;
 

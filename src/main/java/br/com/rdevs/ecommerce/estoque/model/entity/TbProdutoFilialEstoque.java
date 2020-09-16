@@ -7,6 +7,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 
 @Entity
@@ -18,10 +20,10 @@ public class TbProdutoFilialEstoque implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "CD_ESTOQUE")
-    private Long cdEstoque;
+    private BigInteger cdEstoque;
 
     @Column(name = "CD_FILIAL")
-    private Long cdFilial;
+    private BigInteger cdFilial;
 
 
     @OneToOne
@@ -30,10 +32,10 @@ public class TbProdutoFilialEstoque implements Serializable{
     private TbProduto produtoFilial;
 
     @Column(name = "QT_ESTOQUE")
-    private Long qtEstoque;
+    private Integer qtEstoque;
 
     @Column(name = "QT_EMPENHO")
-    private Long qtEmpenho;
+    private Integer qtEmpenho;
 
     
 

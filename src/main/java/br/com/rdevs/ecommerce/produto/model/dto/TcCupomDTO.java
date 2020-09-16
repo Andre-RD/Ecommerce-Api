@@ -2,13 +2,14 @@ package br.com.rdevs.ecommerce.produto.model.dto;
 
 import lombok.Data;
 
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
 @Data
 public class TcCupomDTO {
 
-    private Long idCupom;
+    private BigInteger idCupom;
 
     private String nmCliente;
 

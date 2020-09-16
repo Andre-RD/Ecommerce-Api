@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 import java.util.List;
 
 @Entity
@@ -14,7 +15,7 @@ public class TbTipoProduto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_TIPO_PRODUTO")
     @Id
-    private Long idTipoProduto;
+    private BigInteger idTipoProduto;
 
     @Column(name = "DS_TIPO_PRODUTO")
     private String dsTipoProduto;

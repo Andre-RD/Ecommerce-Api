@@ -3,6 +3,7 @@ package br.com.rdevs.ecommerce.cadastro.model.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 
 @Entity
 @Table(name = "TB_ENDERECO")
@@ -12,7 +13,7 @@ public class TbEndereco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_ENDERECO")
-    private Long idEndereco;
+    private BigInteger idEndereco;
     @Column(name = "DS_ENDERECO")
     private String dsEndereco;
     @Column(name = "NR_ENDERECO")

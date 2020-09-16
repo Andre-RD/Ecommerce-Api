@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +43,7 @@ public class CupomService {
     @Autowired
     private EstoqueRepository estoqueRepository;
 
-    public Object buscarCuponsIdCliente(Long idCliente){
+    public Object buscarCuponsIdCliente(BigInteger idCliente){
         TbTcCupom tcCupomEntity = cupomRepository.findByClienteIdCliente(idCliente);
         TcCupomDTO tcCupomDTO = new TcCupomDTO();
         tcCupomDTO.setNmCliente(tcCupomEntity.getCliente().getNmCliente());
@@ -106,7 +107,7 @@ public class CupomService {
             dto.setImagens(imagemsProdutodto);
 
 
-            TbProdutoFilialEstoque produtoEstoqueEntity = estoqueRepository.findByProdutoFilialCdProdutoAndCdFilial(prod.getCdProduto(),4L);
+            TbProdutoFilialEstoque produtoEstoqueEntity = estoqueRepository.findByProdutoFilialCdProdutoAndCdFilial(prod.getCdProduto(), BigInteger.valueOf(4L));
             EstoqueProdutoDTO estoqueProdutoDTO = new EstoqueProdutoDTO();
             estoqueProdutoDTO.setCdFilial(produtoEstoqueEntity.getCdFilial());
             estoqueProdutoDTO.setQtEstoque(produtoEstoqueEntity.getQtEstoque());
@@ -126,7 +127,7 @@ public class CupomService {
         return tcCupomDTO;
     }
 
-    public Object buscarPorClienteEProduto(Long idCliente, Long cdProduto){
+    public Object buscarPorClienteEProduto(BigInteger idCliente, BigInteger cdProduto){
         return cupomItemRepository.findByTcCupomClienteIdClienteAndProdutoCpCdProduto(idCliente,cdProduto);
     }
 

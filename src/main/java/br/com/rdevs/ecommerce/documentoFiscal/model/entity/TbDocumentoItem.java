@@ -8,6 +8,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 @Entity
 @Data
@@ -22,14 +23,14 @@ public class TbDocumentoItem implements Serializable {
 
     @Id
     @Column(name = "NR_ITEM_DOCUMENTO")
-    private Long nrItemDocumento;
+    private BigInteger nrItemDocumento;
 
     @ManyToOne
     @JoinColumn(name = "CD_PRODUTO")
     private TbProduto produto;
 
     @Column(name = "QT_ITEM")
-    private Long qtItem;
+    private Integer qtItem;
 
     @Column(name = "VL_ITEM")
     private BigDecimal vlItem;

@@ -4,6 +4,7 @@ import br.com.rdevs.ecommerce.cadastro.model.entity.TbCliente;
 import lombok.Data;
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class TbPedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_PEDIDO")
-    private Long idPedido;
+    private BigInteger idPedido;
 
     @Column(name = "DT_COMPRA")
     private Date dtCompra;

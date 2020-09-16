@@ -6,6 +6,7 @@ import br.com.rdevs.ecommerce.cadastro.model.entity.TbCliente;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 
+import java.math.BigInteger;
 import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -66,9 +67,9 @@ public class CadastroBO{
         int anoAtual= calendar.getTime().getYear();
 
         if ((anoAtual-anoNasc)>=60){
-            categoriaCliente.setIdCategoriaCliente(2L);
+            categoriaCliente.setIdCategoriaCliente(BigInteger.valueOf(2L));
         }else {
-            categoriaCliente.setIdCategoriaCliente(1L);
+            categoriaCliente.setIdCategoriaCliente(BigInteger.valueOf(1L));
         }
         clienteDTO.setIdCategoriaCliente(categoriaCliente.getIdCategoriaCliente());
         clienteEntity.setDtCadastro(calendar.getTime());

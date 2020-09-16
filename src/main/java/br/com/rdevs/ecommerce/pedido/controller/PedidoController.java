@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigInteger;
+
 @RestController
 public class PedidoController {
 
@@ -22,7 +24,7 @@ private DocumentoFiscalService documentoFiscalService;
 
     @ApiOperation(value = "buscar Pedidos pela id do cliente")
     @GetMapping("/pedidos/cliente/{idCliente}")
-        public ResponseEntity<Object> buscarPedidoPorIdCliente(@PathVariable("idCliente") Long idCliente) {
+        public ResponseEntity<Object> buscarPedidoPorIdCliente(@PathVariable("idCliente") BigInteger idCliente) {
         return ResponseEntity.ok().body(documentoFiscalService.listarPorIdCliente(idCliente));
     }
 
@@ -49,7 +51,7 @@ private DocumentoFiscalService documentoFiscalService;
 
 
     @GetMapping("/pedido/{idPedido}")
-    public ResponseEntity<Object> buscarPedidoPorIdPedido(@PathVariable("idPedido") Long idPedido) {
+    public ResponseEntity<Object> buscarPedidoPorIdPedido(@PathVariable("idPedido") BigInteger idPedido) {
         return ResponseEntity.ok().body(service.buscarPedidoPorIdPedido(idPedido));
     }
 }

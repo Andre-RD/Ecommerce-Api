@@ -7,12 +7,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @Repository
-public interface ProdutoPageRepository extends JpaRepository<TbProduto, Long> {
-    Page<TbProduto> findBySubCategoriaProdutoIdSubCategoria(Long idSubCategoria, Pageable pageable);
-    Page<TbProduto> findByCategoriaProdutoIdCategoriaProduto(Long idCategoriaProduto, Pageable pageable);
+public interface ProdutoPageRepository extends JpaRepository<TbProduto, BigInteger> {
+    Page<TbProduto> findBySubCategoriaProdutoIdSubCategoria(BigInteger idSubCategoria, Pageable pageable);
+    Page<TbProduto> findByCategoriaProdutoIdCategoriaProduto(BigInteger idCategoriaProduto, Pageable pageable);
 
 
 }

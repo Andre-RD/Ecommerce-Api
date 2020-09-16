@@ -17,6 +17,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigInteger;
 import java.util.Base64;
 
 @RestController
@@ -41,7 +42,7 @@ public class EmailController{
     public String sendMail() {
 
         SimpleMailMessage message = new SimpleMailMessage();
-        TbDocumentoFiscal documentoFiscalEntity = documentoFiscalService.listaDocumentosPorID(622L);
+        TbDocumentoFiscal documentoFiscalEntity = documentoFiscalService.listaDocumentosPorID(BigInteger.valueOf(622L));
 
 
 

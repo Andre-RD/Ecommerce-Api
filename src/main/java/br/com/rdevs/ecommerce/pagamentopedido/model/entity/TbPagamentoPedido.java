@@ -10,6 +10,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigInteger;
 
 @Entity
 @Data
@@ -19,7 +20,7 @@ public class TbPagamentoPedido implements Serializable {
 
     @Id
     @Column(name = "ID_FORMA_PAGAMENTO")
-    private Long idPagamentoPedido;
+    private BigInteger idPagamentoPedido;
 
     @Column(name = "NR_NUMERO_CARTAO")
     private String nrNumeroCartao;

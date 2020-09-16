@@ -9,15 +9,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 @Data
 public class DocumentoFiscalItemDTO {
 
-    private Long nrItemDocumento;
+    private BigInteger nrItemDocumento;
 
-    private Long cdProduto;
+    private BigInteger cdProduto;
 
-    private Long qtItem;
+    private Integer qtItem;
 
     private String nmProduto;
 

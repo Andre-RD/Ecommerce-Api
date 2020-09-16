@@ -5,19 +5,21 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigInteger;
+
 @Data
 public class PagamentoPedidoDTO {
 
     //    private Long idDocumentoFiscal;
-    private Long idPagamentoPedido;
+    private BigInteger idPagamentoPedido;
 
     private TipoPagamentoDTO tipoPagamentoDTO;
 
-    private Long idTipoPagamento;
+    private BigInteger idTipoPagamento;
 
     private PedidoDTO pedidoPagamento;
 
-    private Long idPedido;
+    private BigInteger idPedido;
 
     private String nrNumeroCartao;
 

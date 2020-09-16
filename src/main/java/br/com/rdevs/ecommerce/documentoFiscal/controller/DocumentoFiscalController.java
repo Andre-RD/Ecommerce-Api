@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigInteger;
 import java.util.Base64;
 
 @RestController
@@ -29,17 +30,18 @@ public class DocumentoFiscalController {
     CadastroRepository cadastroRepository;
 
     @GetMapping("/documentoFiscalId/{idDocumentoFiscal}")
-    public ResponseEntity buscarPorIDnota(@PathVariable("idDocumentoFiscal") Long idDocumentoFiscal){
+    public ResponseEntity buscarPorIDnota(@PathVariable("idDocumentoFiscal") BigInteger idDocumentoFiscal){
         return ResponseEntity.ok().body(documentoFiscalService.listaDocumentosPorID(idDocumentoFiscal));
     }
 
     @GetMapping("/documentoFiscal/{idCliete}")
-    public ResponseEntity buscarNotas(@PathVariable("idCliete") Long idCliete){
+    public ResponseEntity buscarNotas(@PathVariable("idCliete") BigInteger idCliete){
         return ResponseEntity.ok().body(documentoFiscalService.listarPorIdCliente(idCliete));
     }
 
     @PostMapping("/adicionaNota")
     public ResponseEntity inserirNotaF(@RequestBody PostDocumentoFiscalDTO nfDto){
+
         if (nfDto.getSalvarCartao()){
             CartaoCreditoDTO cartaoCreditoDTO = new CartaoCreditoDTO();
 
@@ -56,7 +58,7 @@ public class DocumentoFiscalController {
     }
 
     @PostMapping("/enviaEmail/{idDocumentoFiscal}")
-    public ResponseEntity enviaEmail(@PathVariable("idDocumentoFiscal") Long idDocumentoFiscal){
+    public ResponseEntity enviaEmail(@PathVariable("idDocumentoFiscal") BigInteger idDocumentoFiscal){
         return ResponseEntity.ok().body(documentoFiscalService.listaDocumentosPorID(idDocumentoFiscal));
     }
 

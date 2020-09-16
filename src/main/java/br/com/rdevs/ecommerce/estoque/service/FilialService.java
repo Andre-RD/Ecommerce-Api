@@ -7,6 +7,7 @@ import br.com.rdevs.ecommerce.estoque.repository.FilialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @Service
@@ -17,7 +18,7 @@ public class FilialService {
     @Autowired
     EstoqueRepository estoqueRepository;
 
-    public List<TbFilial> buscarPorFilial(Long cdFilial){
+    public List<TbFilial> buscarPorFilial(BigInteger cdFilial){
         return  filialRepository.findByCdFilial(cdFilial);
     }
 

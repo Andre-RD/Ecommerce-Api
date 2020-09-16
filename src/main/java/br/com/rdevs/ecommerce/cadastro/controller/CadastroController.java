@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
+import java.math.BigInteger;
 import java.util.Base64;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class CadastroController {
 
     @GetMapping("/listarPorId/{idCliente}")
     @RolesAllowed(value = "ADMIN")
-    public ResponseEntity buscarPorIdCliente(@PathVariable("idCliente") Long idCliente){
+    public ResponseEntity buscarPorIdCliente(@PathVariable("idCliente") BigInteger idCliente){
         return ResponseEntity.ok().body(service.buscarPorId(idCliente));
     }
 
@@ -99,7 +100,7 @@ public class CadastroController {
 
 
     @RequestMapping(value = "/novoEndereco/{idCliente}", method = RequestMethod.POST)
-    public ResponseEntity<Object> novoEndereco(@RequestBody EnderecoDTO enderecoDTO, @PathVariable("idCliente") Long idCliente){
+    public ResponseEntity<Object> novoEndereco(@RequestBody EnderecoDTO enderecoDTO, @PathVariable("idCliente") BigInteger idCliente){
         return ResponseEntity.ok().body(service.adicionaEndereco(enderecoDTO,idCliente));
     }
 
@@ -109,22 +110,22 @@ public class CadastroController {
     }
 
     @RequestMapping(value = "/deletarEndereco/{idCliente}/{idEndereco}", method = RequestMethod.DELETE)
-    public ResponseEntity<Object> deletarEndereco(@PathVariable("idCliente") Long idCliente,@PathVariable("idEndereco") Long idEndereco){
+    public ResponseEntity<Object> deletarEndereco(@PathVariable("idCliente") BigInteger idCliente,@PathVariable("idEndereco") BigInteger idEndereco){
         return ResponseEntity.ok().body(service.deletarEndereco(idCliente,idEndereco));
     }
 
     @RequestMapping(value = "/novoCartao/{idCliente}", method = RequestMethod.POST)
-    public ResponseEntity<Object> novoCartaoCredito(@RequestBody CartaoCreditoDTO cartaoCreditoDTO, @PathVariable("idCliente") Long idCliente) {
+    public ResponseEntity<Object> novoCartaoCredito(@RequestBody CartaoCreditoDTO cartaoCreditoDTO, @PathVariable("idCliente") BigInteger idCliente) {
         return ResponseEntity.ok().body(service.adicionaCartaoCredito(cartaoCreditoDTO, idCliente));
     }
 
     @RequestMapping(value = "/atualizaCartaoCredito/{idCliente}", method = RequestMethod.PUT)
-    public ResponseEntity<Object> atualizaCartaoCredito(@RequestBody CartaoCreditoDTO cartaoCreditoDTO, Long idCliente){
+    public ResponseEntity<Object> atualizaCartaoCredito(@RequestBody CartaoCreditoDTO cartaoCreditoDTO, BigInteger idCliente){
         return ResponseEntity.ok().body(service.atualizaCartaoCredito(cartaoCreditoDTO, idCliente));
     }
 
     @DeleteMapping(value = "/deletarCartaoCredito/{idCartaoCredito}")
-    public ResponseEntity<Object> deletarCartaoCredito(@PathVariable("idCartaoCredito") Long idCartaoCredito){
+    public ResponseEntity<Object> deletarCartaoCredito(@PathVariable("idCartaoCredito") BigInteger idCartaoCredito){
         return ResponseEntity.ok().body(service.deletarCartaoCredito(idCartaoCredito));
     }
 

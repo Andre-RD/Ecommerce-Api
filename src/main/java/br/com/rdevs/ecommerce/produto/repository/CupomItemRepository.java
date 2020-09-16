@@ -5,9 +5,11 @@ import br.com.rdevs.ecommerce.produto.model.entity.TbTcCupomItemPK;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface CupomItemRepository extends JpaRepository<TbTcCupomItem, Long> {
+import java.math.BigInteger;
 
-    TbTcCupomItem findByTcCupomClienteIdClienteAndProdutoCpCdProduto(Long idCliente, Long cdProduto);
+@Repository
+public interface CupomItemRepository extends JpaRepository<TbTcCupomItem, BigInteger> {
+
+    TbTcCupomItem findByTcCupomClienteIdClienteAndProdutoCpCdProduto(BigInteger idCliente, BigInteger cdProduto);
 
 }

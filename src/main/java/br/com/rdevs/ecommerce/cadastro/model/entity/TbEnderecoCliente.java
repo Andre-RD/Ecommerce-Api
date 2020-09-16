@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.List;
 
 @IdClass(TbEnderecoClientePK.class)
@@ -15,12 +16,12 @@ public class TbEnderecoCliente implements Serializable {
 
     @Id
     @Column(name = "ID_CLIENTE")
-    private Long idCliente;
+    private BigInteger idCliente;
 
     @Id
     @JsonIgnore
     @Column(name = "ID_ENDERECO")
-    private Long idEndereco;
+    private BigInteger idEndereco;
 
 
 }

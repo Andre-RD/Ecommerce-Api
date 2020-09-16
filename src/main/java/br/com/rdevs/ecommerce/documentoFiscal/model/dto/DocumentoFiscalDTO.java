@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
@@ -15,13 +16,15 @@ public class DocumentoFiscalDTO {
 
    private String nrCpf;
 
+   private BigInteger idNF;
+
    private Long nrChaveAcesso;
 
    private Long nrNF;
 
    private Date dtEmissao;
 
-   private Long nrPedido;
+   private BigInteger nrPedido;
 
    private String nrNumeroCartao;
 

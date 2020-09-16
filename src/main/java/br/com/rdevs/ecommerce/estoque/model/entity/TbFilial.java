@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.List;
 
 
@@ -17,7 +18,7 @@ public class TbFilial implements Serializable{
   @Column(name="CD_FILIAL")
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long cdFilial;
+  private BigInteger cdFilial;
 
   @Column(name="NM_FILIAL")
   private String nmFilial;

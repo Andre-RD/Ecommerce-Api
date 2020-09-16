@@ -7,6 +7,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 
 @Entity
@@ -17,10 +18,10 @@ public class TbProduto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CD_PRODUTO")
-    private Long cdProduto;
+    private BigInteger cdProduto;
 
     @Column(name = "ID_STATUS_PRODUTO")
-    private Long idStatusProduto;
+    private BigInteger idStatusProduto;
 
     @Column(name = "NM_FANTASIA")
     private String nomeFantasia;
@@ -30,7 +31,6 @@ public class TbProduto {
 
     @Column(name = "VL_UNIDADE")
     private BigDecimal valorUnidade;
-
 
     @Column(name = "DS_PRODUTO")
     private String dsProduto;

@@ -13,7 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.persistence.Cacheable;
 import java.awt.print.Pageable;
+import java.math.BigInteger;
 import java.util.List;
 
 @RestController
@@ -35,25 +37,25 @@ public class ProdutoController {
         return ResponseEntity.ok().body(service.buscarPorFabricante(nomeFabricante));
     }
 
-    @ApiOperation(value = "Buscar Produto Por idcategoria com paginação")
-    @GetMapping("/produtos/categoriaP/{idCategoriaProduto}")
-    public ResponseEntity buscarPorCategoriaPage(@PathVariable("idCategoriaProduto") Long idCategoriaProduto, Long page) {
-        return ResponseEntity.ok().body(service.buscarPorCategoriaPage(idCategoriaProduto, page));
-    }
+//    @ApiOperation(value = "Buscar Produto Por idcategoria com paginação")
+//    @GetMapping("/produtos/categoriaP/{idCategoriaProduto}")
+//    public ResponseEntity buscarPorCategoriaPage(@PathVariable("idCategoriaProduto") Long idCategoriaProduto, Long page) {
+//        return ResponseEntity.ok().body(service.buscarPorCategoriaPage(idCategoriaProduto, page));
+//    }
 
     @ApiOperation(value = "Buscar Produto Por idcategoria")
     @GetMapping("/produtos/categoria/{idCategoriaProduto}")
-    public ResponseEntity buscarPorCategoria(@PathVariable("idCategoriaProduto") Long idCategoriaProduto) {
+    public ResponseEntity buscarPorCategoria(@PathVariable("idCategoriaProduto") BigInteger idCategoriaProduto) {
         return ResponseEntity.ok().body(service.buscarPorCategoria(idCategoriaProduto));
     }
 
 
-    @ApiOperation(value = "Buscar Produto Por Sub Categoria com paginação")
-    @RequestMapping(value = "/produtos/subcategoriaP/{idSubCategoria}",method = RequestMethod.GET)
-    public ResponseEntity buscarPorSubCategoriaPage(@PathVariable("idSubCategoria") Long idSubCategoria, Long page){
-
-        return ResponseEntity.ok().body(service.buscarPorSubCategoriaPage(idSubCategoria,page));
-    }
+//    @ApiOperation(value = "Buscar Produto Por Sub Categoria com paginação")
+//    @RequestMapping(value = "/produtos/subcategoriaP/{idSubCategoria}",method = RequestMethod.GET)
+//    public ResponseEntity buscarPorSubCategoriaPage(@PathVariable("idSubCategoria") Long idSubCategoria, Long page){
+//
+//        return ResponseEntity.ok().body(service.buscarPorSubCategoriaPage(idSubCategoria,page));
+//    }
 
 
 
@@ -84,11 +86,12 @@ public class ProdutoController {
 
 
 
+
     @ApiOperation(value = "Buscar Produto Por Sub Categoria")
     @RequestMapping(value = "/produtos/subcategoria/{idSubCategoria}",method = RequestMethod.GET)
-    public ResponseEntity buscarPorSubCategoria(@PathVariable("idSubCategoria") Long idSubCategoria,@RequestParam(value = "idCliente", required=false) Long idCliente){
+    public ResponseEntity buscarPorSubCategoria(@PathVariable("idSubCategoria") BigInteger idSubCategoria,@RequestParam(value = "idCliente", required=false) BigInteger idCliente){
         if (idCliente==null){
-            idCliente=1L;
+            idCliente= BigInteger.valueOf(1L);
             return ResponseEntity.ok().body(service.buscarPorSubCategoria(idSubCategoria, idCliente));
         }
         else {
@@ -99,9 +102,9 @@ public class ProdutoController {
 
     @ApiOperation(value = "Buscar Produto Por Sub Categoria2")
     @RequestMapping(value = "/produtos/subcategoria2/{idSubCategoria}",method = RequestMethod.GET)
-    public ResponseEntity buscarPorSubCategoria2(@PathVariable("idSubCategoria") Long idSubCategoria,@RequestParam(value = "idCliente", required=false) Long idCliente){
+    public ResponseEntity buscarPorSubCategoria2(@PathVariable("idSubCategoria") BigInteger idSubCategoria,@RequestParam(value = "idCliente", required=false) BigInteger idCliente){
         if (idCliente==null){
-            idCliente=1L;
+            idCliente= BigInteger.valueOf(1L);
             return ResponseEntity.ok().body(service.buscarPorSubCategoria2(idSubCategoria, idCliente));
         }
         else {
@@ -122,9 +125,9 @@ public class ProdutoController {
 
     @ApiOperation(value = "Buscar Produto Por cdProduto")
     @RequestMapping(value = "/produtos/codigo/{cdProduto}",method = RequestMethod.GET)
-    public ResponseEntity buscarPorCdProduto(@PathVariable("cdProduto") Long cdProduto, @RequestParam(value = "idCliente", required=false) Long idCliente){
+    public ResponseEntity buscarPorCdProduto(@PathVariable("cdProduto") BigInteger cdProduto, @RequestParam(value = "idCliente", required=false) BigInteger idCliente){
         if (idCliente==null){
-            idCliente=1L;
+            idCliente= BigInteger.valueOf(1L);
             return ResponseEntity.ok().body(service.buscarPorCdProduto(cdProduto,idCliente));
         }
         else {
@@ -137,6 +140,10 @@ public class ProdutoController {
 //    public ResponseEntity buscarPorCdProduto(@PathVariable("idCategoriaProduto")Long idCategoriaProduto, @PathVariable("idSubCategoria") Long idSubCategoria) {
 //        return ResponseEntity.ok().body(service.buscaPorCategoriaESubCategoria(idCategoriaProduto,idSubCategoria));
 //    }
+    @GetMapping(value = "/produtos/ListarTudos/{idSubCategoria}")
+    public ResponseEntity buscarTodos(@PathVariable("idSubCategoria") BigInteger idSubCategoria){
+        return ResponseEntity.ok().body(service.listarTodos(idSubCategoria));
+    }
 
 
 

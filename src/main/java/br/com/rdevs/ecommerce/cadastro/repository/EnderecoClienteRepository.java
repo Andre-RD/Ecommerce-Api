@@ -6,13 +6,14 @@ import br.com.rdevs.ecommerce.cadastro.model.entity.TbEnderecoClientePK;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @Repository
 public interface EnderecoClienteRepository extends JpaRepository<TbEnderecoCliente, TbEnderecoClientePK> {
 
-    List<TbEnderecoCliente> findByIdCliente (Long idCliente);
-    TbEnderecoCliente findByIdClienteAndIdEndereco (Long idCliente,Long idEndereco);
-    List<TbEnderecoCliente> findByIdEndereco (Long idEndereco);
+    List<TbEnderecoCliente> findByIdCliente (BigInteger idCliente);
+    TbEnderecoCliente findByIdClienteAndIdEndereco (BigInteger idCliente,BigInteger idEndereco);
+    List<TbEnderecoCliente> findByIdEndereco (BigInteger idEndereco);
 
 }

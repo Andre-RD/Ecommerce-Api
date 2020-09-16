@@ -4,12 +4,13 @@ import br.com.rdevs.ecommerce.documentoFiscal.model.entity.TbDocumentoFiscal;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @Repository
-public interface DocumentoFiscalRepository extends JpaRepository<TbDocumentoFiscal, Long> {
+public interface DocumentoFiscalRepository extends JpaRepository<TbDocumentoFiscal, BigInteger> {
 
-    List<TbDocumentoFiscal> findByTbClienteIdCliente(Long idCliente);
-    TbDocumentoFiscal findByIdDocumentoFiscal(Long idDocumentoFiscal);
+    List<TbDocumentoFiscal> findByTbClienteIdCliente(BigInteger idCliente);
+    TbDocumentoFiscal findByIdDocumentoFiscal(BigInteger idDocumentoFiscal);
 
 }

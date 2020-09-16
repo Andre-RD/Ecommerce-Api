@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigInteger;
+
 @RestController
 public class EstoqueController {
 
@@ -21,7 +23,7 @@ public class EstoqueController {
     }
 
     @GetMapping("/estoque/{cdProduto}")
-    public ResponseEntity<Object> listarEstoquePorProduto(@PathVariable("cdProduto") Long cdProduto){
+    public ResponseEntity<Object> listarEstoquePorProduto(@PathVariable("cdProduto") BigInteger cdProduto){
         return ResponseEntity.ok().body(service.buscarEstoquesPorProduto(cdProduto));
     }
 

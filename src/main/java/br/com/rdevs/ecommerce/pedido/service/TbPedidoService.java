@@ -31,6 +31,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.sql.ClientInfoStatus;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +68,7 @@ public class TbPedidoService {
     private EntityManager em;
 
     //Método de buscar Pedidos pela id do cliente
-    public List<PedidoDTO> buscarPedidoPorIdCliente(Long idCliente) {
+    public List<PedidoDTO> buscarPedidoPorIdCliente(BigInteger idCliente) {
         List<PedidoDTO> pedidosDTO = new ArrayList<>();
         List<TbPedido> pedidos = pedidoRepository.findByClienteIdCliente(idCliente);
 
@@ -87,7 +88,7 @@ public class TbPedidoService {
                 pedidoItemDTO.setVlPedidoItem(pedidoItem.getVlPedidoItem());
 
                 if (pedidoItem.getQtProduto()==null){
-                    pedidoItemDTO.setQtProduto(1L);
+                    pedidoItemDTO.setQtProduto(1);
                 }else {
                     pedidoItemDTO.setQtProduto(pedidoItem.getQtProduto());
                 }
@@ -104,7 +105,7 @@ public class TbPedidoService {
     }
 
 
-    public List<ProdutoDTO> buscarPedidoPorIdPedido(Long idPedido) {
+    public List<ProdutoDTO> buscarPedidoPorIdPedido(BigInteger idPedido) {
 
         TbDocumentoFiscal documentoFiscal = documentoFiscalRepository.findByIdDocumentoFiscal(idPedido);
 
@@ -134,7 +135,7 @@ public class TbPedidoService {
             }
             produtoDTO.setImagens(imagemsProdutodto);
 
-            TbProdutoFilialEstoque produtoEstoqueEntity = estoqueRepository.findByProdutoFilialCdProdutoAndCdFilial(produtoEtity.getCdProduto(),4L);
+            TbProdutoFilialEstoque produtoEstoqueEntity = estoqueRepository.findByProdutoFilialCdProdutoAndCdFilial(produtoEtity.getCdProduto(), BigInteger.valueOf(4L));
             EstoqueProdutoDTO estoqueProdutoDTO = new EstoqueProdutoDTO();
             estoqueProdutoDTO.setCdFilial(produtoEstoqueEntity.getCdFilial());
             estoqueProdutoDTO.setQtEstoque(produtoEstoqueEntity.getQtEstoque());
@@ -167,7 +168,7 @@ public class TbPedidoService {
 
             valor += itemEntity.getVlPedidoItem().doubleValue();
             quantidade++;
-            itemEntity.setNrItemPedido(quantidade);
+            itemEntity.setNrItemPedido(BigInteger.valueOf(quantidade));
             itemEntity.setPedido(pedidoEntity);
             itemsEntity.add(itemEntity);
         }
@@ -176,7 +177,7 @@ public class TbPedidoService {
         pedidoEntity.setItens(itemsEntity);
 
         TbStatusPedido tbStatusPedido = new TbStatusPedido();
-        tbStatusPedido.setCdStatusPedido(2L);
+        tbStatusPedido.setCdStatusPedido(BigInteger.valueOf(2L));
         pedidoEntity.setStatusPedido(tbStatusPedido);
 
         return pedidoRepository.save(pedidoEntity);

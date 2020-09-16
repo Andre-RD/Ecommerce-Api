@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @Data
@@ -13,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 public class FilialDTO {
 
-    private Long cdFilial;
+    private BigInteger cdFilial;
     private String nmFilial;
     private List<EstoqueDTO> estoque;
 

@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -66,7 +67,7 @@ public class ClienteService {
         return cadastroRepository.findByNrCpf(cpf);
     }
 
-    public ClienteDTO buscarPorId(Long idCliente){
+    public ClienteDTO buscarPorId(BigInteger idCliente){
         TbCliente clienteEntity=cadastroRepository.findByIdCliente(idCliente);
         ClienteDTO clienteDTO = cadastroBO.parseToDTO(clienteEntity);
 
@@ -176,7 +177,7 @@ public class ClienteService {
         }
     }
 
-    public TbCliente adicionaEndereco(EnderecoDTO enderecoDTO, Long idCliente){
+    public TbCliente adicionaEndereco(EnderecoDTO enderecoDTO, BigInteger idCliente){
         TbCliente clienteEntity = cadastroRepository.getOne(idCliente);
         List <TbEnderecoCliente> idClienteEndereco = enderecoClienteRepository.findByIdCliente(idCliente);
         List<TbEndereco> enderecosBanco = new ArrayList<>();
@@ -197,7 +198,7 @@ public class ClienteService {
         return  enderecoRepository.save(enderecoNovo);
     }
 
-    public boolean deletarEndereco(Long idCliente, Long idEndereco){
+    public boolean deletarEndereco(BigInteger idCliente, BigInteger idEndereco){
 
         TbEnderecoCliente enderecoClienteId = enderecoClienteRepository.findByIdClienteAndIdEndereco(idCliente,idEndereco);
 
@@ -212,7 +213,7 @@ public class ClienteService {
         return true;
     }
 
-    public TbCliente adicionaCartaoCredito(CartaoCreditoDTO cartaoCreditoDTO, Long idCliente){
+    public TbCliente adicionaCartaoCredito(CartaoCreditoDTO cartaoCreditoDTO, BigInteger idCliente){
         TbCliente clienteEntity = cadastroRepository.getOne(idCliente);
 
         List<TbCartaoCredito> cartoesCreditoEntitys = new ArrayList<>();
@@ -230,14 +231,14 @@ public class ClienteService {
         return cadastroRepository.save(clienteEntity);
     }
 
-    public TbCartaoCredito atualizaCartaoCredito(CartaoCreditoDTO cartaoCreditoDTO,Long idCliente){
+    public TbCartaoCredito atualizaCartaoCredito(CartaoCreditoDTO cartaoCreditoDTO,BigInteger idCliente){
         TbCartaoCredito cartaoCreditoEntity = cartaoCreditoBO.parseToEntity(cartaoCreditoDTO,null);
         TbCliente cliente = cadastroRepository.getOne(idCliente);
         cartaoCreditoEntity.setClienteCartao(cliente);
         return cartaoRepository.save(cartaoCreditoEntity);
     }
 
-    public CartaoCreditoDTO deletarCartaoCredito(Long idCartaoCredito){
+    public CartaoCreditoDTO deletarCartaoCredito(BigInteger idCartaoCredito){
         TbCartaoCredito cartaoCreditoEntity = cartaoRepository.getOne(idCartaoCredito);
         CartaoCreditoDTO cartaoCreditoDTO = cartaoCreditoBO.parseToDTO(cartaoCreditoEntity);
         cartaoRepository.delete(cartaoCreditoEntity);

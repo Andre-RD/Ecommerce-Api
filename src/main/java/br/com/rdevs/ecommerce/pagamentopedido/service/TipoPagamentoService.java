@@ -7,6 +7,7 @@ import br.com.rdevs.ecommerce.pagamentopedido.service.bo.TipoPagamentoBO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class TipoPagamentoService {
         return listDTO;
     }
 
-    public TipoPagamentoDTO buscarporId(Long idPedido) {
+    public TipoPagamentoDTO buscarporId(BigInteger idPedido) {
         return tipoPagamentoBO.parseToDTO(repository.getOne(idPedido));
     }
 

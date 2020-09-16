@@ -7,13 +7,14 @@ import br.com.rdevs.ecommerce.estoque.model.entity.TbFilial;
 import br.com.rdevs.ecommerce.produto.model.entity.TbCategoriaProduto;
 import lombok.Data;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 
 @Data
 public class ProdutoDTO {
 
-    private Long cdProduto;
-    private Long idStatusProduto;
+    private BigInteger cdProduto;
+    private BigInteger idStatusProduto;
     private String nomeFantasia;
     private String nomeFabricante;
     private String dsProduto;
@@ -27,7 +28,6 @@ public class ProdutoDTO {
     private SubCategoriaProdutoDTO subCategoriaProduto;
 
     private List<ProdutoImagemDTO> imagens;
-//    private List<EstoqueProdutoDTO> estoques;
     private EstoqueProdutoDTO estoques;
 
 }

@@ -6,6 +6,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class TbTcCupom implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_CUPOM")
-    private Long idCupom;
+    private BigInteger idCupom;
 
     @OneToOne
     @JsonIgnore

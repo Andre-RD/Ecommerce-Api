@@ -4,12 +4,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 
 @Data
 @NoArgsConstructor
 public class TbTcCupomItemPK implements Serializable {
-    private Long idCupomItem;
+    private BigInteger idCupomItem;
 
-    private Long idCupom;
+    private BigInteger idCupom;
 
 }

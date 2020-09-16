@@ -2,16 +2,17 @@ package br.com.rdevs.ecommerce.documentoFiscal.model.dto;
 
 import lombok.Data;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @Data
 public class PostDocumentoFiscalDTO {
 
-    private Long idCliente;
+    private BigInteger idCliente;
 
-    private Long idEndereco;
+    private BigInteger idEndereco;
 
-    private Long idFormaPagamento;
+    private BigInteger idFormaPagamento;
 
     private String nrNumeroCartao;
 

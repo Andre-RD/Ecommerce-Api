@@ -2,12 +2,14 @@ package br.com.rdevs.ecommerce.produto.model.dto;
 
 import lombok.Data;
 
+import java.math.BigInteger;
+
 @Data
 public class ProdutoImagemDTO {
 
-    private Long cdProduto;
+    private BigInteger cdProduto;
 
-    private Long idImagem;
+    private BigInteger idImagem;
 
     private String dsUrl;
 }

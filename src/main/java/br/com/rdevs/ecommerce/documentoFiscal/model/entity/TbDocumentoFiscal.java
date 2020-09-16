@@ -7,6 +7,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class TbDocumentoFiscal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_DOCUMENTO_FISCAL")
-    private Long idDocumentoFiscal;
+    private BigInteger idDocumentoFiscal;
 
     @ManyToOne
     @JsonIgnore
@@ -43,10 +44,10 @@ public class TbDocumentoFiscal {
     private Date dtEmissao;
 
     @Column(name = "CD_FILIAL")
-    private Long cdFilial;
+    private BigInteger cdFilial;
 
     @Column(name = "CD_OPERACAO")
-    private Long cdOperacao;
+    private BigInteger cdOperacao;
 
     @Column(name = "VL_DOCUMENTO_FISCAL")
     private BigDecimal vlDocumentoFiscal;

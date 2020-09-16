@@ -4,12 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigInteger;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class TipoPagamentoDTO {
 
-    private Long idTipoPagamento;
+    private BigInteger idTipoPagamento;
 
     private String dsTipoPagamento;
 }

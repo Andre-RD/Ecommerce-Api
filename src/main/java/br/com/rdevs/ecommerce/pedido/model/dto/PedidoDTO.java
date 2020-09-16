@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
@@ -12,12 +13,12 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PedidoDTO {
-    private Long idPedido;
+    private BigInteger idPedido;
     private Date dtCompra;
     private BigDecimal vlFrete;
     private BigDecimal vlTotalPedido;
     private Integer qtItensPedido;
-    private Long idCliente;
+    private BigInteger idCliente;
     private String dsStatusPedido;
     private String tipoVenda;
     private List<PedidoItemDTO> items;

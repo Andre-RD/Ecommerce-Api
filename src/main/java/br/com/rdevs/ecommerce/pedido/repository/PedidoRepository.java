@@ -5,13 +5,14 @@ import br.com.rdevs.ecommerce.pedido.model.entity.TbPedido;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @Repository
-public interface PedidoRepository extends JpaRepository<TbPedido, Long> {
+public interface PedidoRepository extends JpaRepository<TbPedido, BigInteger> {
 
-     List<TbPedido> findByClienteIdCliente(Long idCliente);
+     List<TbPedido> findByClienteIdCliente(BigInteger idCliente);
 
-     TbPedido findByIdPedido(Long idPedido);
+     TbPedido findByIdPedido(BigInteger idPedido);
 
 }

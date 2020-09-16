@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 @Entity
 @Table(name= "TB_TC_CUPOM_ITEM")
@@ -22,7 +23,7 @@ public class TbTcCupomItem implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_CUPOM_ITEM")
-    private Long idCupomItem;
+    private BigInteger idCupomItem;
 
     @Column(name = "PC_DESCONTO")
     private BigDecimal pcDesconto;

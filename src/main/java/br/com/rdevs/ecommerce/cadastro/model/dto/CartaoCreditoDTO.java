@@ -2,17 +2,19 @@ package br.com.rdevs.ecommerce.cadastro.model.dto;
 
 import lombok.Data;
 
+import java.math.BigInteger;
+
 
 @Data
 public class CartaoCreditoDTO {
 
-    private Long idCartaoCredito;
+    private BigInteger idCartaoCredito;
 
     private String nrNumeroCartao;
 
     private String nmNomeTitular;
 
-    private Long idCliente;
+    private BigInteger idCliente;
 
 
 

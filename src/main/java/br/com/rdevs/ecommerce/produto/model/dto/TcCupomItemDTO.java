@@ -5,13 +5,14 @@ import lombok.Data;
 
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 @Data
 public class TcCupomItemDTO {
 
-    private Long idTcCupom;
+    private BigInteger idTcCupom;
 
-    private Long idCupomItem;
+    private BigInteger idCupomItem;
 
     private BigDecimal pcDesconto;
 

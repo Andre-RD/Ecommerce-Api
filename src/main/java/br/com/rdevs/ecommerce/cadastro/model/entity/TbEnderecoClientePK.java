@@ -5,13 +5,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 
 
 @Data
 @NoArgsConstructor
 public class TbEnderecoClientePK implements Serializable {
-    private Long idCliente;
+    private BigInteger idCliente;
 
 
-    private Long idEndereco;
+    private BigInteger idEndereco;
 }
