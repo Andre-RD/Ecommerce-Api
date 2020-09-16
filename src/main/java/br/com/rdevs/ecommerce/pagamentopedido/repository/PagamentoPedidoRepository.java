@@ -10,4 +10,7 @@ import java.util.List;
 @Repository
 public interface PagamentoPedidoRepository extends JpaRepository<TbPagamentoPedido, BigInteger> {
 //    List<TbPagamentoPedido> findByNmNomeTitular(String nmNomeTitular); // select da tabela onde nome for = ?
+
+    List<TbPagamentoPedido> findByDocumentoFiscalIdDocumentoFiscal(BigInteger idDocumentoFiscal);
+
 }

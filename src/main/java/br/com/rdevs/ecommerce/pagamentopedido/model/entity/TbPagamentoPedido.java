@@ -39,6 +39,7 @@ public class TbPagamentoPedido implements Serializable {
     private TbPedido tbPedidoEntity;
 
     @OneToOne
+    @JsonIgnore
     @JoinColumn(name = "ID_TIPO_PAGAMENTO")
     private TbTipoPagamento tipoPagamento;
 
@@ -50,6 +51,7 @@ public class TbPagamentoPedido implements Serializable {
 
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "ID_ENDERECO")
     private TbEndereco tbEndereco;
 

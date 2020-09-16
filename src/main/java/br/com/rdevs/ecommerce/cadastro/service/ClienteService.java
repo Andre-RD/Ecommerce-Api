@@ -157,7 +157,7 @@ public class ClienteService {
 
             return clienteDTO;
         } else {
-            TbCliente clienteEntity = cadastroRepository.findByDsEmail(login.getLogin());
+            TbCliente clienteEntity = cadastroRepository.findByDsEmail(login.getLogin()).get(0);
             ClienteDTO clienteDTO = cadastroBO.parseToDTO(clienteEntity);
             List<EnderecoDTO> enderecoDTOS = new ArrayList<>();
             for (TbEndereco enderecoEntity: clienteEntity.getEnderecos()){
@@ -262,5 +262,7 @@ public class ClienteService {
     }
 
 
-
+    public List<TbCliente> buscarPorNmEmail(String nmEmail) {
+        return cadastroRepository.findByDsEmail(nmEmail);
+    }
 }

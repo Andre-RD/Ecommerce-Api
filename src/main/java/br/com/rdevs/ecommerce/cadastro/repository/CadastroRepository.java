@@ -14,7 +14,9 @@ public interface CadastroRepository extends JpaRepository<TbCliente, BigInteger>
 
     TbCliente findByIdCliente(BigInteger idCliente);
 
-    TbCliente findByDsEmail(String dsEmail);
+    //TbCliente findByDsEmail(String dsEmail);
+
+    List<TbCliente> findByDsEmail(String dsEmail);
 
 
 }

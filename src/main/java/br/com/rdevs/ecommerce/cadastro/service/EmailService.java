@@ -1,6 +1,7 @@
 package br.com.rdevs.ecommerce.cadastro.service;
 
 
+import br.com.rdevs.ecommerce.cadastro.model.dto.ClienteLoja;
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbCliente;
 import br.com.rdevs.ecommerce.cadastro.repository.CadastroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class EmailService {
                 return null;
             }
         } else {
-            TbCliente clienteEntity = cadastroRepository.findByDsEmail(esqueciSenha);
+            TbCliente clienteEntity = cadastroRepository.findByDsEmail(esqueciSenha).get(0);
             if (clienteEntity != null) {
                 String email = clienteEntity.getDsEmail();
 
@@ -40,6 +41,16 @@ public class EmailService {
 
     }
 
+    public String clienteLoja(ClienteLoja clienteLoja){
+       TbCliente cliente = cadastroRepository.findByNrCpf(clienteLoja.getNrCpf());
+       if (cliente!=null){
+           String email = clienteLoja.getNmEmail();
+
+           return email;
+       }else {
+           return null;
+       }
+    }
 
 
 }

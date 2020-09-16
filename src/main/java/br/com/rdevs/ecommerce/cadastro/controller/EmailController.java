@@ -1,6 +1,7 @@
 package br.com.rdevs.ecommerce.cadastro.controller;
 
 import br.com.rdevs.ecommerce.cadastro.model.dto.ClienteDTO;
+import br.com.rdevs.ecommerce.cadastro.model.dto.ClienteLoja;
 import br.com.rdevs.ecommerce.cadastro.model.dto.ResultData;
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbCliente;
 import br.com.rdevs.ecommerce.cadastro.repository.CadastroRepository;
@@ -85,7 +86,52 @@ public class EmailController{
             resultData = new ResultData(HttpStatus.BAD_REQUEST.value(), "Email ou cpf não cadastrado!!");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resultData);
         }else {
-            TbCliente cliente = cadastroRepository.findByDsEmail(email);
+            TbCliente cliente = cadastroRepository.findByDsEmail(email).get(0);
+            String[] carct = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
+                    "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B",
+                    "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+
+            String senha = "";
+
+            for (int x = 0; x < 10; x++) {
+                int j = (int) (Math.random() * carct.length);
+                senha += carct[j];
+            }
+
+            cliente.setPwCliente(Base64.getEncoder().encodeToString(senha.getBytes()));
+            cadastroRepository.save(cliente);
+
+
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setText("Essa é uma mensagem automatica favor não responder!!\n");
+            message.setText("Foi solicitado a alteração da senha, sua nova senha é: " + senha);
+            message.setSubject("Alteração de senha:");
+            message.setTo(email);
+            message.setFrom("ecommerceraiadrogasil1@gmail.com");
+
+
+            try {
+                mailSender.send(message);
+                resultData = new ResultData<ClienteDTO>(HttpStatus.OK.value(), "Email enviado com sucesso!");
+                return ResponseEntity.status(HttpStatus.OK).body(resultData);
+            } catch (Exception e) {
+                e.printStackTrace();
+                resultData = new ResultData(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Email não cadastrado!!", e.getMessage());
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value()).body(resultData);
+            }
+        }
+
+    }
+
+    @PutMapping(value = "/clienteLoja")
+    public ResponseEntity clienteLoja(@RequestBody ClienteLoja clienteLoja){
+    String email = service.clienteLoja(clienteLoja);
+        ResultData resultData = null;
+        if (email==null) {
+            resultData = new ResultData(HttpStatus.BAD_REQUEST.value(), "cpf não cadastrado!!");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resultData);
+        }else {
+            TbCliente cliente = cadastroRepository.findByNrCpf(clienteLoja.getNrCpf());
             String[] carct = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
                     "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B",
                     "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};

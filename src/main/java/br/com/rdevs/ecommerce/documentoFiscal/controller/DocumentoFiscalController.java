@@ -7,6 +7,7 @@ import br.com.rdevs.ecommerce.cadastro.service.ClienteService;
 import br.com.rdevs.ecommerce.cadastro.service.bo.CartaoCreditoBO;
 import br.com.rdevs.ecommerce.documentoFiscal.model.dto.PostDocumentoFiscalDTO;
 import br.com.rdevs.ecommerce.documentoFiscal.service.DocumentoFiscalService;
+import br.com.rdevs.ecommerce.pagamentopedido.repository.PagamentoPedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
@@ -28,6 +29,9 @@ public class DocumentoFiscalController {
 
     @Autowired
     CadastroRepository cadastroRepository;
+
+    @Autowired
+    PagamentoPedidoRepository pagamentoPedidoRepository;
 
     @GetMapping("/documentoFiscalId/{idDocumentoFiscal}")
     public ResponseEntity buscarPorIDnota(@PathVariable("idDocumentoFiscal") BigInteger idDocumentoFiscal){
@@ -57,9 +61,16 @@ public class DocumentoFiscalController {
         }
     }
 
+
+
     @PostMapping("/enviaEmail/{idDocumentoFiscal}")
     public ResponseEntity enviaEmail(@PathVariable("idDocumentoFiscal") BigInteger idDocumentoFiscal){
         return ResponseEntity.ok().body(documentoFiscalService.listaDocumentosPorID(idDocumentoFiscal));
+    }
+
+    @GetMapping("/testeEmail/{idDocumentoFiscal}")
+    public ResponseEntity testeEmail(@PathVariable("idDocumentoFiscal") BigInteger idDocumentoFiscal){
+      return ResponseEntity.ok().body(pagamentoPedidoRepository.findByDocumentoFiscalIdDocumentoFiscal(idDocumentoFiscal));
     }
 
 

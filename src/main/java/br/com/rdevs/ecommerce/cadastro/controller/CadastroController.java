@@ -47,12 +47,19 @@ public class CadastroController {
         return ResponseEntity.ok().body(service.buscarPorId(idCliente));
     }
 
+    @GetMapping("/listarPorEmail/{nmEmail}")
+    @RolesAllowed(value = "ADMIN")
+    public ResponseEntity buscarPorNmEmail(@PathVariable("nmEmail") String nmEmail){
+        return ResponseEntity.ok().body(service.buscarPorNmEmail(nmEmail));
+    }
+
+
     @PostMapping("/novoCadastro")
     @RolesAllowed(value = "ADMIN")
     public ResponseEntity<Object> salvarCadastro(@RequestBody ClienteDTO clienteDTO){
         ResultData resultData = null;
         TbCliente clienteCpf = repository.findByNrCpf(clienteDTO.getNrCpf());
-        TbCliente clienteEmail = repository.findByDsEmail(clienteDTO.getDsEmail());
+        TbCliente clienteEmail = repository.findByDsEmail(clienteDTO.getDsEmail()).get(0);
         TbCliente tbCliente = service.inserir(clienteDTO);
         if (clienteCpf != null) {
             resultData = new ResultData(HttpStatus.BAD_REQUEST.value(), "CPF JÁ CADASTRADO");
