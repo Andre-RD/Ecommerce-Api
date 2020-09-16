@@ -34,6 +34,8 @@ import br.com.rdevs.ecommerce.produto.repository.CupomItemRepository;
 import br.com.rdevs.ecommerce.produto.repository.CupomRepository;
 import br.com.rdevs.ecommerce.produto.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -77,6 +79,9 @@ public class DocumentoFiscalService {
 
     @Autowired
     CartaoRepository cartaoRepository;
+
+    @Autowired
+    private JavaMailSender mailSender;
 
     @Autowired
     CartaoCreditoBO cartaoCreditoBO;
@@ -193,6 +198,7 @@ public class DocumentoFiscalService {
         TbCliente tbCliente = cadastroRepository.getOne(dfDTO.getIdCliente());
         documentoFiscalDTO.setNrCpf(tbCliente.getNrCpf());
 
+        documentoFiscalDTO.setDsEmail(tbCliente.getDsEmail());
         dfEntity.setTbCliente(tbCliente);
         pedidoEntity.setCliente(tbCliente);
 
@@ -363,6 +369,32 @@ public class DocumentoFiscalService {
 
 
         return documentoFiscalDTO;
+    }
+
+
+    public void enviarNota (@RequestBody DocumentoFiscalDTO documentoFiscalDTO){
+        String emailDestino = documentoFiscalDTO.getDsEmail();
+        SimpleMailMessage email = new SimpleMailMessage();
+        email.setTo(emailDestino);
+        email.setSubject("Raia Drogasil SA Ecommerce");
+
+        String corpoEmail = "";
+
+
+        for (DocumentoFiscalItemDTO itensVendidoDTO : documentoFiscalDTO.getItensDocumento() ) {
+            corpoEmail +=
+                    "\n Produtos:\n"  +                                                                                    // Título
+                            " " + itensVendidoDTO.getNrItemDocumento() + "-" +
+                            " "+ itensVendidoDTO.getQtItem()+ " X " +                                                            // Quantidade do produto
+                            itensVendidoDTO.getNmProduto() +                                                   // Descrição do Produto
+                            "\n valor R$ " + itensVendidoDTO.getVlItemUnitario()+ "\n";                           // Valor Total do PRODUTO
+        }
+
+        email.setText("RD Gente que cuida de Gente \nAqui está o seu cupom!\n"                                              // Título do E-mail
+                + corpoEmail +                                                                                              // Corpo do E-mail, ta declarado aqui em cima
+                "\n\nTotal Compra R$ " + documentoFiscalDTO.getValorTotalNota());                                                                                            // Total da compra toda
+
+        mailSender.send(email);                                                                                             // Enviar
     }
 
 

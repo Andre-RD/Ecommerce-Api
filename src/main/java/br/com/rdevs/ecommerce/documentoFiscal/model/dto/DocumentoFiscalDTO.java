@@ -20,6 +20,8 @@ public class DocumentoFiscalDTO {
 
    private Long nrChaveAcesso;
 
+   private String dsEmail;
+
    private Long nrNF;
 
    private Date dtEmissao;

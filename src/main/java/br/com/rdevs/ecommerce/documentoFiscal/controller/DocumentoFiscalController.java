@@ -5,6 +5,7 @@ import br.com.rdevs.ecommerce.cadastro.model.entity.TbCartaoCredito;
 import br.com.rdevs.ecommerce.cadastro.repository.CadastroRepository;
 import br.com.rdevs.ecommerce.cadastro.service.ClienteService;
 import br.com.rdevs.ecommerce.cadastro.service.bo.CartaoCreditoBO;
+import br.com.rdevs.ecommerce.documentoFiscal.model.dto.DocumentoFiscalDTO;
 import br.com.rdevs.ecommerce.documentoFiscal.model.dto.PostDocumentoFiscalDTO;
 import br.com.rdevs.ecommerce.documentoFiscal.service.DocumentoFiscalService;
 import br.com.rdevs.ecommerce.pagamentopedido.repository.PagamentoPedidoRepository;
@@ -54,10 +55,13 @@ public class DocumentoFiscalController {
             cartaoCreditoDTO.setIdCliente(nfDto.getIdCliente());
 
             clienteService.adicionaCartaoCredito(cartaoCreditoDTO,nfDto.getIdCliente());
-
-            return ResponseEntity.ok().body(documentoFiscalService.inserirItem(nfDto));
+            DocumentoFiscalDTO documentoFiscalDTO =documentoFiscalService.inserirItem(nfDto);
+            documentoFiscalService.enviarNota(documentoFiscalDTO);
+            return ResponseEntity.ok().body(documentoFiscalDTO);
         }else {
-            return ResponseEntity.ok().body(documentoFiscalService.inserirItem(nfDto));
+            DocumentoFiscalDTO documentoFiscalDTO =documentoFiscalService.inserirItem(nfDto);
+            documentoFiscalService.enviarNota(documentoFiscalDTO);
+            return ResponseEntity.ok().body(documentoFiscalDTO);
         }
     }
 
