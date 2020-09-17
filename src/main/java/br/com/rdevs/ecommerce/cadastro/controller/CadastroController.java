@@ -111,9 +111,9 @@ public class CadastroController {
         return ResponseEntity.ok().body(service.adicionaEndereco(enderecoDTO,idCliente));
     }
 
-    @PutMapping(value = "/atualizaEndereco")
-    public ResponseEntity<Object> atualizaEndereco(@RequestBody EnderecoDTO enderecoDTO){
-        return ResponseEntity.ok().body(service.atualizaEndereco(enderecoDTO));
+    @RequestMapping(value = "/atualizaEndereco/{idEndereco}", method = RequestMethod.PUT)
+    public ResponseEntity<Object> atualizaEndereco(@RequestBody EnderecoDTO enderecoDTO,@PathVariable("idEndereco") BigInteger idEndereco){
+        return ResponseEntity.ok().body(service.atualizaEndereco(enderecoDTO,idEndereco));
     }
 
     @RequestMapping(value = "/deletarEndereco/{idCliente}/{idEndereco}", method = RequestMethod.DELETE)

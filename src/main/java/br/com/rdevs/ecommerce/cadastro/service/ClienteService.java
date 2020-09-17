@@ -193,7 +193,8 @@ public class ClienteService {
         return cadastroRepository.save(clienteEntity);
     }
 
-    public TbEndereco atualizaEndereco(EnderecoDTO enderecoDTO){
+    public TbEndereco atualizaEndereco(EnderecoDTO enderecoDTO, BigInteger idEndereco){
+        enderecoDTO.setIdEndereco(idEndereco);
         TbEndereco enderecoNovo = enderecoBO.parseToEntity(enderecoDTO, null);
         return  enderecoRepository.save(enderecoNovo);
     }
