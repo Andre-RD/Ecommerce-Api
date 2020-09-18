@@ -108,8 +108,6 @@ public class ClienteService {
             return null;
         }
 
-
-
     }
 
     public TbCliente atualizar(ClienteDTO clienteDTO){

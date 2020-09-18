@@ -71,11 +71,6 @@ public class ProdutoController {
         return ResponseEntity.ok().body(service.produtosDestaquesSemana());
     }
 
-    @ApiOperation(value = "Buscar Produtos dos cards de Destaque da semana")
-    @GetMapping("/produtos/destaqueSemana2")
-    public ResponseEntity produtosDestaquesdaSemana2() {
-        return ResponseEntity.ok().body(service.produtosDestaquesSemana2());
-    }
 
 
     @ApiOperation(value = "Buscar Produtos dos cards de populares")
@@ -87,18 +82,17 @@ public class ProdutoController {
 
 
 
-    @ApiOperation(value = "Buscar Produto Por Sub Categoria")
-    @RequestMapping(value = "/produtos/subcategoria/{idSubCategoria}",method = RequestMethod.GET)
-    public ResponseEntity buscarPorSubCategoria(@PathVariable("idSubCategoria") BigInteger idSubCategoria,@RequestParam(value = "idCliente", required=false) BigInteger idCliente){
-        if (idCliente==null){
-            idCliente= BigInteger.valueOf(1L);
-            return ResponseEntity.ok().body(service.buscarPorSubCategoria(idSubCategoria, idCliente));
-        }
-        else {
-            return ResponseEntity.ok().body(service.buscarPorSubCategoria(idSubCategoria, idCliente));
-        }
-
-    }
+//    @ApiOperation(value = "Buscar Produto Por Sub Categoria")
+//    @RequestMapping(value = "/produtos/subcategoria/{idSubCategoria}",method = RequestMethod.GET)
+//    public ResponseEntity buscarPorSubCategoria(@PathVariable("idSubCategoria") BigInteger idSubCategoria,@RequestParam(value = "idCliente", required=false) BigInteger idCliente){
+//        if (idCliente==null){
+//            idCliente= BigInteger.valueOf(1L);
+//            return ResponseEntity.ok().body(service.buscarPorSubCategoria(idSubCategoria, idCliente));
+//        }
+//        else {
+//            return ResponseEntity.ok().body(service.buscarPorSubCategoria(idSubCategoria, idCliente));
+//        }
+//    }
 
     @ApiOperation(value = "Buscar Produto Por Sub Categoria2")
     @RequestMapping(value = "/produtos/subcategoria2/{idSubCategoria}",method = RequestMethod.GET)
@@ -147,7 +141,20 @@ public class ProdutoController {
 
 
 
-
+    @ApiOperation(value = "Buscar Produto Por Sub Categoria")
+    @RequestMapping(value = "/produtos/subcategoria/{idSubCategoria}",method = RequestMethod.GET)
+    public ResponseEntity buscarPorSubCategoriaFiltro(@PathVariable("idSubCategoria") BigInteger idSubCategoria,@RequestParam(value = "nomeFabricante", required=false) String nomeFabricante,@RequestParam(value = "idPreco", required=false) Integer idPreco ){
+//        if (nomeFabricante == null && idPreco == null){
+//            return ResponseEntity.ok().body(service.buscarPorSubCategoriaComFiltro(idSubCategoria, "Nulo",7));
+//        }else if (idPreco == null){
+//            return ResponseEntity.ok().body(service.buscarPorSubCategoriaComFiltro(idSubCategoria, nomeFabricante,7));
+//        }else if (nomeFabricante == null ){
+//            return ResponseEntity.ok().body(service.buscarPorSubCategoriaComFiltro(idSubCategoria, "Nulo",idPreco));
+//        }else {
+//            return ResponseEntity.ok().body(service.buscarPorSubCategoriaComFiltro(idSubCategoria, nomeFabricante,idPreco));
+//        }
+        return ResponseEntity.ok().body(service.buscarPorSubCategoriaComFiltro(idSubCategoria, nomeFabricante,idPreco));
+    }
 
 
 

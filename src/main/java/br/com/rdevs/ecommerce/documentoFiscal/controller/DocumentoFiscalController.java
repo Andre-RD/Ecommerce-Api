@@ -47,7 +47,7 @@ public class DocumentoFiscalController {
     @PostMapping("/adicionaNota")
     public ResponseEntity inserirNotaF(@RequestBody PostDocumentoFiscalDTO nfDto){
 
-        if (nfDto.getSalvarCartao()){
+        if (nfDto.getSalvarCartao()&&nfDto.getIdFormaPagamento()==BigInteger.valueOf(1)){
             CartaoCreditoDTO cartaoCreditoDTO = new CartaoCreditoDTO();
 
             cartaoCreditoDTO.setNrNumeroCartao(nfDto.getNrNumeroCartao());

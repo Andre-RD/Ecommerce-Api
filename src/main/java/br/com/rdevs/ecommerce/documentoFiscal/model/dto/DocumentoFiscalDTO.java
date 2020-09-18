@@ -1,5 +1,6 @@
 package br.com.rdevs.ecommerce.documentoFiscal.model.dto;
 
+import br.com.rdevs.ecommerce.cadastro.model.entity.TbEndereco;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -28,7 +29,13 @@ public class DocumentoFiscalDTO {
 
    private BigInteger nrPedido;
 
+   private BigInteger idFormaPagamento;
+
+   private String formaPagamento;
+
    private String nrNumeroCartao;
+
+   private TbEndereco endereco;
 
    private String nmNomeTitular;
 

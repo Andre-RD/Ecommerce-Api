@@ -189,9 +189,12 @@ public class DocumentoFiscalService {
         TbTcCupom tcCupom = cupomRepository.findByClienteIdCliente(dfDTO.getIdCliente());
 
         TbEndereco endereco = enderecoRepository.getOne(dfDTO.getIdEndereco());
+        documentoFiscalDTO.setEndereco(endereco);
         TbTipoPagamento tipoPagamento = tipoPagamentoRepository.getOne(dfDTO.getIdFormaPagamento());
+        documentoFiscalDTO.setFormaPagamento(tipoPagamento.getDsTipoPagamento());
+        documentoFiscalDTO.setIdFormaPagamento(tipoPagamento.getIdTipoPagamento());
 
-        Calendar data = Calendar.getInstance();
+        Date data = new Date();
         Random random = new Random();
         Long numeroAleatorio =Math.abs(random.nextLong()*100);
 
@@ -212,9 +215,9 @@ public class DocumentoFiscalService {
         dfEntity.setNrNF(2001L);
         documentoFiscalDTO.setNrNF(2001L);
 
-        dfEntity.setDtEmissao(data.getTime());
-        documentoFiscalDTO.setDtEmissao(data.getTime());
-        pedidoEntity.setDtCompra(data.getTime());
+        dfEntity.setDtEmissao(data);
+        documentoFiscalDTO.setDtEmissao(data);
+        pedidoEntity.setDtCompra(data);
 
 
         List<TbDocumentoItem> itensNF = new ArrayList<>();
@@ -225,6 +228,8 @@ public class DocumentoFiscalService {
         Integer contador = 0;
         Long contadorItens = 0L;
         double calculoIcms = 0d;
+
+
         for (PostDocumentoFiscalItemDTO itemDTO: dfDTO.getItensDTOPost()){
             Double pcDensconto = 1D;
             Double valorConvertido = null;
@@ -333,8 +338,7 @@ public class DocumentoFiscalService {
 
         pagamentoPedidoEntity.setTbEndereco(endereco);
         if (dfDTO.getNrNumeroCartao()!=null) {
-            pagamentoPedidoEntity.setNmNomeTitular(dfDTO.getNmNomeTitular());
-            documentoFiscalDTO.setNmNomeTitular(dfDTO.getNmNomeTitular());
+
 
             String cartaoConvertido = dfDTO.getNrNumeroCartao();
             List<TbCartaoCredito> cartaoCredito = cartaoRepository.findByClienteCartaoIdCliente(dfDTO.getIdCliente());
@@ -346,16 +350,21 @@ public class DocumentoFiscalService {
 
                     cartaoConvertido = decodedString;
                     String ultimosDigitos = "****.****.****." + decodedString.substring(decodedString.length() - 4);
-
-                    pagamentoPedidoEntity.setNrNumeroCartao(Base64.getEncoder().encodeToString(cartaoConvertido.getBytes()));
-
-                    documentoFiscalDTO.setNrNumeroCartao(ultimosDigitos);
+                    if (dfDTO.getIdFormaPagamento()==BigInteger.valueOf(1)) {
+                        pagamentoPedidoEntity.setNmNomeTitular(dfDTO.getNmNomeTitular());
+                        documentoFiscalDTO.setNmNomeTitular(dfDTO.getNmNomeTitular());
+                        pagamentoPedidoEntity.setNrNumeroCartao(Base64.getEncoder().encodeToString(cartaoConvertido.getBytes()));
+                        documentoFiscalDTO.setNrNumeroCartao(ultimosDigitos);
+                    }
                 }
             } else {
                 String ultimosDigitos = "****.****.****." + cartaoConvertido.substring(cartaoConvertido.length() - 4);
-                pagamentoPedidoEntity.setNrNumeroCartao(Base64.getEncoder().encodeToString(cartaoConvertido.getBytes()));
-
-                documentoFiscalDTO.setNrNumeroCartao(ultimosDigitos);
+                if (dfDTO.getIdFormaPagamento()==BigInteger.valueOf(1)) {
+                    pagamentoPedidoEntity.setNmNomeTitular(dfDTO.getNmNomeTitular());
+                    documentoFiscalDTO.setNmNomeTitular(dfDTO.getNmNomeTitular());
+                    pagamentoPedidoEntity.setNrNumeroCartao(Base64.getEncoder().encodeToString(cartaoConvertido.getBytes()));
+                    documentoFiscalDTO.setNrNumeroCartao(ultimosDigitos);
+                }
             }
         }
 
@@ -378,20 +387,47 @@ public class DocumentoFiscalService {
         email.setTo(emailDestino);
         email.setSubject("Raia Drogasil SA Ecommerce");
 
-        String corpoEmail = "";
+        String corpoEmail = "\n          Produtos:\n";
+        String opcaoPagamento = "";
+        String enderecoEntrega= "";
 
 
-        for (DocumentoFiscalItemDTO itensVendidoDTO : documentoFiscalDTO.getItensDocumento() ) {
-            corpoEmail +=
-                    "\n Produtos:\n"  +                                                                                    // Título
-                            " " + itensVendidoDTO.getNrItemDocumento() + "-" +
-                            " "+ itensVendidoDTO.getQtItem()+ " X " +                                                            // Quantidade do produto
-                            itensVendidoDTO.getNmProduto() +                                                   // Descrição do Produto
-                            "\n valor R$ " + itensVendidoDTO.getVlItemUnitario()+ "\n";                           // Valor Total do PRODUTO
+        if(documentoFiscalDTO.getIdFormaPagamento()==BigInteger.valueOf(1)){
+            opcaoPagamento+="\n          Opção de Pagamento \n" +
+                    "Forma de Pagamento: " +documentoFiscalDTO.getFormaPagamento()+ " \n"+
+                    "Nome Do Titular: " +documentoFiscalDTO.getNmNomeTitular()+ " \n"+
+                    "Numero do Cartão: "+documentoFiscalDTO.getNrNumeroCartao()+ " \n";
+        }else if (documentoFiscalDTO.getIdFormaPagamento()==BigInteger.valueOf(2)){
+            opcaoPagamento+="\n Opção de Pagamento \n" +
+                    "Forma de Pagamento: " +documentoFiscalDTO.getFormaPagamento()+ " \n";
+        }else {
+            opcaoPagamento+="\n Opção de Pagamento \n" +
+                    "Forma de Pagamento: " +documentoFiscalDTO.getFormaPagamento()+ " \n";
         }
 
-        email.setText("RD Gente que cuida de Gente \nAqui está o seu cupom!\n"                                              // Título do E-mail
-                + corpoEmail +                                                                                              // Corpo do E-mail, ta declarado aqui em cima
+        enderecoEntrega+="\n          Endereço De Entrega: \n" +
+                "Logradouro: " +documentoFiscalDTO.getEndereco().getDsEndereco()+ " \n" +
+                "Numero:     " +documentoFiscalDTO.getEndereco().getNrEndereco()+ " \n" +
+                "CEP:        " +documentoFiscalDTO.getEndereco().getNrCep()+ " \n" +
+                "Bairro:     " +documentoFiscalDTO.getEndereco().getDsBairro() + " \n"+
+                "Cidade:     " +documentoFiscalDTO.getEndereco().getDsCidade()+" - "+documentoFiscalDTO.getEndereco().getSgEstado()+" \n";
+
+        Double valorTotal = 0d;
+        for (DocumentoFiscalItemDTO itensVendidoDTO : documentoFiscalDTO.getItensDocumento() ) {
+            valorTotal = 0d;
+            valorTotal = itensVendidoDTO.getQtItem()*itensVendidoDTO.getVlItemUnitario().doubleValue();
+            corpoEmail +=
+                            " "+ itensVendidoDTO.getNrItemDocumento() + "º " +
+                            " "+ itensVendidoDTO.getQtItem()+ " X " +                                                            // Quantidade do produto
+                            itensVendidoDTO.getNmProduto() + " \n"+                                                  // Descrição do Produto
+                            " Valor Unitario : R$ " + itensVendidoDTO.getVlItemUnitario()+ "\n"+
+                            " Valor Total :    R$ " +(BigDecimal.valueOf(valorTotal).setScale(2, RoundingMode.HALF_EVEN))+" \n\n";
+        }
+
+        email.setText("RD Gente que cuida de Gente \nAqui está o seu cupom!\n"+                                              // Título do E-mail
+                opcaoPagamento+
+                enderecoEntrega+
+                 corpoEmail +                                                                                              // Corpo do E-mail, ta declarado aqui em cima
                 "\n\nTotal Compra R$ " + documentoFiscalDTO.getValorTotalNota());                                                                                            // Total da compra toda
 
         mailSender.send(email);                                                                                             // Enviar
