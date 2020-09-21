@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e1737c85-d18e-41cb-b698-a8194f8fb3b8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/controller/CadastroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/controller/CadastroController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/ClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/ClienteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/controller/DocumentoFiscalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/controller/DocumentoFiscalController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/model/dto/DocumentoFiscalDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/model/dto/DocumentoFiscalDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/service/DocumentoFiscalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/service/DocumentoFiscalService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/controller/ProdutoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/controller/ProdutoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/service/ProdutoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/service/ProdutoService.java" afterDir="false" />
     </list>
@@ -26,8 +22,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -99,26 +95,30 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1599060199660" />
+    <state x="272" y="0" key="CommitChangelistDialog2" timestamp="1600694659764">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="272" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1600694659764" />
     <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1599699350879">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1599699350879" />
-    <state width="1323" height="109" key="GridCell.Tab.0.bottom" timestamp="1600431956525">
+    <state width="1323" height="172" key="GridCell.Tab.0.bottom" timestamp="1600696863492">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="109" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1600431956525" />
-    <state width="1323" height="109" key="GridCell.Tab.0.center" timestamp="1600431956524">
+    <state width="1323" height="172" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1600696863492" />
+    <state width="1323" height="172" key="GridCell.Tab.0.center" timestamp="1600696863492">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="109" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1600431956524" />
-    <state width="1323" height="109" key="GridCell.Tab.0.left" timestamp="1600431956524">
+    <state width="1323" height="172" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1600696863492" />
+    <state width="1323" height="172" key="GridCell.Tab.0.left" timestamp="1600696863492">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="109" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1600431956524" />
-    <state width="1323" height="109" key="GridCell.Tab.0.right" timestamp="1600431956524">
+    <state width="1323" height="172" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1600696863492" />
+    <state width="1323" height="172" key="GridCell.Tab.0.right" timestamp="1600696863492">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="109" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1600431956524" />
+    <state width="1323" height="172" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1600696863492" />
     <state width="1323" height="250" key="GridCell.Tab.1.bottom" timestamp="1599771682841">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

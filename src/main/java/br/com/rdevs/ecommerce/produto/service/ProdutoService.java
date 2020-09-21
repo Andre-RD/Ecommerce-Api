@@ -184,95 +184,7 @@ public class ProdutoService {
 
 
 
-    public List<ProdutoDTO> buscarPorNome(String nomeFantasia) {
 
-        Map<BigInteger, ProdutoDTO> map = new HashMap<>();
-        Query query = manager.createNativeQuery("select\n" +
-                "P.CD_PRODUTO,\n" + //0
-                "P.NM_FANTASIA,\n" +//1
-                "P.NM_FABRICANTE,\n" +//2
-                "P.VL_UNIDADE,\n" +//3
-                "P.DS_PRODUTO,\n" +//4
-                "TPI.ID_IMAGEM,\n" +//5
-                "TPI.DS_URL,\n" +//6
-                "TCP.ID_CATEGORIA,\n" +//7
-                "TCP.DS_CATEGORIA,\n" +//8
-                "TSCP.ID_SUB_CATEGORIA,\n" +//9
-                "TSCP.DS_SUB_CATEGORIA,\n" +//10
-                "TSP.ID_STATUS_PRODUTO,\n" +//11
-                "TSP.DS_STATUS_PRODUTO,\n" +//12
-                "TPFE.CD_FILIAL,\n" +//13
-                "TPFE.QT_ESTOQUE,\n" +//14
-                "TPFE.QT_EMPENHO,\n" +//15
-                "TPFE.QT_BASE,\n" +//16
-                "TPFE.CD_ESTOQUE\n" +//17
-                "\n" +
-                "from TB_PRODUTO P, TB_PRODUTO_IMAGEM TPI, TB_CATEGORIA_PRODUTO TCP,TB_SUB_CATEGORIA_PRODUTO TSCP, TB_STATUS_PRODUTO TSP, TB_PRODUTO_FILIAL_ESTOQUE TPFE\n" +
-                "where P.CD_PRODUTO = TPI.CD_PRODUTO\n" +
-                "AND P.ID_CATEGORIA = TCP.ID_CATEGORIA\n" +
-                "AND P.ID_SUB_CATEGORIA = TSCP.ID_SUB_CATEGORIA\n" +
-                "AND P.ID_STATUS_PRODUTO= TSP.ID_STATUS_PRODUTO\n" +
-                "AND TPFE.CD_PRODUTO = P.CD_PRODUTO\n" +
-                "AND TPFE.CD_FILIAL=4\n" +
-                "AND P.NM_FANTASIA like '%"+nomeFantasia+"%' "+
-                "ORDER BY P.CD_PRODUTO");
-
-        List<Object []> listEntity = query.getResultList();
-        Double pcDensconto = 1D;
-        Double valorConvertido = null;
-        for (Object [] produto: listEntity){
-            Integer codigo = ((BigInteger) produto [0]).intValue();
-            ProdutoDTO produtoDTO = null;
-            if(!map.containsKey(codigo)){
-                produtoDTO = new ProdutoDTO();
-                produtoDTO.setCdProduto((BigInteger) produto [0]);
-                produtoDTO.setNomeFantasia((String) produto [1]);
-                produtoDTO.setNomeFabricante((String) produto [2]);
-                produtoDTO.setValorUnidade((BigDecimal) produto [3]);
-                produtoDTO.setDsProduto((String) produto [4]);
-
-                //tbProdutoImagem
-                ProdutoImagemDTO produtoImagemDTO = new ProdutoImagemDTO();
-                produtoImagemDTO.setCdProduto((BigInteger) produto[0]);
-                produtoImagemDTO.setIdImagem((BigInteger) produto[5]);
-                produtoImagemDTO.setDsUrl((String) produto[6]);
-
-                List<ProdutoImagemDTO> produtosImagemsDTOs = new ArrayList<>();
-                produtosImagemsDTOs.add(produtoImagemDTO);
-                produtoDTO.setImagens(produtosImagemsDTOs);
-
-                //tbCategoria
-                CategoriaProdutoDTO categoriaProdutoDTO = new CategoriaProdutoDTO();
-                categoriaProdutoDTO.setIdCategoriaProduto((BigInteger) produto [7]);
-                categoriaProdutoDTO.setDsCategoriaProduto((String) produto [8]);
-                produtoDTO.setCategoriaProduto(categoriaProdutoDTO);
-
-                //tbSubCategoria
-                SubCategoriaProdutoDTO subCategoriaProdutoDTO = new SubCategoriaProdutoDTO();
-                subCategoriaProdutoDTO.setIdSubCategoria((BigInteger) produto [9]);
-                subCategoriaProdutoDTO.setDsSubCategoria((String) produto [10]);
-                produtoDTO.setSubCategoriaProduto(subCategoriaProdutoDTO);
-
-                produtoDTO.setIdStatusProduto((BigInteger) produto [11]);
-
-                //tbEstoque
-                EstoqueProdutoDTO estoqueProdutoDTO = new EstoqueProdutoDTO();
-                estoqueProdutoDTO.setCdFilial((BigInteger) produto [13]);
-                estoqueProdutoDTO.setQtEstoque((Integer) produto [14]);
-                estoqueProdutoDTO.setQtEmpenho((Integer) produto [15]);
-                produtoDTO.setEstoques(estoqueProdutoDTO);
-
-            }
-
-            if (produto[4]!=null) {
-                map.put(produtoDTO.getCdProduto(), produtoDTO);
-            }
-
-        }
-
-
-        return map.values().stream().collect(Collectors.toList());
-    }
 
     public List<ProdutoDTO> buscarPorCdProduto(BigInteger cdProduto, BigInteger idCliente) {
         List<ProdutoDTO> listaDTO = new ArrayList<>();
@@ -1018,7 +930,9 @@ public class ProdutoService {
             }else if(idPreco == 5){
                 filtro+= "AND P.VL_UNIDADE >= 40 \n" +
                         "AND P.VL_UNIDADE < 50 ";
-            }else{
+//            }else if(idPreco == 6){
+//                filtro+= "AND P.VL_UNIDADE >= 50";
+            }else {
                 filtro+= "AND P.VL_UNIDADE >= 50";
             }
         }else if(nomeFabricante != null && idPreco != null) {
@@ -1037,8 +951,10 @@ public class ProdutoService {
             }else if(idPreco == 5){
                 filtro+= "AND P.VL_UNIDADE >= 40 \n" +
                         "AND P.VL_UNIDADE < 50 ";
-            }else{
-                filtro+= "AND P.VL_UNIDADE >= 50 \n";
+//            }else if(idPreco == 6){
+//                filtro+= "AND P.VL_UNIDADE >= 50 ";
+            }else {
+                filtro+= "AND P.VL_UNIDADE >= 50 ";
             }
         } else {
            filtro+=" ";
@@ -1133,9 +1049,142 @@ public class ProdutoService {
 
 
 
+    public List<ProdutoDTO> buscarPorNome(String nomeFantasia, String nomeFabricante, Integer idPreco) {
+
+        String filtro =  "AND P.NM_FANTASIA like '%"+nomeFantasia+"%' " ;
+
+        if (nomeFabricante != null && idPreco == null ){
+            filtro+= "AND P.NM_FABRICANTE LIKE '%"+ nomeFabricante +"%' \n";
+        }else if (nomeFabricante == null && idPreco != null ){
+            if (idPreco == 1){
+                filtro+= "AND P.VL_UNIDADE < 10 \n";
+            }else if(idPreco == 2){
+                filtro+= "AND P.VL_UNIDADE >= 10 \n" +
+                        "AND P.VL_UNIDADE < 20 ";
+            }else if(idPreco == 3){
+                filtro+= "AND P.VL_UNIDADE >= 20 \n" +
+                        "AND P.VL_UNIDADE < 30 ";
+            }else if(idPreco == 4){
+                filtro+= "AND P.VL_UNIDADE >= 30 \n" +
+                        "AND P.VL_UNIDADE < 40 ";
+            }else if(idPreco == 5){
+                filtro+= "AND P.VL_UNIDADE >= 40 \n" +
+                        "AND P.VL_UNIDADE < 50 ";
+            }else{
+                filtro+= "AND P.VL_UNIDADE >= 50";
+            }
+        }else if(nomeFabricante != null && idPreco != null) {
+            filtro+= "AND P.NM_FABRICANTE LIKE '%"+ nomeFabricante +"%' \n";
+            if (idPreco == 1){
+                filtro+= "AND P.VL_UNIDADE < 10 \n";
+            }else if(idPreco == 2){
+                filtro+= "AND P.VL_UNIDADE >= 10 \n" +
+                        "AND P.VL_UNIDADE < 20 ";
+            }else if(idPreco == 3){
+                filtro+= "AND P.VL_UNIDADE >= 20 \n" +
+                        "AND P.VL_UNIDADE < 30 ";
+            }else if(idPreco == 4){
+                filtro+= "AND P.VL_UNIDADE >= 30 \n" +
+                        "AND P.VL_UNIDADE < 40 ";
+            }else if(idPreco == 5){
+                filtro+= "AND P.VL_UNIDADE >= 40 \n" +
+                        "AND P.VL_UNIDADE < 50 ";
+            }else{
+                filtro+= "AND P.VL_UNIDADE >= 50 \n";
+            }
+        } else {
+            filtro+=" ";
+        }
 
 
 
+        Map<BigInteger, ProdutoDTO> map = new HashMap<>();
+        Query query = manager.createNativeQuery("select\n" +
+                "P.CD_PRODUTO,\n" + //0
+                "P.NM_FANTASIA,\n" +//1
+                "P.NM_FABRICANTE,\n" +//2
+                "P.VL_UNIDADE,\n" +//3
+                "P.DS_PRODUTO,\n" +//4
+                "TPI.ID_IMAGEM,\n" +//5
+                "TPI.DS_URL,\n" +//6
+                "TCP.ID_CATEGORIA,\n" +//7
+                "TCP.DS_CATEGORIA,\n" +//8
+                "TSCP.ID_SUB_CATEGORIA,\n" +//9
+                "TSCP.DS_SUB_CATEGORIA,\n" +//10
+                "TSP.ID_STATUS_PRODUTO,\n" +//11
+                "TSP.DS_STATUS_PRODUTO,\n" +//12
+                "TPFE.CD_FILIAL,\n" +//13
+                "TPFE.QT_ESTOQUE,\n" +//14
+                "TPFE.QT_EMPENHO,\n" +//15
+                "TPFE.QT_BASE,\n" +//16
+                "TPFE.CD_ESTOQUE\n" +//17
+                "\n" +
+                "from TB_PRODUTO P, TB_PRODUTO_IMAGEM TPI, TB_CATEGORIA_PRODUTO TCP,TB_SUB_CATEGORIA_PRODUTO TSCP, TB_STATUS_PRODUTO TSP, TB_PRODUTO_FILIAL_ESTOQUE TPFE\n" +
+                "where P.CD_PRODUTO = TPI.CD_PRODUTO\n" +
+                "AND P.ID_CATEGORIA = TCP.ID_CATEGORIA\n" +
+                "AND P.ID_SUB_CATEGORIA = TSCP.ID_SUB_CATEGORIA\n" +
+                "AND P.ID_STATUS_PRODUTO= TSP.ID_STATUS_PRODUTO\n" +
+                "AND TPFE.CD_PRODUTO = P.CD_PRODUTO\n" +
+                "AND TPFE.CD_FILIAL=4\n" +
+                filtro+
+                "ORDER BY P.CD_PRODUTO");
+
+        List<Object []> listEntity = query.getResultList();
+        Double pcDensconto = 1D;
+        Double valorConvertido = null;
+        for (Object [] produto: listEntity){
+            Integer codigo = ((BigInteger) produto [0]).intValue();
+            ProdutoDTO produtoDTO = null;
+            if(!map.containsKey(codigo)){
+                produtoDTO = new ProdutoDTO();
+                produtoDTO.setCdProduto((BigInteger) produto [0]);
+                produtoDTO.setNomeFantasia((String) produto [1]);
+                produtoDTO.setNomeFabricante((String) produto [2]);
+                produtoDTO.setValorUnidade((BigDecimal) produto [3]);
+                produtoDTO.setDsProduto((String) produto [4]);
+
+                //tbProdutoImagem
+                ProdutoImagemDTO produtoImagemDTO = new ProdutoImagemDTO();
+                produtoImagemDTO.setCdProduto((BigInteger) produto[0]);
+                produtoImagemDTO.setIdImagem((BigInteger) produto[5]);
+                produtoImagemDTO.setDsUrl((String) produto[6]);
+
+                List<ProdutoImagemDTO> produtosImagemsDTOs = new ArrayList<>();
+                produtosImagemsDTOs.add(produtoImagemDTO);
+                produtoDTO.setImagens(produtosImagemsDTOs);
+
+                //tbCategoria
+                CategoriaProdutoDTO categoriaProdutoDTO = new CategoriaProdutoDTO();
+                categoriaProdutoDTO.setIdCategoriaProduto((BigInteger) produto [7]);
+                categoriaProdutoDTO.setDsCategoriaProduto((String) produto [8]);
+                produtoDTO.setCategoriaProduto(categoriaProdutoDTO);
+
+                //tbSubCategoria
+                SubCategoriaProdutoDTO subCategoriaProdutoDTO = new SubCategoriaProdutoDTO();
+                subCategoriaProdutoDTO.setIdSubCategoria((BigInteger) produto [9]);
+                subCategoriaProdutoDTO.setDsSubCategoria((String) produto [10]);
+                produtoDTO.setSubCategoriaProduto(subCategoriaProdutoDTO);
+
+                produtoDTO.setIdStatusProduto((BigInteger) produto [11]);
+
+                //tbEstoque
+                EstoqueProdutoDTO estoqueProdutoDTO = new EstoqueProdutoDTO();
+                estoqueProdutoDTO.setCdFilial((BigInteger) produto [13]);
+                estoqueProdutoDTO.setQtEstoque((Integer) produto [14]);
+                estoqueProdutoDTO.setQtEmpenho((Integer) produto [15]);
+                produtoDTO.setEstoques(estoqueProdutoDTO);
+
+            }
+
+            if (produto[4]!=null) {
+                map.put(produtoDTO.getCdProduto(), produtoDTO);
+            }
+
+        }
+
+
+        return map.values().stream().collect(Collectors.toList());
+    }
 
 
 

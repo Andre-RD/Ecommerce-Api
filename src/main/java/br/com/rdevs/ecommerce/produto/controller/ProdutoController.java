@@ -25,12 +25,6 @@ public class ProdutoController {
     private ProdutoService service;
 
 
-    @ApiOperation(value = "Buscar Produto Por Nome")
-    @GetMapping("/produtos/nomeFantasia/{nomeFantasia}")
-    public ResponseEntity buscarPorProduto(@PathVariable("nomeFantasia") String nomeFantasia) {
-        return ResponseEntity.ok().body(service.buscarPorNome(nomeFantasia));
-    }
-
     @ApiOperation(value = "Buscar Produto Por fabricante")
     @GetMapping("/produtos/fabricante/{nomeFabricante}")
     public ResponseEntity buscarPorFabricante(@PathVariable("nomeFabricante") String nomeFabricante) {
@@ -144,20 +138,42 @@ public class ProdutoController {
     @ApiOperation(value = "Buscar Produto Por Sub Categoria")
     @RequestMapping(value = "/produtos/subcategoria/{idSubCategoria}",method = RequestMethod.GET)
     public ResponseEntity buscarPorSubCategoriaFiltro(@PathVariable("idSubCategoria") BigInteger idSubCategoria,@RequestParam(value = "nomeFabricante", required=false) String nomeFabricante,@RequestParam(value = "idPreco", required=false) Integer idPreco ){
-//        if (nomeFabricante == null && idPreco == null){
-//            return ResponseEntity.ok().body(service.buscarPorSubCategoriaComFiltro(idSubCategoria, "Nulo",7));
-//        }else if (idPreco == null){
-//            return ResponseEntity.ok().body(service.buscarPorSubCategoriaComFiltro(idSubCategoria, nomeFabricante,7));
-//        }else if (nomeFabricante == null ){
-//            return ResponseEntity.ok().body(service.buscarPorSubCategoriaComFiltro(idSubCategoria, "Nulo",idPreco));
-//        }else {
-//            return ResponseEntity.ok().body(service.buscarPorSubCategoriaComFiltro(idSubCategoria, nomeFabricante,idPreco));
-//        }
-        return ResponseEntity.ok().body(service.buscarPorSubCategoriaComFiltro(idSubCategoria, nomeFabricante,idPreco));
+        String comparativo = "0";
+        if (nomeFabricante.equals(comparativo) && idPreco == 0){
+            nomeFabricante="";
+            idPreco=null;
+            return ResponseEntity.ok().body(service.buscarPorSubCategoriaComFiltro(idSubCategoria, nomeFabricante,idPreco));
+        }else if (idPreco == 0){
+            idPreco=null;
+            return ResponseEntity.ok().body(service.buscarPorSubCategoriaComFiltro(idSubCategoria, nomeFabricante,idPreco));
+        }else if (nomeFabricante.equals(comparativo) ){
+            nomeFabricante="";
+            return ResponseEntity.ok().body(service.buscarPorSubCategoriaComFiltro(idSubCategoria, nomeFabricante,idPreco));
+        }else {
+            return ResponseEntity.ok().body(service.buscarPorSubCategoriaComFiltro(idSubCategoria, nomeFabricante,idPreco));
+        }
     }
 
 
 
+    @ApiOperation(value = "Buscar Produto Por Nome")
+    @GetMapping("/produtos/nomeFantasia/{nomeFantasia}")
+    public ResponseEntity buscarPorProduto(@PathVariable("nomeFantasia") String nomeFantasia,@RequestParam(value = "nomeFabricante", required=false) String nomeFabricante,@RequestParam(value = "idPreco", required=false) Integer idPreco ) {
+        String comparativo = "0";
+        if (nomeFabricante.equals(comparativo) && idPreco == 0){
+            nomeFabricante="";
+            idPreco=null;
+            return ResponseEntity.ok().body(service.buscarPorNome(nomeFantasia,nomeFabricante,idPreco));
+        }else if (idPreco == 0){
+            idPreco=null;
+            return ResponseEntity.ok().body(service.buscarPorNome(nomeFantasia,nomeFabricante,idPreco));
+        }else if (nomeFabricante.equals(comparativo) ){
+            nomeFabricante="";
+            return ResponseEntity.ok().body(service.buscarPorNome(nomeFantasia,nomeFabricante,idPreco));
+        }else {
+            return ResponseEntity.ok().body(service.buscarPorNome(nomeFantasia,nomeFabricante,idPreco));        }
+
+    }
 
 
 

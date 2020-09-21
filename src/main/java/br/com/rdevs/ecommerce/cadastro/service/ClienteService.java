@@ -5,10 +5,7 @@ import br.com.rdevs.ecommerce.cadastro.model.entity.TbCartaoCredito;
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbCliente;
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbEndereco;
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbEnderecoCliente;
-import br.com.rdevs.ecommerce.cadastro.repository.CadastroRepository;
-import br.com.rdevs.ecommerce.cadastro.repository.CartaoRepository;
-import br.com.rdevs.ecommerce.cadastro.repository.EnderecoClienteRepository;
-import br.com.rdevs.ecommerce.cadastro.repository.EnderecoRepository;
+import br.com.rdevs.ecommerce.cadastro.repository.*;
 import br.com.rdevs.ecommerce.cadastro.service.bo.CadastroBO;
 import br.com.rdevs.ecommerce.cadastro.service.bo.CartaoCreditoBO;
 import br.com.rdevs.ecommerce.cadastro.service.bo.EnderecoBO;
@@ -23,6 +20,9 @@ import java.util.List;
 
 @Service
 public class ClienteService {
+    @Autowired
+    private Cadastro2Repository cadastro2Repository;
+
     @Autowired
     private CadastroRepository cadastroRepository;
     @Autowired
