@@ -29,10 +29,13 @@ public class LoginController {
     @RolesAllowed(value = "ADMIN")
     public ResponseEntity loginCadastro(@RequestBody Login login) throws Exception {
         ResultData resultData = null;
+
+        ClienteDTO compare = null;
         ClienteDTO cliente = service.loginCadastro(login);
-        if (cliente == null) {
-            resultData = new ResultData(HttpStatus.BAD_REQUEST.value(), "CPF ou Email invalido");
+        if (cliente == null ){
+            resultData = new ResultData(HttpStatus.BAD_REQUEST.value(), "Cliente não Cadastrado");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(resultData);
+
         }else {
             try {
                 byte[] decodedBytes = Base64.getDecoder().decode(cliente.getPwCliente());
@@ -41,7 +44,7 @@ public class LoginController {
                 if (login.getSenha().equals(decodedString)) {
                     resultData = new ResultData<ClienteDTO>(HttpStatus.OK.value(), "Login efetivado!",cliente);
                     return ResponseEntity.status(HttpStatus.OK).body(resultData);
-                } else {
+                }else {
                     resultData = new ResultData(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Senha ou email incorreto!!");
                     return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value()).body(resultData);
                 }

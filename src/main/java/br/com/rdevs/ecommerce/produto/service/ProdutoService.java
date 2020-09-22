@@ -123,7 +123,7 @@ public class ProdutoService {
                 "AND TPFE.CD_PRODUTO = P.CD_PRODUTO\n" +
                 "AND TPFE.CD_FILIAL=4\n" +
                 "AND TSCP.ID_SUB_CATEGORIA = "+idSubCategoria+" "+
-                "ORDER BY P.CD_PRODUTO");
+                "ORDER BY P.NM_FANTASIA ASC");
 
         List<Object []> listEntity = query.getResultList();
         for (Object [] produto: listEntity){
@@ -179,13 +179,6 @@ public class ProdutoService {
     }
 
 
-
-
-
-
-
-
-
     public List<ProdutoDTO> buscarPorCdProduto(BigInteger cdProduto, BigInteger idCliente) {
         List<ProdutoDTO> listaDTO = new ArrayList<>();
         if (idCliente == null) {
@@ -221,7 +214,7 @@ public class ProdutoService {
                 "AND TPFE.CD_PRODUTO = P.CD_PRODUTO\n" +
                 "AND TPFE.CD_FILIAL=4\n" +
                 "AND P.CD_PRODUTO = "+cdProduto+" "+
-                "ORDER BY P.CD_PRODUTO");
+                "ORDER BY P.NM_FANTASIA ASC");
 
         List<Object []> listEntity = query.getResultList();
         Double pcDensconto = 1D;
@@ -279,6 +272,7 @@ public class ProdutoService {
 
         return map.values().stream().collect(Collectors.toList());
     }
+
 
     public List<ProdutoDTO> buscarPorFabricante(String nomeFabricante) {
         List<ProdutoDTO> listaDTO = new ArrayList<>();
@@ -408,6 +402,7 @@ public class ProdutoService {
 
     }
 
+
 //    public List<ProdutoDTO> buscarPorSubCategoriaPage(BigInteger idSubCategoriaProduto, BigInteger page) {
 //        List<ProdutoDTO> listaDTO = new ArrayList<>();
 //        Pageable firstPageWithTwoElements = PageRequest.of(Math.toIntExact(page), 6);
@@ -454,6 +449,7 @@ public class ProdutoService {
 //        return listaDTO;
 //
 //    }
+
 
     public List<ProdutoDTO> buscarPorSubCategoria(BigInteger idSubCategoriaProduto, BigInteger idCliente) {
         List<ProdutoDTO> listaDTO = new ArrayList<>();
@@ -580,6 +576,7 @@ public class ProdutoService {
 
     }
 
+
     public List<ProdutoDTO> buscarPorSubCategoria2(BigInteger idSubCategoriaProduto, BigInteger idCliente) {
         List<ProdutoDTO> listaDTO = new ArrayList<>();
         if (idCliente == null) {
@@ -650,6 +647,7 @@ public class ProdutoService {
         return listaDTO;
 
     }
+
 
     public List<ProdutoDTO> produtosPromo() {
         Long[] produtosPromo = {};
@@ -737,6 +735,7 @@ public class ProdutoService {
         return map.values().stream().collect(Collectors.toList());
     }
 
+
     public List<ProdutoDTO> produtosDestaquesSemana() {
         Map<BigInteger, ProdutoDTO> map = new HashMap<>();
         Query query = manager.createNativeQuery("select\n" +
@@ -766,7 +765,7 @@ public class ProdutoService {
                 "AND P.ID_STATUS_PRODUTO= TSP.ID_STATUS_PRODUTO\n" +
                 "AND TPFE.CD_PRODUTO = P.CD_PRODUTO\n" +
                 "AND TPFE.CD_FILIAL=4\n" +
-                "AND P.CD_PRODUTO IN (80, 81, 67, 69, 80, 82, 79, 55)"+
+                "AND P.CD_PRODUTO IN (80, 81, 67, 69, 80, 82, 79, 55, 99)"+
                 "ORDER BY P.CD_PRODUTO");
 
         List<Object []> listEntity = query.getResultList();
@@ -821,6 +820,7 @@ public class ProdutoService {
 
         return map.values().stream().collect(Collectors.toList());
     }
+
 
     public List<ProdutoDTO> produtosPopulares() {
         Map<BigInteger, ProdutoDTO> map = new HashMap<>();
@@ -991,7 +991,7 @@ public class ProdutoService {
                 "AND TPFE.CD_PRODUTO = P.CD_PRODUTO\n" +
                 "AND TPFE.CD_FILIAL=4\n" +
                 filtro+
-                "ORDER BY P.CD_PRODUTO");
+                "ORDER BY P.NM_FANTASIA ASC");
 
         List<Object []> listEntity = query.getResultList();
         for (Object [] produto: listEntity){
@@ -1046,7 +1046,6 @@ public class ProdutoService {
         return map.values().stream().collect(Collectors.toList());
 
     }
-
 
 
     public List<ProdutoDTO> buscarPorNome(String nomeFantasia, String nomeFabricante, Integer idPreco) {
@@ -1127,7 +1126,7 @@ public class ProdutoService {
                 "AND TPFE.CD_PRODUTO = P.CD_PRODUTO\n" +
                 "AND TPFE.CD_FILIAL=4\n" +
                 filtro+
-                "ORDER BY P.CD_PRODUTO");
+                "ORDER BY P.NM_FANTASIA ASC");
 
         List<Object []> listEntity = query.getResultList();
         Double pcDensconto = 1D;
@@ -1185,23 +1184,6 @@ public class ProdutoService {
 
         return map.values().stream().collect(Collectors.toList());
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

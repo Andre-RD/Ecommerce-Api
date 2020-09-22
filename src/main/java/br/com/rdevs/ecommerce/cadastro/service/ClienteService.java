@@ -134,44 +134,52 @@ public class ClienteService {
 
     public ClienteDTO loginCadastro(Login login) throws Exception{
 
+
         if (login.getLogin().matches("[0-9]+")) {
 
             TbCliente clienteEntity = cadastroRepository.findByNrCpf(login.getLogin());
+            if (clienteEntity != null) {
+                ClienteDTO clienteDTO = cadastroBO.parseToDTO(clienteEntity);
+                List<EnderecoDTO> enderecoDTOS = new ArrayList<>();
+                for (TbEndereco enderecoEntity : clienteEntity.getEnderecos()) {
+                    EnderecoDTO dto = enderecoBO.parseToDTO(enderecoEntity);
+                    enderecoDTOS.add(dto);
+                }
+                clienteDTO.setEnderecos(enderecoDTOS);
 
-            ClienteDTO clienteDTO = cadastroBO.parseToDTO(clienteEntity);
-            List<EnderecoDTO> enderecoDTOS = new ArrayList<>();
-            for (TbEndereco enderecoEntity: clienteEntity.getEnderecos()){
-                EnderecoDTO dto = enderecoBO.parseToDTO(enderecoEntity);
-                enderecoDTOS.add(dto);
+                List<CartaoCreditoDTO> cartaoCreditoDTOS = new ArrayList<>();
+                for (TbCartaoCredito cartaoCreditoEntity : clienteEntity.getCartoesCredito()) {
+                    CartaoCreditoDTO dtoCard = cartaoCreditoBO.parseToDTO(cartaoCreditoEntity);
+                    cartaoCreditoDTOS.add(dtoCard);
+                }
+                clienteDTO.setCartoesCreditoDTO(cartaoCreditoDTOS);
+
+                return clienteDTO;
+            }else {
+                return null;
             }
-            clienteDTO.setEnderecos(enderecoDTOS);
-
-            List<CartaoCreditoDTO> cartaoCreditoDTOS = new ArrayList<>();
-            for (TbCartaoCredito cartaoCreditoEntity: clienteEntity.getCartoesCredito()){
-                CartaoCreditoDTO dtoCard = cartaoCreditoBO.parseToDTO(cartaoCreditoEntity);
-                cartaoCreditoDTOS.add(dtoCard);
-            }
-            clienteDTO.setCartoesCreditoDTO(cartaoCreditoDTOS);
-
-            return clienteDTO;
         } else {
             TbCliente clienteEntity = cadastroRepository.findByDsEmail(login.getLogin()).get(0);
-            ClienteDTO clienteDTO = cadastroBO.parseToDTO(clienteEntity);
-            List<EnderecoDTO> enderecoDTOS = new ArrayList<>();
-            for (TbEndereco enderecoEntity: clienteEntity.getEnderecos()){
-                EnderecoDTO dto = enderecoBO.parseToDTO(enderecoEntity);
-                enderecoDTOS.add(dto);
-            }
-            clienteDTO.setEnderecos(enderecoDTOS);
+            if (clienteEntity != null) {
+                ClienteDTO clienteDTO = cadastroBO.parseToDTO(clienteEntity);
+                List<EnderecoDTO> enderecoDTOS = new ArrayList<>();
+                for (TbEndereco enderecoEntity : clienteEntity.getEnderecos()) {
+                    EnderecoDTO dto = enderecoBO.parseToDTO(enderecoEntity);
+                    enderecoDTOS.add(dto);
+                }
+                clienteDTO.setEnderecos(enderecoDTOS);
 
-            List<CartaoCreditoDTO> cartaoCreditoDTOS = new ArrayList<>();
-            for (TbCartaoCredito cartaoCreditoEntity: clienteEntity.getCartoesCredito()){
-                CartaoCreditoDTO dtoCard = cartaoCreditoBO.parseToDTO(cartaoCreditoEntity);
-                cartaoCreditoDTOS.add(dtoCard);
-            }
-            clienteDTO.setCartoesCreditoDTO(cartaoCreditoDTOS);
+                List<CartaoCreditoDTO> cartaoCreditoDTOS = new ArrayList<>();
+                for (TbCartaoCredito cartaoCreditoEntity : clienteEntity.getCartoesCredito()) {
+                    CartaoCreditoDTO dtoCard = cartaoCreditoBO.parseToDTO(cartaoCreditoEntity);
+                    cartaoCreditoDTOS.add(dtoCard);
+                }
+                clienteDTO.setCartoesCreditoDTO(cartaoCreditoDTOS);
 
-            return clienteDTO;
+                return clienteDTO;
+            }else {
+                return null;
+            }
         }
     }
 

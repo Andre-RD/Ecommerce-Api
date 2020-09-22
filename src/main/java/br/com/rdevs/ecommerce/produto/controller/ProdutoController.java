@@ -1,5 +1,6 @@
 package br.com.rdevs.ecommerce.produto.controller;
 
+import br.com.rdevs.ecommerce.cadastro.model.dto.ResultData;
 import br.com.rdevs.ecommerce.produto.model.dto.ProdutoDTO;
 import br.com.rdevs.ecommerce.produto.model.entity.TbProduto;
 import br.com.rdevs.ecommerce.produto.service.ProdutoService;
@@ -159,7 +160,9 @@ public class ProdutoController {
     @ApiOperation(value = "Buscar Produto Por Nome")
     @GetMapping("/produtos/nomeFantasia/{nomeFantasia}")
     public ResponseEntity buscarPorProduto(@PathVariable("nomeFantasia") String nomeFantasia,@RequestParam(value = "nomeFabricante", required=false) String nomeFabricante,@RequestParam(value = "idPreco", required=false) Integer idPreco ) {
+        ResultData resultData = null;
         String comparativo = "0";
+
         if (nomeFabricante.equals(comparativo) && idPreco == 0){
             nomeFabricante="";
             idPreco=null;
@@ -171,7 +174,9 @@ public class ProdutoController {
             nomeFabricante="";
             return ResponseEntity.ok().body(service.buscarPorNome(nomeFantasia,nomeFabricante,idPreco));
         }else {
-            return ResponseEntity.ok().body(service.buscarPorNome(nomeFantasia,nomeFabricante,idPreco));        }
+            return ResponseEntity.ok().body(service.buscarPorNome(nomeFantasia,nomeFabricante,idPreco));
+        }
+
 
     }
 

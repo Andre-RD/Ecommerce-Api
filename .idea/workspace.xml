@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e1737c85-d18e-41cb-b698-a8194f8fb3b8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/controller/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/ClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/ClienteService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/controller/ProdutoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/controller/ProdutoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/service/ProdutoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/service/ProdutoService.java" afterDir="false" />
@@ -46,7 +47,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Vou ser DEV/projetofab/springboot" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunManager">
@@ -87,10 +88,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="488" y="80" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1599163675699" />
-    <state x="412" y="249" width="600" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1599740714212">
+    <state x="412" y="249" width="600" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1600802376104">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="412" y="249" width="600" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1366.728@0.0.1366.728" timestamp="1599740714212" />
+    <state x="412" y="249" width="600" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1366.728@0.0.1366.728" timestamp="1600802376104" />
     <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1599060199660">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -99,26 +100,26 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="272" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1600694659764" />
-    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1599699350879">
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1600800218370">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1599699350879" />
-    <state width="1323" height="172" key="GridCell.Tab.0.bottom" timestamp="1600696863492">
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1600800218370" />
+    <state width="1323" height="153" key="GridCell.Tab.0.bottom" timestamp="1600807445492">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="172" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1600696863492" />
-    <state width="1323" height="172" key="GridCell.Tab.0.center" timestamp="1600696863492">
+    <state width="1323" height="153" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1600807445492" />
+    <state width="1323" height="153" key="GridCell.Tab.0.center" timestamp="1600807445492">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="172" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1600696863492" />
-    <state width="1323" height="172" key="GridCell.Tab.0.left" timestamp="1600696863492">
+    <state width="1323" height="153" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1600807445492" />
+    <state width="1323" height="153" key="GridCell.Tab.0.left" timestamp="1600807445492">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="172" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1600696863492" />
-    <state width="1323" height="172" key="GridCell.Tab.0.right" timestamp="1600696863492">
+    <state width="1323" height="153" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1600807445492" />
+    <state width="1323" height="153" key="GridCell.Tab.0.right" timestamp="1600807445492">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="172" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1600696863492" />
+    <state width="1323" height="153" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1600807445492" />
     <state width="1323" height="250" key="GridCell.Tab.1.bottom" timestamp="1599771682841">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -135,28 +136,37 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="250" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1599771682841" />
-    <state x="379" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1599793657234">
+    <state x="379" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1600793235657">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="379" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1599793657234" />
+    <state x="379" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1600793235657" />
     <state x="329" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1599251051997">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="329" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1366.728@0.0.1366.728" timestamp="1599251051997" />
-    <state x="389" y="0" key="refactoring.ChangeSignatureDialog" timestamp="1600222129841">
+    <state x="389" y="0" key="refactoring.ChangeSignatureDialog" timestamp="1600799172484">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="389" y="0" key="refactoring.ChangeSignatureDialog/0.0.1366.728@0.0.1366.728" timestamp="1600222129841" />
+    <state x="389" y="0" key="refactoring.ChangeSignatureDialog/0.0.1366.728@0.0.1366.728" timestamp="1600799172484" />
     <state x="339" y="162" key="run.anything.popup" timestamp="1600223734610">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1600223734610" />
-    <state x="339" y="17" width="672" height="676" key="search.everywhere.popup" timestamp="1599606001630">
+    <state x="339" y="17" width="672" height="676" key="search.everywhere.popup" timestamp="1600801314761">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="339" y="17" width="672" height="676" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1599606001630" />
+    <state x="339" y="17" width="672" height="676" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1600801314761" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/service/ProdutoService.java</url>
+          <line>182</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="dfDTO" language="JAVA" />
