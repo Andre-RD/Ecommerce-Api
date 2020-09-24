@@ -15,7 +15,7 @@ import java.math.BigInteger;
 @Table(name = "TB_DOCUMENTO_ITEM")
 public class TbDocumentoItem implements Serializable {
 
-    @Id
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_DOCUMENTO_FISCAL")
     @JsonIgnore

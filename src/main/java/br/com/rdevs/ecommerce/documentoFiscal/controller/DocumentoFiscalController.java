@@ -1,13 +1,17 @@
 package br.com.rdevs.ecommerce.documentoFiscal.controller;
 
 import br.com.rdevs.ecommerce.cadastro.model.dto.CartaoCreditoDTO;
+import br.com.rdevs.ecommerce.cadastro.model.dto.ResultData;
 import br.com.rdevs.ecommerce.cadastro.repository.CadastroRepository;
 import br.com.rdevs.ecommerce.cadastro.service.ClienteService;
 import br.com.rdevs.ecommerce.cadastro.service.bo.CartaoCreditoBO;
 import br.com.rdevs.ecommerce.documentoFiscal.model.dto.DocumentoFiscalDTO;
+import br.com.rdevs.ecommerce.documentoFiscal.model.dto.DocumentoFiscalItemDTO;
 import br.com.rdevs.ecommerce.documentoFiscal.model.dto.PostDocumentoFiscalDTO;
+import br.com.rdevs.ecommerce.documentoFiscal.repository.DocumentoFiscalItemRepository;
 import br.com.rdevs.ecommerce.documentoFiscal.service.DocumentoFiscalService;
 import br.com.rdevs.ecommerce.pagamentopedido.repository.PagamentoPedidoRepository;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +34,9 @@ public class DocumentoFiscalController {
 
     @Autowired
     PagamentoPedidoRepository pagamentoPedidoRepository;
+
+    @Autowired
+    DocumentoFiscalItemRepository documentoFiscalItemRepository;
 
     @GetMapping("/documentoFiscalId/{idDocumentoFiscal}")
     public ResponseEntity buscarPorIDnota(@PathVariable("idDocumentoFiscal") BigInteger idDocumentoFiscal){
@@ -74,7 +81,14 @@ public class DocumentoFiscalController {
       return ResponseEntity.ok().body(pagamentoPedidoRepository.findByDocumentoFiscalIdDocumentoFiscal(idDocumentoFiscal));
     }
 
+    @GetMapping("/ultimaNotaCliente/{idCliente}")
+    public ResponseEntity buscarPorProduto(@PathVariable("idCliente") BigInteger idCliente) {
+        return ResponseEntity.ok().body(documentoFiscalService.ultimaNota(idCliente));
+    }
 
-
+    @GetMapping("/teste/{idCliente}")
+    public ResponseEntity buscarPorProdutoss(@PathVariable("idCliente") BigInteger idCliente) {
+        return ResponseEntity.ok().body(documentoFiscalItemRepository.findByDocumentoFiscalIdDocumentoFiscal(idCliente));
+    }
 
 }

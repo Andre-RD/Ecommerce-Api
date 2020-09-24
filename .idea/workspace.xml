@@ -23,8 +23,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1737c85-d18e-41cb-b698-a8194f8fb3b8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/repository/DocumentoFiscalItemRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/controller/DocumentoFiscalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/controller/DocumentoFiscalController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/model/entity/TbDocumentoItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/model/entity/TbDocumentoItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/service/DocumentoFiscalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/service/DocumentoFiscalService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/controller/ProdutoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/controller/ProdutoController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -225,22 +229,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1600954478721" />
-    <state width="1323" height="293" key="GridCell.Tab.0.bottom" timestamp="1600969466605">
+    <state width="1323" height="126" key="GridCell.Tab.0.bottom" timestamp="1600980877907">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="293" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1600969466605" />
-    <state width="1323" height="293" key="GridCell.Tab.0.center" timestamp="1600969466605">
+    <state width="1323" height="126" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1600980877907" />
+    <state width="1323" height="126" key="GridCell.Tab.0.center" timestamp="1600980877907">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="293" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1600969466605" />
-    <state width="1323" height="293" key="GridCell.Tab.0.left" timestamp="1600969466605">
+    <state width="1323" height="126" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1600980877907" />
+    <state width="1323" height="126" key="GridCell.Tab.0.left" timestamp="1600980877907">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="293" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1600969466605" />
-    <state width="1323" height="293" key="GridCell.Tab.0.right" timestamp="1600969466605">
+    <state width="1323" height="126" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1600980877907" />
+    <state width="1323" height="126" key="GridCell.Tab.0.right" timestamp="1600980877907">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="293" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1600969466605" />
+    <state width="1323" height="126" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1600980877907" />
     <state width="1323" height="223" key="GridCell.Tab.1.bottom" timestamp="1600885635593">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
