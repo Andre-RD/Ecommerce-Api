@@ -186,6 +186,11 @@ public class DocumentoFiscalService {
 
         TbTcCupom tcCupom = cupomRepository.findByClienteIdCliente(dfDTO.getIdCliente());
 
+        if(dfDTO.getNmNomeTitular() == "" || dfDTO.getNrNumeroCartao() == ""){
+            dfDTO.setNmNomeTitular(null);
+            dfDTO.setNrNumeroCartao(null);
+        }
+
         TbEndereco endereco = enderecoRepository.getOne(dfDTO.getIdEndereco());
         documentoFiscalDTO.setEndereco(endereco);
         TbTipoPagamento tipoPagamento = tipoPagamentoRepository.getOne(dfDTO.getIdFormaPagamento());
@@ -430,7 +435,11 @@ public class DocumentoFiscalService {
     }
 
 
+    public DocumentoFiscalDTO ultimaNota(BigInteger idCliente){
+        DocumentoFiscalDTO documentoFiscalDTO = new DocumentoFiscalDTO();
 
+        return documentoFiscalDTO;
+    }
 
 
 }
