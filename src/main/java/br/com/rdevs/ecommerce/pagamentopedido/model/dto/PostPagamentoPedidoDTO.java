@@ -1,7 +1,6 @@
 package br.com.rdevs.ecommerce.pagamentopedido.model.dto;
 
 import lombok.Data;
-import org.springframework.stereotype.Component;
 
 import java.math.BigInteger;
 

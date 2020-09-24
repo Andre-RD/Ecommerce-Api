@@ -1,7 +1,6 @@
 package br.com.rdevs.ecommerce.documentoFiscal.controller;
 
 import br.com.rdevs.ecommerce.cadastro.model.dto.CartaoCreditoDTO;
-import br.com.rdevs.ecommerce.cadastro.model.entity.TbCartaoCredito;
 import br.com.rdevs.ecommerce.cadastro.repository.CadastroRepository;
 import br.com.rdevs.ecommerce.cadastro.service.ClienteService;
 import br.com.rdevs.ecommerce.cadastro.service.bo.CartaoCreditoBO;
@@ -11,11 +10,9 @@ import br.com.rdevs.ecommerce.documentoFiscal.service.DocumentoFiscalService;
 import br.com.rdevs.ecommerce.pagamentopedido.repository.PagamentoPedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
-import java.util.Base64;
 
 @RestController
 public class DocumentoFiscalController {

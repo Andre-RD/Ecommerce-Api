@@ -1,6 +1,5 @@
 package br.com.rdevs.ecommerce.cadastro.repository;
 
-import br.com.rdevs.ecommerce.cadastro.model.entity.TbEndereco;
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbEnderecoCliente;
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbEnderecoClientePK;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,6 +1,5 @@
 package br.com.rdevs.ecommerce.documentoFiscal.service;
 
-import br.com.rdevs.ecommerce.cadastro.model.dto.CartaoCreditoDTO;
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbCartaoCredito;
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbCliente;
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbEndereco;
@@ -38,7 +37,6 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
-
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

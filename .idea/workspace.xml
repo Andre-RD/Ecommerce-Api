@@ -1,12 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="e1737c85-d18e-41cb-b698-a8194f8fb3b8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/controller/CadastroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/controller/CadastroController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/controller/EmailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/controller/EmailController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/model/dto/ClienteDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/model/dto/ClienteDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/model/entity/TbCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/model/entity/TbCliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/model/entity/TbEnderecoCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/model/entity/TbEnderecoCliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/model/entity/TbEnderecoClientePK.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/model/entity/TbEnderecoClientePK.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/repository/Cadastro2Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/repository/Cadastro2Repository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/repository/EnderecoClienteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/repository/EnderecoClienteRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/ClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/ClienteService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/EmailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/bo/CadastroBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/bo/CadastroBO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/bo/CartaoCreditoBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/bo/CartaoCreditoBO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/controller/DocumentoFiscalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/controller/DocumentoFiscalController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/model/dto/DocumentoFiscalDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/model/dto/DocumentoFiscalDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/model/dto/DocumentoFiscalItemDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/model/dto/DocumentoFiscalItemDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/model/entity/TbDocumentoFiscal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/model/entity/TbDocumentoFiscal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/service/DocumentoFiscalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/service/DocumentoFiscalService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/estoque/model/dto/EstoqueDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/estoque/model/dto/EstoqueDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/estoque/model/dto/EstoqueProdutoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/estoque/model/dto/EstoqueProdutoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/estoque/model/dto/FilialDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/estoque/model/dto/FilialDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/estoque/model/entity/TbFilial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/estoque/model/entity/TbFilial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/estoque/model/entity/TbProdutoFilialEstoque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/estoque/model/entity/TbProdutoFilialEstoque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/estoque/repository/FilialRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/estoque/repository/FilialRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/estoque/service/EstoqueService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/estoque/service/EstoqueService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pagamentopedido/controller/PagamentoPedidoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pagamentopedido/controller/PagamentoPedidoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pagamentopedido/controller/TipoPagamentoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pagamentopedido/controller/TipoPagamentoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pagamentopedido/model/dto/PagamentoPedidoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pagamentopedido/model/dto/PagamentoPedidoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pagamentopedido/model/dto/PostPagamentoPedidoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pagamentopedido/model/dto/PostPagamentoPedidoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pagamentopedido/service/PagamentoPedidoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pagamentopedido/service/PagamentoPedidoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pedido/model/dto/CarrinhoPedidoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pedido/model/dto/CarrinhoPedidoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pedido/model/entity/TbPedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pedido/model/entity/TbPedido.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pedido/repository/PedidoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pedido/repository/PedidoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pedido/service/TbPedidoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pedido/service/TbPedidoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pedido/service/bo/TbPedidoBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pedido/service/bo/TbPedidoBO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/controller/ProdutoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/controller/ProdutoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/dto/CategoriaProdutoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/dto/CategoriaProdutoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/dto/ProdutoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/dto/ProdutoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/dto/ProdutoDTO2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/dto/ProdutoDTO2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/dto/TcCupomItemDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/dto/TcCupomItemDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/entity/TbProduto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/entity/TbProduto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/entity/TbProdutoImagem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/entity/TbProdutoImagem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/entity/TbTcCupomItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/entity/TbTcCupomItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/entity/TbTipoProduto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/entity/TbTipoProduto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/repository/CupomItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/repository/CupomItemRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/repository/ProdutoPageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/repository/ProdutoPageRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/repository/ProdutoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/repository/ProdutoRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/service/ProdutoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/service/ProdutoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/service/bo/ProdutoBo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/service/bo/ProdutoBo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/service/bo/ProdutoImagemBo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/service/bo/ProdutoImagemBo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,9 +86,6 @@
   <component name="ErrorTreeViewConfiguration">
     <option name="autoscrollToSource" value="true" />
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="true" />
-  </component>
-  <component name="FavoritesManager">
-    <favorites_list name="ecommerce" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -31,29 +98,59 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="importAutomatically" value="true" />
-      </MavenImportingSettings>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/Andre-RD/Ecommerce-Api" />
+      </set>
     </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/service/ProdutoService.java" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.2.2\plugins\maven\lib\maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="showPreview" value="true" />
   </component>
   <component name="ProjectId" id="1gLD8QxDOE00YskLocNChqJVT04" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Vou ser DEV/projetofab/springboot" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="create.test.in.the.same.root" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.language" />
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn install" />
+    </option>
   </component>
   <component name="RunManager">
-    <configuration name="EcommerceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="EcommerceApplication" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="$USER_HOME$/.jdks/openjdk-15" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
       <option name="MAIN_CLASS_NAME" value="br.com.rdevs.ecommerce.EcommerceApplication" />
       <module name="ecommerce" />
+      <shortenClasspath name="NONE" />
+      <option name="ENABLE_SWING_INSPECTOR" value="true" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="br.com.rdevs.ecommerce.*" />
@@ -64,12 +161,64 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.EcommerceApplication" />
-      </list>
-    </recent_temporary>
+    <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list />
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="JarApplication">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="11" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="ecommerce" />
+      <option name="filePath" value="" />
+      <option name="vmParameters" value="" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" value="" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" value="" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="filePath" value="" />
+      <option name="vmParameters" value="" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" value="" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" value="" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -83,7 +232,31 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="WindowStateProjectService">
+    <state x="309" y="42" key="#Inspections" timestamp="1600884398932">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="309" y="42" key="#Inspections/0.0.1366.728@0.0.1366.728" timestamp="1600884398932" />
+    <state x="163" y="0" key="#Project_Structure" timestamp="1600954506182">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="163" y="0" key="#Project_Structure/0.0.1366.728@0.0.1366.728" timestamp="1600954506182" />
+    <state x="137" y="0" width="1092" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600955107799">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="137" y="0" width="1092" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1600955107799" />
     <state x="488" y="80" key="#com.intellij.ide.util.MemberChooser" timestamp="1599163675699">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -100,42 +273,54 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="272" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1600694659764" />
-    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1600800218370">
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1600954478721">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1600800218370" />
-    <state width="1323" height="153" key="GridCell.Tab.0.bottom" timestamp="1600807445492">
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1600954478721" />
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1600955374157">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="153" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1600807445492" />
-    <state width="1323" height="153" key="GridCell.Tab.0.center" timestamp="1600807445492">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1600955374157" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1600955374156">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="153" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1600807445492" />
-    <state width="1323" height="153" key="GridCell.Tab.0.left" timestamp="1600807445492">
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1600955374156" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1600955374156">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="153" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1600807445492" />
-    <state width="1323" height="153" key="GridCell.Tab.0.right" timestamp="1600807445492">
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1600955374156" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1600955374157">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="153" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1600807445492" />
-    <state width="1323" height="250" key="GridCell.Tab.1.bottom" timestamp="1599771682841">
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1600955374157" />
+    <state width="1323" height="223" key="GridCell.Tab.1.bottom" timestamp="1600885635593">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="250" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1599771682841" />
-    <state width="1323" height="250" key="GridCell.Tab.1.center" timestamp="1599771682841">
+    <state width="1323" height="223" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1600885635593" />
+    <state width="1323" height="223" key="GridCell.Tab.1.center" timestamp="1600885635593">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="250" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1599771682841" />
-    <state width="1323" height="250" key="GridCell.Tab.1.left" timestamp="1599771682841">
+    <state width="1323" height="223" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1600885635593" />
+    <state width="1323" height="223" key="GridCell.Tab.1.left" timestamp="1600885635593">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="250" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1599771682841" />
-    <state width="1323" height="250" key="GridCell.Tab.1.right" timestamp="1599771682841">
+    <state width="1323" height="223" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1600885635593" />
+    <state width="1323" height="223" key="GridCell.Tab.1.right" timestamp="1600885635593">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="250" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1599771682841" />
+    <state width="1323" height="223" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1600885635593" />
+    <state x="213" y="19" key="Maven.ArtifactSearchDialog" timestamp="1600875048975">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="213" y="19" key="Maven.ArtifactSearchDialog/0.0.1366.728@0.0.1366.728" timestamp="1600875048975" />
+    <state x="419" y="84" key="RollbackChangesDialog" timestamp="1600874721792">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="419" y="84" key="RollbackChangesDialog/0.0.1366.728@0.0.1366.728" timestamp="1600874721792" />
+    <state x="184" y="0" key="SettingsEditor" timestamp="1600954440710">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1600954440710" />
     <state x="379" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1600793235657">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -144,29 +329,24 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="329" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1366.728@0.0.1366.728" timestamp="1599251051997" />
+    <state x="419" y="193" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1600950460290">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="419" y="193" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1366.728@0.0.1366.728" timestamp="1600950460290" />
     <state x="389" y="0" key="refactoring.ChangeSignatureDialog" timestamp="1600799172484">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="389" y="0" key="refactoring.ChangeSignatureDialog/0.0.1366.728@0.0.1366.728" timestamp="1600799172484" />
-    <state x="339" y="162" key="run.anything.popup" timestamp="1600223734610">
+    <state x="339" y="162" width="672" height="677" key="run.anything.popup" timestamp="1600950653102">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1600223734610" />
-    <state x="339" y="17" width="672" height="676" key="search.everywhere.popup" timestamp="1600801314761">
+    <state x="339" y="162" width="672" height="677" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1600950653102" />
+    <state x="339" y="17" width="672" height="676" key="search.everywhere.popup" timestamp="1600904493955">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="339" y="17" width="672" height="676" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1600801314761" />
+    <state x="339" y="17" width="672" height="676" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1600904493955" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/service/ProdutoService.java</url>
-          <line>182</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="dfDTO" language="JAVA" />

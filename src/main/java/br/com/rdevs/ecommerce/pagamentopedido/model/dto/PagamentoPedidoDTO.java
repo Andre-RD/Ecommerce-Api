@@ -1,9 +1,7 @@
 package br.com.rdevs.ecommerce.pagamentopedido.model.dto;
 
 import br.com.rdevs.ecommerce.pedido.model.dto.PedidoDTO;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.math.BigInteger;
 

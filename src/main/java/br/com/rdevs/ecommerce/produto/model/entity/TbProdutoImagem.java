@@ -2,7 +2,6 @@ package br.com.rdevs.ecommerce.produto.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
 import javax.persistence.*;
 import java.io.Serializable;

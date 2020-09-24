@@ -2,8 +2,6 @@ package br.com.rdevs.ecommerce.cadastro.service.bo;
 
 import br.com.rdevs.ecommerce.cadastro.model.dto.CartaoCreditoDTO;
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbCartaoCredito;
-import br.com.rdevs.ecommerce.cadastro.model.entity.TbEndereco;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Base64;

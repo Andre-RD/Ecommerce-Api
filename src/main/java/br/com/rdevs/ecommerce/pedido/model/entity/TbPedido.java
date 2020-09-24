@@ -2,6 +2,7 @@ package br.com.rdevs.ecommerce.pedido.model.entity;
 
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbCliente;
 import lombok.Data;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;

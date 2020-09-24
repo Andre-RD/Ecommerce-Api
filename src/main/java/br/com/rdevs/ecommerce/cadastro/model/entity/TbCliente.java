@@ -1,9 +1,6 @@
 package br.com.rdevs.ecommerce.cadastro.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.math.BigInteger;

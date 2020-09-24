@@ -2,7 +2,6 @@ package br.com.rdevs.ecommerce.estoque.model.dto;
 
 import lombok.Data;
 
-import java.math.BigDecimal;
 import java.math.BigInteger;
 
 @Data

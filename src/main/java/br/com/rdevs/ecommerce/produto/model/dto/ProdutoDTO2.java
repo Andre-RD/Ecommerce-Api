@@ -1,11 +1,9 @@
 package br.com.rdevs.ecommerce.produto.model.dto;
 
-import br.com.rdevs.ecommerce.estoque.model.dto.EstoqueProdutoDTO;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.List;
 
 @Data
 public class ProdutoDTO2 {

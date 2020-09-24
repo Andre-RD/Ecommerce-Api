@@ -4,9 +4,6 @@ import br.com.rdevs.ecommerce.pedido.model.dto.PedidoDTO;
 import br.com.rdevs.ecommerce.pedido.model.entity.TbPedido;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
-import java.util.Date;
-
 @Component
 public class TbPedidoBO {
 

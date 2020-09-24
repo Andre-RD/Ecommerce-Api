@@ -1,16 +1,11 @@
 package br.com.rdevs.ecommerce.produto.service.bo;
 
-import br.com.rdevs.ecommerce.cadastro.model.dto.ClienteDTO;
-import br.com.rdevs.ecommerce.cadastro.model.entity.TbCliente;
-import br.com.rdevs.ecommerce.estoque.model.entity.TbProdutoFilialEstoque;
 import br.com.rdevs.ecommerce.estoque.repository.EstoqueRepository;
 import br.com.rdevs.ecommerce.produto.model.dto.ProdutoDTO;
 import br.com.rdevs.ecommerce.produto.model.dto.ProdutoDTO2;
 import br.com.rdevs.ecommerce.produto.model.entity.TbProduto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.math.BigDecimal;
 
 @Component
 public class ProdutoBo {

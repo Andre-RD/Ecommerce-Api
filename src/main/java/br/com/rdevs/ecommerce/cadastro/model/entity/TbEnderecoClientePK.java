@@ -1,6 +1,5 @@
 package br.com.rdevs.ecommerce.cadastro.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

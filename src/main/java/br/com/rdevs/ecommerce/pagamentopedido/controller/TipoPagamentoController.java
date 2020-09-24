@@ -1,18 +1,11 @@
 package br.com.rdevs.ecommerce.pagamentopedido.controller;
 
-import br.com.rdevs.ecommerce.pagamentopedido.model.dto.ResultData;
-import br.com.rdevs.ecommerce.pagamentopedido.model.dto.TipoPagamentoDTO;
-import br.com.rdevs.ecommerce.pagamentopedido.model.entity.TbTipoPagamento;
 import br.com.rdevs.ecommerce.pagamentopedido.service.TipoPagamentoService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Role;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.security.RolesAllowed;
-import javax.xml.transform.Result;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TipoPagamentoController {
 

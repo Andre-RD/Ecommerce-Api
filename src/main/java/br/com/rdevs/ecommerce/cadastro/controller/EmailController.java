@@ -6,12 +6,9 @@ import br.com.rdevs.ecommerce.cadastro.model.dto.ResultData;
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbCliente;
 import br.com.rdevs.ecommerce.cadastro.repository.CadastroRepository;
 import br.com.rdevs.ecommerce.cadastro.service.EmailService;
-import br.com.rdevs.ecommerce.documentoFiscal.model.dto.DocumentoFiscalDTO;
 import br.com.rdevs.ecommerce.documentoFiscal.model.entity.TbDocumentoFiscal;
-import br.com.rdevs.ecommerce.documentoFiscal.model.entity.TbDocumentoItem;
 import br.com.rdevs.ecommerce.documentoFiscal.service.DocumentoFiscalService;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;

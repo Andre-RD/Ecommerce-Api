@@ -1,23 +1,13 @@
 package br.com.rdevs.ecommerce.produto.controller;
 
 import br.com.rdevs.ecommerce.cadastro.model.dto.ResultData;
-import br.com.rdevs.ecommerce.produto.model.dto.ProdutoDTO;
-import br.com.rdevs.ecommerce.produto.model.entity.TbProduto;
 import br.com.rdevs.ecommerce.produto.service.ProdutoService;
 import io.swagger.annotations.ApiOperation;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-
-import javax.persistence.Cacheable;
-import java.awt.print.Pageable;
 import java.math.BigInteger;
-import java.util.List;
 
 @RestController
 public class ProdutoController {

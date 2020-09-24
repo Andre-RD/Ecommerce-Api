@@ -7,9 +7,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.List;
 
 @Entity
 @Table(name="TB_PRODUTO_FILIAL_ESTOQUE")

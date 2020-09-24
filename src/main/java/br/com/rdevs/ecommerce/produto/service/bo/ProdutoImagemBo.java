@@ -1,8 +1,6 @@
 package br.com.rdevs.ecommerce.produto.service.bo;
 
-import br.com.rdevs.ecommerce.produto.model.dto.ProdutoDTO;
 import br.com.rdevs.ecommerce.produto.model.dto.ProdutoImagemDTO;
-import br.com.rdevs.ecommerce.produto.model.entity.TbProduto;
 import br.com.rdevs.ecommerce.produto.model.entity.TbProdutoImagem;
 import org.springframework.stereotype.Component;
 

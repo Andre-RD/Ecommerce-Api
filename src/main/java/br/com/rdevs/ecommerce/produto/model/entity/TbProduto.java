@@ -1,6 +1,5 @@
 package br.com.rdevs.ecommerce.produto.model.entity;
 
-import br.com.rdevs.ecommerce.estoque.model.entity.TbFilial;
 import br.com.rdevs.ecommerce.estoque.model.entity.TbProdutoFilialEstoque;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;

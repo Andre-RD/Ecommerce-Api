@@ -3,8 +3,6 @@ package br.com.rdevs.ecommerce.documentoFiscal.model.dto;
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbEndereco;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;

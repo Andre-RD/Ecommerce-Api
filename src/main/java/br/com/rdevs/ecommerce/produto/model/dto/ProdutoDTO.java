@@ -1,11 +1,9 @@
 package br.com.rdevs.ecommerce.produto.model.dto;
 
-import br.com.rdevs.ecommerce.estoque.model.dto.EstoqueDTO;
 import br.com.rdevs.ecommerce.estoque.model.dto.EstoqueProdutoDTO;
-import br.com.rdevs.ecommerce.estoque.model.dto.FilialDTO;
-import br.com.rdevs.ecommerce.estoque.model.entity.TbFilial;
-import br.com.rdevs.ecommerce.produto.model.entity.TbCategoriaProduto;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;

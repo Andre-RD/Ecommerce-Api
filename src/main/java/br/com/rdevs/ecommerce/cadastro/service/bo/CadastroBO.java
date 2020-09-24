@@ -3,16 +3,10 @@ package br.com.rdevs.ecommerce.cadastro.service.bo;
 import br.com.rdevs.ecommerce.cadastro.model.dto.ClienteDTO;
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbCategoriaCliente;
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbCliente;
-import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 
 import java.math.BigInteger;
-import java.text.DateFormatSymbols;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Base64;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 @Component

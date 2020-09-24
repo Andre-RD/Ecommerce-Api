@@ -12,7 +12,6 @@ import br.com.rdevs.ecommerce.cadastro.service.bo.EnderecoBO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Base64;

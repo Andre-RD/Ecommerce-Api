@@ -1,7 +1,6 @@
 package br.com.rdevs.ecommerce.documentoFiscal.model.entity;
 
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbCliente;
-import br.com.rdevs.ecommerce.produto.model.entity.TbProduto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 

@@ -2,7 +2,6 @@ package br.com.rdevs.ecommerce.cadastro.model.dto;
 
 import lombok.Data;
 
-import javax.persistence.Column;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;

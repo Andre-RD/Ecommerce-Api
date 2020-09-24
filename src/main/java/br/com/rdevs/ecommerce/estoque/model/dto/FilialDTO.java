@@ -1,7 +1,6 @@
 package br.com.rdevs.ecommerce.estoque.model.dto;
 
 
-import br.com.rdevs.ecommerce.estoque.model.entity.TbProdutoFilialEstoque;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

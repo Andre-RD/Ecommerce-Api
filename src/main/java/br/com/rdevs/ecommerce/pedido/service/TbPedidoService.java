@@ -1,5 +1,6 @@
 package br.com.rdevs.ecommerce.pedido.service;
 //Classe para inserir as regras de negócio e metodos a serem inseridos na classe Controller
+
 import br.com.rdevs.ecommerce.cadastro.model.entity.TbCliente;
 import br.com.rdevs.ecommerce.cadastro.repository.CadastroRepository;
 import br.com.rdevs.ecommerce.documentoFiscal.model.entity.TbDocumentoFiscal;
@@ -8,7 +9,6 @@ import br.com.rdevs.ecommerce.documentoFiscal.repository.DocumentoFiscalReposito
 import br.com.rdevs.ecommerce.estoque.model.dto.EstoqueProdutoDTO;
 import br.com.rdevs.ecommerce.estoque.model.entity.TbProdutoFilialEstoque;
 import br.com.rdevs.ecommerce.estoque.repository.EstoqueRepository;
-import br.com.rdevs.ecommerce.pedido.model.dto.CarrinhoPedidoDTO;
 import br.com.rdevs.ecommerce.pedido.model.dto.PedidoDTO;
 import br.com.rdevs.ecommerce.pedido.model.dto.PedidoItemDTO;
 import br.com.rdevs.ecommerce.pedido.model.entity.TbPedido;
@@ -32,7 +32,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.sql.ClientInfoStatus;
 import java.util.ArrayList;
 import java.util.List;
 

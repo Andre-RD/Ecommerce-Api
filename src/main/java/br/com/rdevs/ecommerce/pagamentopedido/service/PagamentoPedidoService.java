@@ -1,6 +1,5 @@
 package br.com.rdevs.ecommerce.pagamentopedido.service;
 
-import br.com.rdevs.ecommerce.pagamentopedido.model.dto.PagamentoPedidoDTO;
 import br.com.rdevs.ecommerce.pagamentopedido.model.dto.PostPagamentoPedidoDTO;
 import br.com.rdevs.ecommerce.pagamentopedido.model.entity.TbPagamentoPedido;
 import br.com.rdevs.ecommerce.pagamentopedido.model.entity.TbTipoPagamento;

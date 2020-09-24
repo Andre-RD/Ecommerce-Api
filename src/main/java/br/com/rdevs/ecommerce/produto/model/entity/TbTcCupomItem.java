@@ -2,7 +2,6 @@ package br.com.rdevs.ecommerce.produto.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import javax.persistence.*;
 import java.io.Serializable;

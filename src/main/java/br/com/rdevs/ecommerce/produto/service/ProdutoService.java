@@ -5,9 +5,7 @@ import br.com.rdevs.ecommerce.cadastro.repository.CadastroRepository;
 import br.com.rdevs.ecommerce.estoque.model.dto.EstoqueProdutoDTO;
 import br.com.rdevs.ecommerce.estoque.model.entity.TbProdutoFilialEstoque;
 import br.com.rdevs.ecommerce.estoque.repository.EstoqueRepository;
-import br.com.rdevs.ecommerce.pedido.model.entity.TbStatusPedido;
 import br.com.rdevs.ecommerce.produto.model.dto.*;
-
 import br.com.rdevs.ecommerce.produto.model.entity.TbProduto;
 import br.com.rdevs.ecommerce.produto.model.entity.TbProdutoImagem;
 import br.com.rdevs.ecommerce.produto.model.entity.TbTcCupom;
@@ -19,17 +17,11 @@ import br.com.rdevs.ecommerce.produto.repository.ProdutoRepository;
 import br.com.rdevs.ecommerce.produto.service.bo.ProdutoBo;
 import br.com.rdevs.ecommerce.produto.service.bo.ProdutoImagemBo;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
@@ -38,6 +30,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
 
 @Service
 public class ProdutoService {
@@ -1151,6 +1144,8 @@ public class ProdutoService {
                 List<ProdutoImagemDTO> produtosImagemsDTOs = new ArrayList<>();
                 produtosImagemsDTOs.add(produtoImagemDTO);
                 produtoDTO.setImagens(produtosImagemsDTOs);
+
+
 
                 //tbCategoria
                 CategoriaProdutoDTO categoriaProdutoDTO = new CategoriaProdutoDTO();
