@@ -23,60 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1737c85-d18e-41cb-b698-a8194f8fb3b8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/controller/CadastroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/controller/CadastroController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/controller/EmailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/controller/EmailController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/model/dto/ClienteDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/model/dto/ClienteDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/model/entity/TbCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/model/entity/TbCliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/model/entity/TbEnderecoCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/model/entity/TbEnderecoCliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/model/entity/TbEnderecoClientePK.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/model/entity/TbEnderecoClientePK.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/repository/Cadastro2Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/repository/Cadastro2Repository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/repository/EnderecoClienteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/repository/EnderecoClienteRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/ClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/ClienteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/EmailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/bo/CadastroBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/bo/CadastroBO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/bo/CartaoCreditoBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/cadastro/service/bo/CartaoCreditoBO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/controller/DocumentoFiscalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/controller/DocumentoFiscalController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/model/dto/DocumentoFiscalDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/model/dto/DocumentoFiscalDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/model/dto/DocumentoFiscalItemDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/model/dto/DocumentoFiscalItemDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/model/entity/TbDocumentoFiscal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/model/entity/TbDocumentoFiscal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/service/DocumentoFiscalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/documentoFiscal/service/DocumentoFiscalService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/estoque/model/dto/EstoqueDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/estoque/model/dto/EstoqueDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/estoque/model/dto/EstoqueProdutoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/estoque/model/dto/EstoqueProdutoDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/estoque/model/dto/FilialDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/estoque/model/dto/FilialDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/estoque/model/entity/TbFilial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/estoque/model/entity/TbFilial.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/estoque/model/entity/TbProdutoFilialEstoque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/estoque/model/entity/TbProdutoFilialEstoque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/estoque/repository/FilialRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/estoque/repository/FilialRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/estoque/service/EstoqueService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/estoque/service/EstoqueService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pagamentopedido/controller/PagamentoPedidoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pagamentopedido/controller/PagamentoPedidoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pagamentopedido/controller/TipoPagamentoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pagamentopedido/controller/TipoPagamentoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pagamentopedido/model/dto/PagamentoPedidoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pagamentopedido/model/dto/PagamentoPedidoDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pagamentopedido/model/dto/PostPagamentoPedidoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pagamentopedido/model/dto/PostPagamentoPedidoDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pagamentopedido/service/PagamentoPedidoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pagamentopedido/service/PagamentoPedidoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pedido/model/dto/CarrinhoPedidoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pedido/model/dto/CarrinhoPedidoDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pedido/model/entity/TbPedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pedido/model/entity/TbPedido.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pedido/repository/PedidoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pedido/repository/PedidoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pedido/service/TbPedidoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pedido/service/TbPedidoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pedido/service/bo/TbPedidoBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/pedido/service/bo/TbPedidoBO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/controller/ProdutoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/controller/ProdutoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/dto/CategoriaProdutoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/dto/CategoriaProdutoDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/dto/ProdutoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/dto/ProdutoDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/dto/ProdutoDTO2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/dto/ProdutoDTO2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/dto/TcCupomItemDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/dto/TcCupomItemDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/entity/TbProduto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/entity/TbProduto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/entity/TbProdutoImagem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/entity/TbProdutoImagem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/entity/TbTcCupomItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/entity/TbTcCupomItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/entity/TbTipoProduto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/model/entity/TbTipoProduto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/repository/CupomItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/repository/CupomItemRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/repository/ProdutoPageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/repository/ProdutoPageRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/repository/ProdutoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/repository/ProdutoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/service/ProdutoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/service/ProdutoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/service/bo/ProdutoBo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/service/bo/ProdutoBo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/service/bo/ProdutoImagemBo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/rdevs/ecommerce/produto/service/bo/ProdutoImagemBo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -277,22 +225,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1600954478721" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1600955374157">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1600958397765">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1600955374157" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1600955374156">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1600958397765" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1600958397765">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1600955374156" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1600955374156">
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1600958397765" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1600958397764">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1600955374156" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1600955374157">
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1600958397764" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1600958397765">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1600955374157" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1600958397765" />
     <state width="1323" height="223" key="GridCell.Tab.1.bottom" timestamp="1600885635593">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

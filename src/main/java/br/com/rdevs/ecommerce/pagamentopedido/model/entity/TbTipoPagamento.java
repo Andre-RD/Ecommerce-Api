@@ -18,6 +18,6 @@ public class TbTipoPagamento {
     @Column(name = "ID_TIPO_PAGAMENTO")
     private BigInteger idTipoPagamento;
 
-    @Column(name = "DS_TIPO_PAGAMENTO")
+    @Column(name = "DS_TIPO_PAGAMENTO_ECOM")
     private String dsTipoPagamento;
 }

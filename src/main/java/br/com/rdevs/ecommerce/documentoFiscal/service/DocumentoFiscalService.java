@@ -252,8 +252,6 @@ public class DocumentoFiscalService {
 
             TbProdutoFilialEstoque estoque = estoqueRepository.findByProdutoFilialCdProdutoAndCdFilial(produto.getCdProduto(), BigInteger.valueOf(4L));
 
-
-            //TODO validar a quantidade de itens na compra
             Integer quantidadeComprada = itemDTO.getQtProduto();
             contadorItens += quantidadeComprada;
 
