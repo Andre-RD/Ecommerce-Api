@@ -456,87 +456,6 @@ public class DocumentoFiscalService {
     }
 
 
-//    public List<DocumentoFiscalDTO> ultimaNota(BigInteger idCliente){
-//        Map<BigInteger, DocumentoFiscalDTO> map = new HashMap<>();
-//        Query query = manager.createNativeQuery("SELECT \n" +
-//                "tc.ID_CLIENTE,\n" +//0
-//                "tc.NM_CLIENTE,\n" +//1
-//                "tc.NR_CPF,\n" +//2
-//                "tc.DS_EMAIL,\n" +//3
-//                "tpp.ID_PEDIDO,\n" +//4
-//                "tpp.ID_FORMA_PAGAMENTO,\n" +//5
-//                "tpp.ID_TIPO_PAGAMENTO,\n" +//6
-//                "tpp.NR_NUMERO_CARTAO,\n" +//7
-//                "tpp.NM_NOME_TITULAR,\n" +//8
-//                "te.ID_ENDERECO,\n" +//9
-//                "te.DS_ENDERECO,\n" +//10
-//                "te.NR_ENDERECO,\n" +//11
-//                "te.NR_CEP,\n" +//12
-//                "te.DS_BAIRRO,\n" +//13
-//                "te.DS_CIDADE,\n" +//14
-//                "te.SG_ESTADO,\n" +//15
-//                "te.NM_COMPLEMENTO,\n" +//16
-//                "tdf.NR_CHAVE_ACESSO,\n" +//17
-//                "tdf.NR_NF,\n" +//18
-//                "tdf.NR_SERIE,\n" +//19
-//                "tdf.DT_EMISSAO,\n" +//20
-//                "tdf.VL_DOCUMENTO_FISCAL,\n" +//21
-//                "tdf.ID_DOCUMENTO_FISCAL\n" +//22
-//                "\n" +
-//                "FROM TB_PAGAMENTO_PEDIDO tpp ,TB_ENDERECO te ,TB_CLIENTE tc ,TB_DOCUMENTO_FISCAL tdf  \n" +
-//                "WHERE te.ID_ENDERECO = tpp.ID_ENDERECO\n" +
-//                "AND tpp.ID_CLIENTE = tc.ID_CLIENTE \n" +
-//                "AND tpp.ID_DOCUMENTO_FISCAL = tdf.ID_DOCUMENTO_FISCAL \n" +
-//                "AND tc.ID_CLIENTE ="+idCliente+" \n" +
-//                "ORDER BY ID_DOCUMENTO_FISCAL DESC LIMIT 1 ;");
-//
-//        List<Object []> listEntity = query.getResultList();
-//        Long contadorItens = 0L;
-//        for (Object [] dfo: listEntity){
-//            DocumentoFiscalDTO documentoFiscalDTO = new DocumentoFiscalDTO();
-//
-//            documentoFiscalDTO.setNrCpf((String) dfo[2]);
-//            documentoFiscalDTO.setDsEmail((String) dfo[3]);
-//            documentoFiscalDTO.setIdNF((BigInteger) dfo[22]);
-//            documentoFiscalDTO.setDtEmissao((Date) dfo[20]);
-//            documentoFiscalDTO.setNrPedido((BigInteger) dfo[4]);
-//            documentoFiscalDTO.setNrNumeroCartao((String) dfo[7]);
-//            documentoFiscalDTO.setNmNomeTitular((String) dfo[8]);
-//            documentoFiscalDTO.setValorTotalNota((BigDecimal) dfo[21]);
-//            TbTipoPagamento tbTipoPagamento = tipoPagamentoRepository.getOne((BigInteger) dfo[6]);
-//            documentoFiscalDTO.setFormaPagamento(tbTipoPagamento.getDsTipoPagamento());
-//            documentoFiscalDTO.setIdFormaPagamento(tbTipoPagamento.getIdTipoPagamento());
-//            TbEndereco endereco = enderecoRepository.getOne((BigInteger) dfo[9]);
-//            documentoFiscalDTO.setEndereco(endereco);
-//
-//            List<DocumentoFiscalItemDTO> listDTO = new ArrayList<>();
-//            List<TbDocumentoItem> listEntity2 = documentoFiscalItemRepository.findByDocumentoFiscalIdDocumentoFiscal((BigInteger) dfo[22]);
-//
-//            for (TbDocumentoItem itens: listEntity2){
-//                contadorItens++;
-//                Double valorTotal = 0d;
-//                valorTotal = itens.getQtItem()* itens.getVlItem().doubleValue();
-//                DocumentoFiscalItemDTO documentoFiscalItemDTO = new DocumentoFiscalItemDTO();
-//                documentoFiscalItemDTO.setCdProduto(itens.getProduto().getCdProduto());
-//                documentoFiscalItemDTO.setNmProduto(itens.getProduto().getNomeFantasia());
-//                documentoFiscalItemDTO.setNrItemDocumento(itens.getNrItemDocumento());
-//                documentoFiscalItemDTO.setVlItemUnitario(itens.getVlItem());
-//                documentoFiscalItemDTO.setVlIcms(itens.getVlIcms());
-//                documentoFiscalItemDTO.setQtItem(itens.getQtItem());
-//                documentoFiscalItemDTO.setPcIcms(itens.getPcIcms());
-//                documentoFiscalItemDTO.setVlTotalItem(BigDecimal.valueOf(valorTotal).setScale(2, RoundingMode.HALF_EVEN));
-//
-//                listDTO.add(documentoFiscalItemDTO);
-//            }
-//
-//            documentoFiscalDTO.setQtItens(contadorItens);
-//            documentoFiscalDTO.setItensDocumento(listDTO);
-//            map.put(documentoFiscalDTO.getIdNF(), documentoFiscalDTO);
-//        }
-//
-//        return map.values().stream().collect(Collectors.toList());
-//    }
-
     public Object ultimaNota(BigInteger idCliente){
         Map<BigInteger, DocumentoFiscalDTO> map = new HashMap<>();
         Query query = manager.createNativeQuery("SELECT \n" +
@@ -582,17 +501,25 @@ public class DocumentoFiscalService {
             documentoFiscalDTO.setIdNF((BigInteger) dfo[22]);
             documentoFiscalDTO.setDtEmissao((Date) dfo[20]);
             documentoFiscalDTO.setNrPedido((BigInteger) dfo[4]);
-            documentoFiscalDTO.setNrNumeroCartao((String) dfo[7]);
+
+
             documentoFiscalDTO.setNmNomeTitular((String) dfo[8]);
             documentoFiscalDTO.setValorTotalNota((BigDecimal) dfo[21]);
-            TbTipoPagamento tbTipoPagamento = tipoPagamentoRepository.getOne((BigInteger) dfo[6]);
+            TbTipoPagamento tbTipoPagamento = consultaBanco.tipoPagamento((BigInteger) dfo[6]);
             documentoFiscalDTO.setFormaPagamento(tbTipoPagamento.getDsTipoPagamento());
             documentoFiscalDTO.setIdFormaPagamento(tbTipoPagamento.getIdTipoPagamento());
-            TbEndereco endereco = clienteService.buscaEndereco((BigInteger) dfo[9]);
+            TbEndereco endereco = consultaBanco.endereco((BigInteger) dfo[9]);
             documentoFiscalDTO.setEndereco(endereco);
+            if (tbTipoPagamento.getIdTipoPagamento().equals(BigInteger.valueOf(1))) {
+                byte[] decodedBytes = Base64.getDecoder().decode((String) dfo[7]);
+                String decodedString = new String(decodedBytes);
+                String ultimosDigitos = "****.****.****." + decodedString.substring(decodedString.length() - 4);
+                documentoFiscalDTO.setNrNumeroCartao(ultimosDigitos);
+            }else {
+                documentoFiscalDTO.setNrNumeroCartao((String) dfo[7]);
+            }
 
             List<DocumentoFiscalItemDTO> listDTO = new ArrayList<>();
-//            List<TbDocumentoItem> listEntity2 = documentoFiscalItemRepository.findByDocumentoFiscalIdDocumentoFiscal((BigInteger) dfo[22]);
 
             List<TbDocumentoItem> listEntity2 = consultaBanco.itensNF((BigInteger) dfo[22]);
             for (TbDocumentoItem itens: listEntity2){

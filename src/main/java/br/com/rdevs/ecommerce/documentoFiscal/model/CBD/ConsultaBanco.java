@@ -1,6 +1,7 @@
 package br.com.rdevs.ecommerce.documentoFiscal.model.CBD;
 
 
+import br.com.rdevs.ecommerce.cadastro.model.entity.TbEndereco;
 import br.com.rdevs.ecommerce.documentoFiscal.model.dto.DocumentoFiscalDTO;
 import br.com.rdevs.ecommerce.documentoFiscal.model.entity.TbDocumentoItem;
 import br.com.rdevs.ecommerce.pagamentopedido.model.entity.TbTipoPagamento;
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Column;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -41,6 +43,8 @@ public class ConsultaBanco {
                 "WHERE ID_TIPO_PAGAMENTO = "+idTipoPagamento+" ");
         List<Object[]> ListEntity = query.getResultList();
         Object[] entity = ListEntity.get(0);
+        tbTipoPagamento.setIdTipoPagamento((BigInteger) entity[0]);
+        tbTipoPagamento.setDsTipoPagamento((String) entity[1]);
 
         return tbTipoPagamento;
     }
@@ -74,6 +78,34 @@ public class ConsultaBanco {
         return itensDocumento;
     }
 
+
+    public TbEndereco endereco(BigInteger idEndereco){
+        Query query = manager.createNativeQuery("SELECT \n" +
+                "te.ID_ENDERECO,\n" +
+                "te.DS_ENDERECO,\n" +
+                "te.NR_ENDERECO,\n" +
+                "te.NR_CEP,\n" +
+                "te.DS_BAIRRO,\n" +
+                "te.DS_CIDADE,\n" +
+                "te.SG_ESTADO,\n" +
+                "te.NM_COMPLEMENTO\n" +
+                "FROM TB_ENDERECO te\n" +
+                "WHERE te.ID_ENDERECO = "+idEndereco+"\n" +
+                "Order BY ID_ENDERECO;");
+        List<Object[]> listaItens = query.getResultList();
+        Object[] endereco = listaItens.get(0);
+        TbEndereco enderecosEntity = new TbEndereco();
+        enderecosEntity.setIdEndereco((BigInteger) endereco[0]);
+        enderecosEntity.setDsEndereco((String) endereco[1]);
+        enderecosEntity.setNrEndereco((String) endereco[2]);
+        enderecosEntity.setNrCep((String) endereco[3]);
+        enderecosEntity.setDsBairro((String) endereco[4]);
+        enderecosEntity.setDsCidade((String) endereco[5]);
+        enderecosEntity.setSgEstado((String) endereco[6]);
+        enderecosEntity.setNmCompleto((String) endereco[7]);
+
+        return enderecosEntity;
+    }
 
 
 
