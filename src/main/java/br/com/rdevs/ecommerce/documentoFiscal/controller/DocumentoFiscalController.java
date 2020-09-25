@@ -8,7 +8,7 @@ import br.com.rdevs.ecommerce.cadastro.service.bo.CartaoCreditoBO;
 import br.com.rdevs.ecommerce.documentoFiscal.model.dto.DocumentoFiscalDTO;
 import br.com.rdevs.ecommerce.documentoFiscal.model.dto.DocumentoFiscalItemDTO;
 import br.com.rdevs.ecommerce.documentoFiscal.model.dto.PostDocumentoFiscalDTO;
-import br.com.rdevs.ecommerce.documentoFiscal.repository.DocumentoFiscalItemRepository;
+//import br.com.rdevs.ecommerce.documentoFiscal.repository.DocumentoFiscalItemRepository;
 import br.com.rdevs.ecommerce.documentoFiscal.service.DocumentoFiscalService;
 import br.com.rdevs.ecommerce.pagamentopedido.repository.PagamentoPedidoRepository;
 import io.swagger.annotations.ApiOperation;
@@ -35,8 +35,8 @@ public class DocumentoFiscalController {
     @Autowired
     PagamentoPedidoRepository pagamentoPedidoRepository;
 
-    @Autowired
-    DocumentoFiscalItemRepository documentoFiscalItemRepository;
+//    @Autowired
+//    DocumentoFiscalItemRepository documentoFiscalItemRepository;
 
     @GetMapping("/documentoFiscalId/{idDocumentoFiscal}")
     public ResponseEntity buscarPorIDnota(@PathVariable("idDocumentoFiscal") BigInteger idDocumentoFiscal){
@@ -86,9 +86,9 @@ public class DocumentoFiscalController {
         return ResponseEntity.ok().body(documentoFiscalService.ultimaNota(idCliente));
     }
 
-    @GetMapping("/teste/{idCliente}")
-    public ResponseEntity buscarPorProdutoss(@PathVariable("idCliente") BigInteger idCliente) {
-        return ResponseEntity.ok().body(documentoFiscalItemRepository.findByDocumentoFiscalIdDocumentoFiscal(idCliente));
-    }
+//    @GetMapping("/teste/{idCliente}")
+//    public ResponseEntity buscarPorProdutoss(@PathVariable("idCliente") BigInteger idCliente) {
+//        return ResponseEntity.ok().body(documentoFiscalItemRepository.findByDocumentoFiscalIdDocumentoFiscal(idCliente));
+//    }
 
 }

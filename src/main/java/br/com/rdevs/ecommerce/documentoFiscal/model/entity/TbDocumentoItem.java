@@ -16,14 +16,16 @@ import java.math.BigInteger;
 public class TbDocumentoItem implements Serializable {
 
 
+    @Id
+    @Column(name = "NR_ITEM_DOCUMENTO")
+    private BigInteger nrItemDocumento;
+
+
+    @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_DOCUMENTO_FISCAL")
     @JsonIgnore
     private TbDocumentoFiscal documentoFiscal;
-
-    @Id
-    @Column(name = "NR_ITEM_DOCUMENTO")
-    private BigInteger nrItemDocumento;
 
     @ManyToOne
     @JoinColumn(name = "CD_PRODUTO")

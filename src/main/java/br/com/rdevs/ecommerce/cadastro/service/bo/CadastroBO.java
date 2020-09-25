@@ -60,7 +60,7 @@ public class CadastroBO{
         int anoNasc = clienteEntity.getDtNasc().getYear();
         int anoAtual= calendar.getTime().getYear();
 
-        if ((anoAtual-anoNasc)>=60){
+       if ((anoAtual-anoNasc)>60){
             categoriaCliente.setIdCategoriaCliente(BigInteger.valueOf(2L));
         }else {
             categoriaCliente.setIdCategoriaCliente(BigInteger.valueOf(1L));

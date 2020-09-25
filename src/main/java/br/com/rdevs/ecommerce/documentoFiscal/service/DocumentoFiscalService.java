@@ -6,14 +6,16 @@ import br.com.rdevs.ecommerce.cadastro.model.entity.TbEndereco;
 import br.com.rdevs.ecommerce.cadastro.repository.CadastroRepository;
 import br.com.rdevs.ecommerce.cadastro.repository.CartaoRepository;
 import br.com.rdevs.ecommerce.cadastro.repository.EnderecoRepository;
+import br.com.rdevs.ecommerce.cadastro.service.ClienteService;
 import br.com.rdevs.ecommerce.cadastro.service.bo.CartaoCreditoBO;
+import br.com.rdevs.ecommerce.documentoFiscal.model.CBD.ConsultaBanco;
 import br.com.rdevs.ecommerce.documentoFiscal.model.dto.DocumentoFiscalDTO;
 import br.com.rdevs.ecommerce.documentoFiscal.model.dto.DocumentoFiscalItemDTO;
 import br.com.rdevs.ecommerce.documentoFiscal.model.dto.PostDocumentoFiscalDTO;
 import br.com.rdevs.ecommerce.documentoFiscal.model.dto.PostDocumentoFiscalItemDTO;
 import br.com.rdevs.ecommerce.documentoFiscal.model.entity.TbDocumentoFiscal;
 import br.com.rdevs.ecommerce.documentoFiscal.model.entity.TbDocumentoItem;
-import br.com.rdevs.ecommerce.documentoFiscal.repository.DocumentoFiscalItemRepository;
+//import br.com.rdevs.ecommerce.documentoFiscal.repository.DocumentoFiscalItemRepository;
 import br.com.rdevs.ecommerce.documentoFiscal.repository.DocumentoFiscalRepository;
 import br.com.rdevs.ecommerce.estoque.model.entity.TbProdutoFilialEstoque;
 import br.com.rdevs.ecommerce.estoque.repository.EstoqueRepository;
@@ -74,7 +76,10 @@ public class DocumentoFiscalService {
     CupomItemRepository cupomItemRepository;
 
     @Autowired
-    DocumentoFiscalItemRepository documentoFiscalItemRepository;
+    ConsultaBanco consultaBanco;
+
+//    @Autowired
+//    DocumentoFiscalItemRepository documentoFiscalItemRepository;
 
     @Autowired
     CupomRepository cupomRepository;
@@ -87,6 +92,9 @@ public class DocumentoFiscalService {
 
     @Autowired
     CartaoRepository cartaoRepository;
+
+    @Autowired
+    ClienteService clienteService;
 
     @Autowired
     private JavaMailSender mailSender;
@@ -580,12 +588,13 @@ public class DocumentoFiscalService {
             TbTipoPagamento tbTipoPagamento = tipoPagamentoRepository.getOne((BigInteger) dfo[6]);
             documentoFiscalDTO.setFormaPagamento(tbTipoPagamento.getDsTipoPagamento());
             documentoFiscalDTO.setIdFormaPagamento(tbTipoPagamento.getIdTipoPagamento());
-            TbEndereco endereco = enderecoRepository.getOne((BigInteger) dfo[9]);
+            TbEndereco endereco = clienteService.buscaEndereco((BigInteger) dfo[9]);
             documentoFiscalDTO.setEndereco(endereco);
 
             List<DocumentoFiscalItemDTO> listDTO = new ArrayList<>();
-            List<TbDocumentoItem> listEntity2 = documentoFiscalItemRepository.findByDocumentoFiscalIdDocumentoFiscal((BigInteger) dfo[22]);
+//            List<TbDocumentoItem> listEntity2 = documentoFiscalItemRepository.findByDocumentoFiscalIdDocumentoFiscal((BigInteger) dfo[22]);
 
+            List<TbDocumentoItem> listEntity2 = consultaBanco.itensNF((BigInteger) dfo[22]);
             for (TbDocumentoItem itens: listEntity2){
                 contadorItens++;
                 Double valorTotal = 0d;
@@ -609,6 +618,19 @@ public class DocumentoFiscalService {
 
 
         return documentoFiscalDTO;
+    }
+
+    public TbTipoPagamento tipoPagamento(BigInteger idTipoPagamento){
+        TbTipoPagamento tbTipoPagamento = new TbTipoPagamento();
+        Query query = manager.createNativeQuery("SELECT \n" +
+                "ttp.ID_TIPO_PAGAMENTO,\n" +
+                "ttp.DS_TIPO_PAGAMENTO_ECOM\n" +
+                "FROM TB_TIPO_PAGAMENTO ttp\n" +
+                "WHERE ID_TIPO_PAGAMENTO = "+idTipoPagamento+" ");
+        List<Object[]> ListEntity = query.getResultList();
+        Object[] entity = ListEntity.get(0);
+
+        return tbTipoPagamento;
     }
 
 

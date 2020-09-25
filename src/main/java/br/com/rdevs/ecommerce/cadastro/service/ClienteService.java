@@ -12,6 +12,9 @@ import br.com.rdevs.ecommerce.cadastro.service.bo.EnderecoBO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -36,6 +39,8 @@ public class ClienteService {
     private EnderecoBO enderecoBO ;
     @Autowired
     private CartaoCreditoBO cartaoCreditoBO;
+    @PersistenceContext
+    private EntityManager manager;
 
 
     public List<ClienteDTO> buscarTodas(){
@@ -93,7 +98,6 @@ public class ClienteService {
     public TbCliente inserir (ClienteDTO clienteDTO){
         TbCliente clienteEntity = cadastroBO.parseToEntity(clienteDTO, null);
         if (clienteDTO.getPwCliente().equals(clienteDTO.getConfirmarSenha())){
-
             List<TbEndereco> enderecos = new ArrayList<>();
             for (EnderecoDTO enderecoDTO: clienteDTO.getEnderecos()){
                 TbEndereco endereco = enderecoBO.parseToEntity(enderecoDTO,null);
@@ -271,4 +275,40 @@ public class ClienteService {
     public List<TbCliente> buscarPorNmEmail(String nmEmail) {
         return cadastroRepository.findByDsEmail(nmEmail);
     }
+
+
+    public TbEndereco buscaEndereco(BigInteger idEndereco){
+
+        TbEndereco enderecoDTO = new TbEndereco();
+        Query query = manager.createNativeQuery("SELECT \n" +
+                "te.ID_ENDERECO,\n" +
+                "te.DS_ENDERECO,\n" +
+                "te.NR_ENDERECO,\n" +
+                "te.NR_CEP,\n" +
+                "te.DS_BAIRRO,\n" +
+                "te.DS_CIDADE,\n" +
+                "te.SG_ESTADO,\n" +
+                "te.NM_COMPLEMENTO\n" +
+                "FROM TB_ENDERECO te\n" +
+                "WHERE te.ID_ENDERECO ="+idEndereco+"\n" +
+                "Order BY ID_ENDERECO;");
+        List<Object[] > listEntity = query.getResultList();
+        Object[] endereçoEntity= listEntity.get(0);
+
+        enderecoDTO.setIdEndereco((BigInteger) endereçoEntity[0]);
+        enderecoDTO.setDsEndereco((String) endereçoEntity[1]);
+        enderecoDTO.setNrEndereco((String) endereçoEntity[2]);
+        enderecoDTO.setNrCep((String) endereçoEntity[3]);
+        enderecoDTO.setDsBairro((String) endereçoEntity[4]);
+        enderecoDTO.setDsCidade((String) endereçoEntity[5]);
+        enderecoDTO.setSgEstado((String) endereçoEntity[6]);
+        enderecoDTO.setNmCompleto((String) endereçoEntity[7]);
+
+        return enderecoDTO;
+    }
+
+
+
+
+
 }
